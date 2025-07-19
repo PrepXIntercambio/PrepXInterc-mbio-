@@ -13,7 +13,7 @@ import {
     MapPin, Check, GraduationCap, Video, Image as ImageIcon, ThumbsUp, AlertTriangle,
     UserCheck, Building2, Camera, Music, BrainCircuit, Puzzle, Play, Pause, RefreshCw,
     Target, PenSquare, FolderOpen, Coins, FolderPlus, Compass, Award, Sparkles, Instagram, Linkedin,
-    ArrowRight, Bot, Folder, ArrowDown, Hand, MessageSquarePlus, AlertCircle, Calculator, Send, Wifi, Utensils, Route, HeartPulse, Bell, User, Building as Agency, ExternalLink, Moon, Sun, Download, Trash2, Edit, CheckSquare, Square, Mail as MailIcon, Plus, Minus, Tv2, GripVertical, FileDown, Cloud, SunDim, HelpCircle
+    ArrowRight, Bot, Folder, ArrowDown, Hand, MessageSquarePlus, AlertCircle, Calculator, Send, Wifi, Utensils, Route, HeartPulse, Bell, User, Building as Agency, ExternalLink, Moon, Sun, Download, Trash2, Edit, CheckSquare, Square, Mail as MailIcon, Plus, Minus, Tv2, GripVertical, FileDown, Cloud, SunDim, HelpCircle, Phone, MessageSquare, ThumbsDown
 } from 'lucide-react';
 
 // --- Firebase Mock Initialization ---
@@ -31,21 +31,17 @@ try {
 // --- Knowledge Base for Jei AI ---
 const KNOWLEDGE_BASE = `
 # O Manual de Operações de Intercâmbio Global 2025: Um Guia Estratégico para o Mercado Brasileiro
-
 ## Parte I: O Funil da Jornada do Estudante: da Prospecção à Colocação
 Esta seção inaugural estabelece a estrutura de processos internos para a agência, conectando metodologias de vendas e atendimento ao contexto específico e de alto impacto da gestão de programas de intercâmbio internacional. O objetivo é criar um padrão de excelência que alinhe as expectativas do estudante com a realidade, garantindo não apenas a conversão, mas a satisfação e o sucesso do intercambista.
-
 ### O Funil de Vendas de Intercâmbio: Uma Estrutura para a Conversão
 #### O Protocolo de Pré-Atendimento do SDR: Qualificação e Análise de Perfil
 A função do Sales Development Representative (SDR) no setor de intercâmbio transcende a simples qualificação de leads; ela representa o primeiro e mais crítico ponto de contato para o gerenciamento das expectativas do estudante. Este protocolo visa transformar o contato inicial de um script reativo para uma conversa diagnóstica, estabelecendo uma base de confiança e realismo desde o início.
-
 ##### Estrutura de Qualificação de Leads
 A função primordial do SDR é realizar uma triagem criteriosa dos contatos que chegam à agência, garantindo que o tempo da equipe de consultores especialistas seja investido em prospects com real potencial de conversão. Para o mercado de intercâmbio, essa qualificação deve ser profunda e multifacetada, utilizando uma matriz de critérios específicos:
 - **Capacidade Financeira:** A abordagem inicial deve ser sutil, mas eficaz, para aferir o orçamento do estudante. Perguntas como "Você já tem uma ideia do investimento que pretende fazer nesta experiência?" ou "Para te ajudar a encontrar as melhores opções, qual faixa de orçamento devemos considerar?" ajudam a direcionar a conversa sem serem invasivas.
 - **Intenção do Programa:** É fundamental identificar o objetivo principal do intercâmbio. Trata-se de um curso de idiomas, um programa de estudo e trabalho, trabalho voluntário, ensino médio (high school) ou um curso universitário? Cada modalidade possui pré-requisitos, custos e processos de visto distintos.
 - **Horizonte de Tempo:** A urgência e a flexibilidade do estudante são fatores determinantes. Um lead que pretende viajar em três meses tem necessidades diferentes de um que planeja para o próximo ano. Essa informação qualifica a prioridade do atendimento.
 - **Perfil do Estudante:** Coletar dados demográficos essenciais como idade, formação acadêmica e experiência profissional é crucial. Um recém-formado buscando experiência de trabalho tem um perfil diferente de um adolescente em seu primeiro intercâmbio.
-
 ##### Análise de Perfil para Escolha do Destino
 O SDR deve atuar como um analista de perfil preliminar, realizando uma primeira análise de "compatibilidade" entre o estudante e os possíveis destinos. O SDR pode utilizar um "Questionário de Persona" para guiar a conversa e entender as motivações intrínsecas do cliente. Este questionário ajuda a alinhar a "vibe" do estudante com as características dos destinos.
 **Exemplo de Questionário de Persona para SDRs:**
@@ -60,7 +56,6 @@ O SDR deve atuar como um analista de perfil preliminar, realizando uma primeira 
    (C) Fazendo trilhas, visitando praias e parques nacionais.
    (D) Em bibliotecas, grupos de estudo e eventos no campus universitário.
 Com base nas respostas, o SDR pode fazer uma pré-qualificação de destino. Um perfil predominantemente "A" pode se alinhar melhor com centros como Dubai ou Toronto, enquanto um perfil "C" pode ser mais compatível com a Nova Zelândia ou a Cidade do Cabo.
-
 #### A Venda Consultiva: O Papel do Consultor Especialista
 O papel do consultor é consolidar a transição de "agente de viagens" para "consultor estratégico de vida".
 **Construindo o Pitch de Venda Consultivo:**
@@ -68,9 +63,7 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
 2. **Apresentar o Destino como a Solução Estratégica:** Apresentar o destino como o cenário ideal para a realização daquele objetivo.
 3. **Utilizar o "Empilhamento de Argumentos":** Construir um caso lógico e convincente. Exemplo para a Irlanda: "Na Irlanda, você terá um ambiente de imersão total no inglês, com a permissão de trabalho de 20 horas semanais para ajudar a custear a experiência, e tudo isso em um país que serve como uma base incrível e de baixo custo para explorar toda a Europa."
 4. **Abordar Objeções com Transparência:** Antecipar e abordar proativamente os desafios. Exemplo: "É importante que você saiba que encontrar acomodação em Dublin é um dos maiores desafios. O mercado é competitivo e os preços são altos. É por isso que nosso pacote inclui um suporte robusto de acomodação."
-
 ## Parte II: O Dossiê de Destinos Globais
-
 ### África do Sul
 - **Cidades Principais:** Cidade do Cabo, Joanesburgo.
 - **Perfil:** Excelente custo-benefício, combina educação de qualidade com diversidade cultural e natural. Moeda (Rand - ZAR) desvalorizada em relação ao Real. Brasileiros não necessitam de visto para estadias de até 90 dias. Atraente para trabalho voluntário.
@@ -81,7 +74,6 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
 - **Custo de Vida (Cidade do Cabo):** Total mensal estimado de R 9.064 a R 14.964 (ZAR), sem mensalidade do curso.
 - **Acomodação:** Opções são residências estudantis, homestay e quartos compartilhados. Mercado competitivo.
 - **Segurança:** Percepção similar à do Brasil, exige atenção constante. Evitar andar sozinho à noite e exibir objetos de valor.
-
 ### Alemanha
 - **Cidades Principais:** Berlim, Hamburgo, Munique, Frankfurt.
 - **Perfil:** Foco em carreira e educação superior. Universidades públicas com taxas baixas ou inexistentes. Permissão de trabalho e possibilidade de ficar 18 meses após a graduação para buscar emprego.
@@ -92,7 +84,6 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
   - **Permissão de Trabalho:** Estudantes podem trabalhar até 140 dias completos ou 280 meios-dias por ano.
 - **Custo de Vida (Berlim):** Total mensal estimado de €829 a €1.430.
 - **Acomodação:** Mais comum é o apartamento compartilhado (WG - Wohngemeinschaft). Mercado muito competitivo, buscar com meses de antecedência.
-
 ### Austrália
 - **Cidades Principais:** Sydney, Melbourne, Brisbane, Gold Coast, Adelaide, Perth.
 - **Perfil:** Alta qualidade de vida, sistema educacional de excelência e permissão para trabalhar.
@@ -102,7 +93,6 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
   - **Permissão de Trabalho:** Máximo de **48 horas por quinzena** durante o período letivo. Horas ilimitadas nas férias.
 - **Custo de Vida (Sydney):** Total mensal estimado de A$2,380 a A$3,620.
 - **Acomodação:** Mercado extremamente competitivo e caro.
-
 ### Argentina
 - **Cidades Principais:** Buenos Aires, Córdoba.
 - **Perfil:** Acessível e culturalmente rico. Universidades públicas gratuitas e de prestígio (UBA).
@@ -112,7 +102,6 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
   - **Permissão de Trabalho:** Visto de estudante **não autoriza** trabalho remunerado.
 - **Custo de Vida (Buenos Aires):** Total mensal estimado de US$548 a US$1,000. Instabilidade econômica e alta inflação.
 - **Saúde:** Sistema público gratuito, mas com filas. Muitos contratam plano privado (*prepaga*).
-
 ### Canadá
 - **Cidades Principais:** Toronto, Vancouver, Montreal, Calgary.
 - **Perfil:** Alta qualidade de vida, multicultural, cidades seguras. Vias de imigração pós-estudo.
@@ -122,7 +111,6 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
   - **Mudança Crítica 2025:** Permissão de trabalho para cônjuges será restrita apenas a parceiros de estudantes de **mestrado e doutorado**.
 - **Custo de Vida (Toronto):** Total mensal estimado de CAD$1,706 a CAD$2,656. Crise de habitação em Toronto e Vancouver.
 - **Saúde:** Sistema provincial, varia por província. Em Ontário (Toronto), estudantes contratam plano privado (UHIP). Em British Columbia (Vancouver), inscrevem-se no plano provincial (MSP) pagando taxa.
-
 ### Estados Unidos
 - **Cidades Principais:** Nova York, Los Angeles, Boston, Miami.
 - **Perfil:** Destino icônico, universidades renomadas. Alto custo e regras de visto restritivas.
@@ -131,7 +119,6 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
   - **Permissão de Trabalho:** **Extremamente restritiva**. Trabalho fora do campus geralmente proibido no primeiro ano. O foco não deve ser contar com trabalho para se manter.
 - **Custo de Vida (Nova York):** Total mensal estimado de US$2,632 a US$4,232.
 - **Saúde:** Sistema privado e **extremamente caro**. Seguro saúde abrangente é exigido pelas escolas.
-
 ### Emirados Árabes Unidos
 - **Cidade Principal:** Dubai.
 - **Perfil:** Moderno, seguro, multicultural. Ambiente de negócios dinâmico.
@@ -139,7 +126,6 @@ O papel do consultor é consolidar a transição de "agente de viagens" para "co
   - **Visto de Estudante:** Para cursos acima de 90 dias, a própria escola facilita o processo.
   - **Permissão de Trabalho:** Permitido para estudantes universitários em regime de meio período.
 `;
-
 // --- i18n (Internationalization & Translations) ---
 const translations = {
     pt: {
@@ -169,7 +155,6 @@ const translations = {
         notificacoes_texto: "Gostaria de receber dicas e lembretes importantes sobre sua jornada?",
         nao_mostrar_novamente: "Não mostrar novamente",
         flight_info: "Informações do seu voo, atualizações de status e check-in rápido.",
-
         // Auth & Landing Page
         auth_login: "Login",
         auth_register: "Cadastro",
@@ -186,7 +171,6 @@ const translations = {
         value_prop_3_title: "Seu Suporte, Sempre ON",
         value_prop_3_text: "Somos a peça que faltava na engrenagem. Quando sua agência ou consultor estiverem ocupados, o OnliPrep está aqui, pronto para te ajudar.",
         partners_title: "Parceiros de jornada",
-
         // Registration Screen
         register_title: "Cadastro rápido",
         full_name: "Nome completo",
@@ -198,7 +182,6 @@ const translations = {
         terms_agree: "Eu li e concordo com os",
         terms_marketing: "Aceito receber novidades e publicidade.",
         or_separator: "OU",
-
         // Onboarding Funnel
         onboarding_intro_title: "Vamos nos conhecer melhor?",
         onboarding_intro_text: "Para personalizar sua jornada, precisamos de algumas informações. Prometemos que será rápido!",
@@ -216,9 +199,9 @@ const translations = {
         previous_date_placeholder: "Quando foi?",
         dream_destination_title: "Qual é o destino dos seus sonhos?",
         status_title: "Seu status hoje é:",
-        status_researching: "Ainda pesquisando...",
-        status_closed: "Fechei! E agora?",
-        status_packing: "De malas prontas!",
+        status_researching: "Pesquisando",
+        status_closed: "Contrato assinado",
+        status_packing: "De malas prontas",
         almost_there_title: "Quase lá!",
         departure_date_label: "Qual sua previsão de embarque?",
         start_journey_button: "Começar minha jornada",
@@ -226,10 +209,9 @@ const translations = {
         data_sent_success: "Sucesso! Bem-vindo(a)!",
         data_sent_error: "Ocorreu um erro. Tente novamente.",
         creating_your_dashboard: "Criando seu dashboard...",
-
         // Dashboard & Tools
-        home: "Início",
-        home_info: "Sua página inicial com acesso rápido a tudo.",
+        cases: "Cases",
+        cases_info: "Veja histórias de sucesso e exemplos de intercâmbios.",
         journey: "Jornada",
         journey_info: "Um guia passo a passo para te levar até o seu sonho, desde a decisão até a sua formatura no exterior.",
         preparatorio_title: "Preparatório",
@@ -261,7 +243,6 @@ const translations = {
         flight_info_modal_title: "Informações do Voo",
         teacher_ana_modal_title: "Teacher Ana - Prática de Inglês",
         personalized_checklist_title: "✨ Checklist Personalizado",
-
         // Folder Modal
         folder_search_placeholder: "Procurar em pastas...",
         folder_instruction_title: "Organize suas dicas!",
@@ -273,7 +254,6 @@ const translations = {
         create: "Criar",
         save_to_folder_title: "Salvar em...",
         select_folder: "Selecione uma pasta",
-
         // Agenda Modal
         edit_task: "Editar Tarefa",
         update_task: "Atualizar Tarefa",
@@ -283,16 +263,13 @@ const translations = {
         jei_search_button: "Perguntar ao Jei",
         jei_thinking: "Jei está pensando...",
         jei_response_title: "Resposta do Jei",
-
         // Teacher Ana
         teacher_ana_prompt: "✨ Gerar nova frase para praticar",
         teacher_ana_generating: "Gerando frase...",
-
         // Personalized Checklist
         checklist_prompt: "Seu intercâmbio está cada vez mais perto! Gostaria de um checklist personalizado para te ajudar a organizar os próximos passos?",
         checklist_button: "✨ Sim, criar meu checklist!",
         checklist_generating: "Criando seu checklist personalizado...",
-
         // Premium Section
         premium_unlock_title: "Desbloqueie o Premium",
         premium_unlock_text: "Assista a um vídeo rápido para ter um gostinho do Premium por 20 minutos.",
@@ -314,7 +291,29 @@ const translations = {
         premium_your_feedback: "Seu feedback",
         premium_send_feedback: "Enviar Avaliação",
         premium_feedback_sent: "Avaliação enviada! Obrigado.",
-
+        premium_contact_agency_title: "Falar com a minha agência",
+        premium_contact_reason: "Motivo do contato",
+        premium_contact_reason_doubt: "Dúvida",
+        premium_contact_reason_suggestion: "Sugestão",
+        premium_contact_reason_praise: "Elogios",
+        premium_contact_reason_complaint: "Reclamação",
+        premium_contact_reason_urgency: "Urgência",
+        premium_contact_message: "Sua mensagem",
+        premium_contact_send: "Enviar",
+        premium_contact_sent_success: "Sua mensagem foi enviada com sucesso!",
+        premium_agency_select: "Selecione a agência",
+        premium_eval_title: "Como você avalia sua experiência?",
+        premium_eval_satisfied: "Satisfeito",
+        premium_eval_ok: "Satisfeito, com ressalvas",
+        premium_eval_unsatisfied: "Muito Insatisfeito",
+        premium_eval_thanks: "Obrigado pelo seu feedback!",
+        premium_subscription_title: "Escolha seu plano Premium",
+        premium_plan_24h: "Acesso por 24 horas",
+        premium_plan_48h: "Acesso por 48 horas",
+        premium_plan_72h: "Acesso por 72 horas",
+        premium_plan_monthly: "Assinatura Mensal",
+        premium_buy_voucher: "Comprar Voucher",
+        premium_subscribe_monthly: "Assinar",
         // Other
         tip_of_the_day: "Dica do Dia",
         tip_of_the_day_info: "Receba uma dica valiosa sobre seu destino todos os dias.",
@@ -356,6 +355,7 @@ const translations = {
         preparatorio_title: "Prep Course",
         bate_volta: "Day Trip",
         premium: "Premium",
+        cases: "Cases",
         folder: "Folder",
         currency: "Currency",
         calculator: "Calc",
@@ -365,16 +365,17 @@ const translations = {
     }
 };
 
-
 // --- KNOWLEDGE BASE & MOCK DATA ---
 const mockDatabase = {
     destinations: {
-        "África do Sul": ["Cidade do Cabo", "Joanesburgo"], "Alemanha": ["Berlim", "Munique", "Hamburgo", "Frankfurt"], "Argentina": ["Buenos Aires", "Córdoba"], "Austrália": ["Sydney", "Melbourne", "Brisbane", "Gold Coast", "Adelaide", "Perth"], "Canadá": ["Toronto", "Vancouver", "Montreal", "Calgary"], "Emirados Árabes Unidos": ["Dubai"], "Espanha": ["Madri", "Barcelona"], "Estados Unidos": ["Nova Iorque", "Los Angeles", "Boston", "Miami"], "Inglaterra": ["Londres", "Manchester"], "Irlanda": ["Dublin", "Cork"], "Malta": ["St. Julian's"], "Nova Zelândia": ["Auckland"],
+        "África do Sul": ["Cidade do Cabo", "Joanesburgo"], "Alemanha": ["Berlim", "Munique", "Hamburgo", "Frankfurt"], "Argentina": ["Buenos Aires", "Córdoba"], "Austrália": ["Sydney", "Melbourne", "Brisbane", "Gold Coast", "Adelaide", "Perth"], "Canadá": ["Toronto", "Vancouver", "Montreal", "Calgary"], "Emirados Árabes Unidos": ["Dubai"], "Espanha": ["Madri", "Barcelona"], "Estados Unidos": ["Nova Iorque", "Los Angeles", "Boston", "Miami"], "Inglaterra": ["Londres", "Manchester"], "Irlanda": ["Dublin", "Cork"], "Malta": ["St. Julian's", "Sliema"], "Nova Zelândia": ["Auckland"],
     },
+    agencies: ["WEGO Intercâmbios", "CI Intercâmbio", "Experimento", "STB"],
     weather: {
         "Dublin, Irlanda": { temp: 14, icon: Cloud },
         "Toronto, Canadá": { temp: 22, icon: SunDim },
         "Sydney, Austrália": { temp: 18, icon: Sun },
+        "St. Julian's, Malta": { temp: 28, icon: Sun },
         "Nova Iorque, Estados Unidos": {temp: 25, icon: Sun }
     },
     valueSlides: [
@@ -385,17 +386,23 @@ const mockDatabase = {
     partners: ["WEGO Intercâmbios", "Itaú", "Wise", "TM"],
     tips: {
      "Irlanda": [
-        "Sempre tenha um guarda-chuva à mão, o tempo em Dublin muda a cada 5 minutos!",
-        "A melhor pint de Guinness está no Gravity Bar, no topo da Guinness Storehouse.",
-        "Use o Leap Card para economizar no transporte público.",
-        "Os penhascos de Moher são um passeio de um dia imperdível saindo de Dublin."
-      ],
-      "Canadá": [
-        "Prepare-se para o frio! Um bom casaco de inverno é essencial.",
-        "Tim Hortons é uma instituição canadense. Experimente um 'Double-Double'.",
-        "A gorjeta (tip) é geralmente de 15-20% em restaurantes.",
-        "Explore os parques nacionais, a natureza do Canadá é deslumbrante."
-      ]
+         "Sempre tenha um guarda-chuva à mão, o tempo em Dublin muda a cada 5 minutos!",
+         "A melhor pint de Guinness está no Gravity Bar, no topo da Guinness Storehouse.",
+         "Use o Leap Card para economizar no transporte público.",
+         "Os penhascos de Moher são um passeio de um dia imperdível saindo de Dublin."
+       ],
+       "Canadá": [
+         "Prepare-se para o frio! Um bom casaco de inverno é essencial.",
+         "Tim Hortons é uma instituição canadense. Experimente um 'Double-Double'.",
+         "A gorjeta (tip) é geralmente de 15-20% em restaurantes.",
+         "Explore os parques nacionais, a natureza do Canadá é deslumbrante."
+       ],
+       "Malta": [
+            "Não se esqueça do protetor solar! O sol em Malta é forte o ano todo.",
+            "Explore as praias escondidas como St. Peter's Pool.",
+            "Use o app da Bolt ou Uber para se locomover, é mais prático que o ônibus.",
+            "A vida noturna em Paceville é agitada, mas vá com um grupo de amigos."
+       ]
     },
     journeyTasks: [
         { step: 1, task: "Definir destino e tipo de curso", daysBefore: 240 },
@@ -407,14 +414,75 @@ const mockDatabase = {
         { step: 7, task: "Confirmar acomodação inicial", daysBefore: 30 },
         { step: 8, task: "Fazer check-in online", daysBefore: 1 },
     ],
+    journeySteps: {
+        pesquisando: [
+            { id: 1, name: "Definir Sonho", icon: Lightbulb },
+            { id: 2, name: "Análise Financeira", icon: Wallet },
+            { id: 3, name: "Escolher Destino", icon: MapPin },
+            { id: 4, name: "Tipo de Visto", icon: Stamp },
+            { id: 5, name: "Escolher Agência", icon: Handshake },
+            { id: 6, name: "Assinar Contrato", icon: FileSignature },
+        ],
+        contrato_assinado: [
+            { id: 1, name: "Pagamento Inicial", icon: Coins },
+            { id: 2, name: "Matrícula Escola", icon: GraduationCap },
+            { id: 3, name: "Passaporte", icon: Passport },
+            { id: 4, name: "Aplicação Visto", icon: Stamp },
+            { id: 5, name: "Comprovação Financeira", icon: FolderOpen },
+            { id: 6, name: "Exames Médicos", icon: HeartPulse },
+            { id: 7, name: "Compra Passagem", icon: Plane },
+            { id: 8, name: "Seguro Viagem", icon: ShieldCheck },
+            { id: 9, name: "Acomodação", icon: BedDouble },
+            { id: 10, name: "Moeda Estrangeira", icon: Coins },
+            { id: 11, name: "Reunião Pré-Embarque", icon: Users },
+            { id: 12, name: "Fazer as Malas", icon: Backpack },
+        ],
+        de_malas_prontas: [
+            { id: 1, name: "Pagamento Final", icon: CheckCircle },
+            { id: 2, name: "Documentos Finais", icon: FileSignature },
+            { id: 3, name: "Passaporte OK", icon: Passport },
+            { id: 4, name: "Visto Aprovado", icon: Stamp },
+            { id: 5, name: "Finanças OK", icon: Wallet },
+            { id: 6, name: "Saúde OK", icon: HeartPulse },
+            { id: 7, name: "Passagem Comprada", icon: Plane },
+            { id: 8, name: "Seguro OK", icon: ShieldCheck },
+            { id: 9, name: "Acomodação OK", icon: BedDouble },
+            { id: 10, name: "Moeda Comprada", icon: Coins },
+            { id: 11, name: "Reunião OK", icon: Users },
+            { id: 12, name: "Malas Prontas", icon: Backpack },
+        ]
+    },
+    journeyContent: {
+        'Malta': {
+            '4': {
+                title: 'Visto para Malta',
+                content: 'Para cursos de até 90 dias, brasileiros não precisam de visto. Acima disso, você entra como turista e aplica para a permissão de estudante já em Malta. É crucial levar todos os documentos organizados (carta da escola, comprovação financeira, seguro, etc.) para apresentar na imigração. Nosso time te dará o checklist completo!'
+            },
+            '9': {
+                title: 'Acomodação em Malta',
+                content: 'Malta tem muitas opções, desde residências estudantis (ótimo para fazer amigos) a apartamentos compartilhados. St. Julian\'s e Sliema são populares, mas podem ser mais caros. Considere áreas como Msida ou Gzira para um melhor custo-benefício. Comece a procurar com pelo menos 2 meses de antecedência!'
+            }
+        },
+        'default': {
+             '4': {
+                title: 'Tipo de Visto',
+                content: 'Cada país tem sua regra. Visto de estudante, trabalho, turismo... a escolha certa depende do seu objetivo. Esse é um dos passos mais críticos, e um erro aqui pode custar caro. Vamos analisar seu perfil para definir a melhor estratégia.'
+            },
+            '9': {
+                title: 'Acomodação Inicial',
+                content: 'Recomendamos fechar as primeiras 2 a 4 semanas de acomodação ainda no Brasil. Isso te dá segurança e tempo para procurar um lugar definitivo com calma quando chegar. Homestay (casa de família) é uma ótima opção para imersão cultural no início.'
+            }
+        }
+    },
     premiumContent: {
-        'accommodation': Array.from({ length: 8 }, (_, i) => ({ id: `acc-${i}`, title: `Guia de Acomodação #${i + 1}`, locked: i > 0 })),
-        'work': Array.from({ length: 8 }, (_, i) => ({ id: `work-${i}`, title: `Dicas de Trabalho #${i + 1}`, locked: i > 0 })),
-        'culture': Array.from({ length: 8 }, (_, i) => ({ id: `cult-${i}`, title: `Imersão Cultural #${i + 1}`, locked: true })),
-        'first_week': Array.from({ length: 8 }, (_, i) => ({ id: `week-${i}`, title: `1ª Semana: Guia #${i + 1}`, locked: i > 0 })),
-    }
+        'consultancy': Array.from({ length: 8 }, (_, i) => ({ id: `cons-${i}`, title: `Consultoria Exclusiva #${i + 1}`, locked: true })),
+    },
+    cases: [
+        { id: 1, name: "Mariana L.", destination: "Dublin, Irlanda", story: "Realizou o sonho de estudar e trabalhar na Europa, hoje é gerente de projetos.", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=500&fit=crop" },
+        { id: 2, name: "João P.", destination: "Toronto, Canadá", story: "Fez um curso de especialização e conseguiu imigrar através do programa de estudos.", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" },
+        { id: 3, name: "Carla S.", destination: "Sydney, Austrália", story: "Aprendeu inglês na prática e viajou por todo o sudeste asiático nas férias.", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop" },
+    ]
 };
-
 // --- Contexts ---
 const LanguageContext = createContext(null);
 const useLanguage = () => useContext(LanguageContext);
@@ -427,11 +495,9 @@ const LanguageProvider = ({ children }) => {
         }
         return translation;
     }, [language]);
-
     const value = { language, setLanguage, t };
     return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
-
 const AppContext = createContext(null);
 const useApp = () => useContext(AppContext);
 const AppProvider = ({ children }) => {
@@ -443,11 +509,9 @@ const AppProvider = ({ children }) => {
     const [savedItems, setSavedItems] = useState([]);
     const [agendaItems, setAgendaItems] = useState([]);
     const [showTips, setShowTips] = useState(true);
-
     const showToast = (message, icon = Info, duration = 5000, actions = []) => {
         setToast({ message, icon, id: Date.now(), actions });
     };
-
     const handleLogin = (user) => {
         setUserData({
             name: user.displayName || "Novo Usuário",
@@ -483,14 +547,14 @@ const AppProvider = ({ children }) => {
             email: e.target.elements.email.value,
             photoURL: `https://i.pravatar.cc/80?u=old-user`,
             uid: '67890',
-            destinationCountry: 'Irlanda',
-            destination: 'Dublin, Irlanda',
+            destinationCountry: 'Malta',
+            destination: 'St. Julian\'s, Malta',
             departureDate: '2025-12-31',
+            status: 'de_malas_prontas',
             isNew: false
         };
         handleLogin(mockUser);
     }
-
     const completeOnboarding = (onboardingData) => {
         setUserData(prev => ({ ...prev, ...onboardingData }));
         setScreen('dashboard');
@@ -501,7 +565,6 @@ const AppProvider = ({ children }) => {
         setScreen('auth');
         setAuthFlowStep('registration');
     };
-
     const goBack = () => {
         if (screen === 'dashboard') {
             setScreen('auth');
@@ -509,7 +572,6 @@ const AppProvider = ({ children }) => {
             setScreen('auth');
         }
     }
-
     const saveItem = (item) => {
         setSavedItems(prev => [...prev, {id: Date.now(), ...item, isNew: true}]);
         showToast("Salvo na sua pasta!", CheckCircle, 3000);
@@ -518,17 +580,15 @@ const AppProvider = ({ children }) => {
     const addAgendaItem = (item) => {
         setAgendaItems(prev => [...prev, {id: `user-${Date.now()}`, ...item, completed: false, completedAt: null, isJourneyTask: false}]);
     }
-
     const updateAgendaItem = (id, updatedData) => {
         setAgendaItems(prev => prev.map(item => item.id === id ? {...item, ...updatedData} : item));
     }
-
     const toggleAgendaItem = (id) => {
         setAgendaItems(prev => prev.map(item => item.id === id ? {...item, completed: !item.completed, completedAt: !item.completed ? new Date().toISOString() : null} : item));
     }
     
     useEffect(() => {
-        if(userData?.departureDate) {
+        if(userData?.departureDate && mockDatabase.journeyTasks) { // Added check for journeyTasks
             const journeyRelatedTasks = mockDatabase.journeyTasks.map(task => {
                 const taskDate = new Date(userData.departureDate + "T00:00:00");
                 taskDate.setDate(taskDate.getDate() - task.daysBefore);
@@ -554,17 +614,14 @@ const AppProvider = ({ children }) => {
             setAgendaItems([...journeyRelatedTasks, departureTask, ...userTasks]);
         }
     }, [userData?.departureDate]);
-
     const value = {  
         screen, userData, isFirstTimeUser, toast, authFlowStep, savedItems, agendaItems, showTips,
         setScreen, setUserData, setIsFirstTimeUser, showToast, setToast, setAuthFlowStep,
         handleLogin, handleGoogleLogin, handleEmailLogin, completeOnboarding, logout, goBack, saveItem,
         addAgendaItem, toggleAgendaItem, setSavedItems, setShowTips, updateAgendaItem
     };
-
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-
 // --- UI Components ---
 const LoadingScreen = ({ text }) => (
     <div className="w-full h-full flex flex-col items-center justify-center bg-[#FBF9F6] animate-fade-in">
@@ -576,7 +633,6 @@ const LoadingScreen = ({ text }) => (
         </div>
     </div>
 );
-
 const AppLogo = ({ className }) => (
     <div className={`text-center ${className}`}>
         <h1 className="text-6xl md:text-7xl font-extrabold tracking-tighter relative inline-flex items-center">
@@ -585,7 +641,6 @@ const AppLogo = ({ className }) => (
         </h1>
     </div>
 );
-
 const ValuePropositionCard = ({ icon, title, text }) => {
     const Icon = icon;
     return (
@@ -598,7 +653,6 @@ const ValuePropositionCard = ({ icon, title, text }) => {
         </div>
     );
 };
-
 const Footer = () => {
     const { t } = useLanguage();
     const { setScreen } = useApp();
@@ -633,12 +687,10 @@ const Footer = () => {
         </footer>
     );
 };
-
 // --- Auth & Onboarding Screens ---
 const AuthScreen = () => {
     const { t } = useLanguage();
     const { setScreen, setAuthFlowStep, handleEmailLogin, handleGoogleLogin } = useApp();
-
     const handleRegisterClick = () => {
         setAuthFlowStep('registration');
         setScreen('auth-flow');
@@ -647,7 +699,6 @@ const AuthScreen = () => {
     const handleAgencyClick = () => {
         alert('Agency flow coming soon!');
     };
-
     return (
         <div className="w-full min-h-full flex flex-col bg-[#FBF9F6]">
             <div className="flex-grow overflow-y-auto px-4 pt-4">
@@ -678,7 +729,6 @@ const AuthScreen = () => {
                             <svg className="w-5 h-5 mr-2" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"></path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"></path><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path><path fill="#1976D2" d="M43.611 20.083H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C42.012 36.49 44 30.861 44 24c0-1.341-.138-2.65-.389-3.917z"></path></svg>
                             {t('login_with_google')}
                         </button>
-
                         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
                             {mockDatabase.valueSlides.map(slide => (
                                 <ValuePropositionCard key={slide.titleKey} icon={slide.icon} title={t(slide.titleKey)} text={t(slide.textKey)} />
@@ -704,7 +754,6 @@ const AuthScreen = () => {
         </div>
     );
 };
-
 const RegistrationScreen = () => {
     const { t } = useLanguage();
     const { handleGoogleLogin, handleLogin, setScreen } = useApp();
@@ -716,7 +765,6 @@ const RegistrationScreen = () => {
     const inputClasses = "w-full py-3 px-5 rounded-lg border border-gray-300 bg-white transition-all duration-200 font-medium text-[#192A56] focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20";
     const googleButtonClasses = "inline-flex items-center justify-center font-semibold text-gray-700 bg-white py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-gray-300 hover:bg-gray-50 w-full mb-4";
     const primaryButtonClasses = "font-semibold text-white bg-[#192A56] transition-all duration-300 ease-in-out flex items-center justify-center hover:bg-indigo-800 hover:-translate-y-0.5 hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none h-14 w-14 group rounded-full shadow-lg";
-
     const isPasswordValid = useMemo(() => {
         if (!password) return true;
         const hasUpperCase = /[A-Z]/.test(password);
@@ -724,11 +772,9 @@ const RegistrationScreen = () => {
         const hasMinLength = password.length >= 8;
         return hasUpperCase && hasNumber && hasMinLength;
     }, [password]);
-
     const doPasswordsMatch = useMemo(() => {
         return password === confirmPassword;
     }, [password, confirmPassword]);
-
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (!isPasswordValid || !doPasswordsMatch || !isCaptchaChecked) {
@@ -744,7 +790,6 @@ const RegistrationScreen = () => {
         };
         handleLogin(mockUser);
     };
-
     return (
         <div className="w-full max-w-md mx-auto">
             <h2 className="font-title-elegant text-center text-4xl text-[#192A56] mb-8">{t('register_title')}</h2>
@@ -796,7 +841,6 @@ const RegistrationScreen = () => {
         </div>
     );
 };
-
 const OnboardingFunnel = () => {
     const { t } = useLanguage();
     const { completeOnboarding } = useApp();
@@ -809,7 +853,7 @@ const OnboardingFunnel = () => {
         firstExchange: null,
         prevDestination: '',
         prevDate: '',
-        dreamDestination: 'Irlanda',
+        dreamDestination: 'Malta',
         status: '',
         departureDate: '',
     });
@@ -817,25 +861,20 @@ const OnboardingFunnel = () => {
     const primaryButtonClasses = "font-semibold text-white bg-[#192A56] py-3 px-6 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center hover:bg-indigo-800 hover:-translate-y-0.5 hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none";
     
     const totalSteps = 6;
-
     const handleNext = useCallback(() => {
         setTimeout(() => setStep(prev => Math.min(prev + 1, totalSteps)), 200);
     }, []);
-
     const handleBack = () => setStep(prev => Math.max(prev - 1, 0));
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
-
     const handleSelection = (field, value, autoNext = true) => {
         setFormData(prev => ({...prev, [field]: value}));
         if (autoNext) {
             handleNext();
         }
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -851,26 +890,21 @@ const OnboardingFunnel = () => {
         
         setIsSubmitting(false);
     };
-
     const progress = (step / totalSteps) * 100;
-
     if (isSubmitting) {
         return <LoadingScreen text={t('creating_your_dashboard')} />;
     }
-
     const renderStep = () => {
         const genderOptions = [
             { key: 'gender_male', value: t('gender_male') },
             { key: 'gender_female', value: t('gender_female') },
             { key: 'gender_other', value: t('gender_other') },
         ];
-
         const statusOptions = [
-            { key: 'status_researching', value: t('status_researching') },
-            { key: 'status_closed', value: t('status_closed') },
-            { key: 'status_packing', value: t('status_packing') },
+            { key: 'status_researching', value: 'pesquisando' },
+            { key: 'status_closed', value: 'contrato_assinado' },
+            { key: 'status_packing', value: 'de_malas_prontas' },
         ];
-
         switch (step) {
             case 0: return (
                 <div className="text-center animate-fade-in">
@@ -917,7 +951,7 @@ const OnboardingFunnel = () => {
                 </div>
             );
             case 4: return (
-                 <div className="w-full animate-fade-in">
+                <div className="w-full animate-fade-in">
                     <h3 className="font-title-elegant text-3xl text-[#192A56] block mb-6 text-center">{t('dream_destination_title')}</h3>
                     <select name="dreamDestination" value={formData.dreamDestination} onChange={(e) => {handleChange(e); handleNext()}} className={inputClasses}>
                         {Object.keys(mockDatabase.destinations).map(country => <option key={country} value={country}>{country}</option>)}
@@ -930,7 +964,7 @@ const OnboardingFunnel = () => {
                     <div className="space-y-3">
                         {statusOptions.map(option => (
                             <button key={option.key} onClick={() => handleSelection('status', option.value)} className={`w-full text-left p-4 rounded-lg border-2 transition-colors ${formData.status === option.value ? 'bg-purple-100 border-purple-500' : 'bg-white border-slate-300 hover:border-purple-300'}`}>
-                                {option.value}
+                                {t(option.key)}
                             </button>
                         ))}
                     </div>
@@ -947,16 +981,15 @@ const OnboardingFunnel = () => {
             default: return <div>Step not found</div>;
         }
     };
-
     return (
         <div className="w-full max-w-md mx-auto flex flex-col h-full p-4">
-             <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg w-full relative flex-grow flex flex-col justify-center">
+            <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg w-full relative flex-grow flex flex-col justify-center">
                 <div className="flex-grow flex items-center justify-center">
                     {renderStep()}
                 </div>
             </div>
             <div className="relative flex items-center justify-center pt-8">
-                 {step > 0 && (
+                {step > 0 && (
                     <button onClick={handleBack} className="absolute left-0 bottom-0 p-3 rounded-full hover:bg-slate-200/50 transition-colors z-20">
                         <ChevronLeft className="w-6 h-6 text-slate-600" />
                     </button>
@@ -964,7 +997,7 @@ const OnboardingFunnel = () => {
                 <div className="w-full bg-slate-200 rounded-full h-2.5 mx-16">
                     <div className="bg-gradient-to-r from-[#8A2BE2] to-[#4169E1] h-2.5 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
                 </div>
-                  {step > 0 && step < totalSteps && (
+                    {step > 0 && step < totalSteps && (
                     <button onClick={handleNext} className="absolute right-0 bottom-0 p-3 rounded-full hover:bg-slate-200/50 transition-colors z-20">
                         <ChevronRight className="w-6 h-6 text-slate-600" />
                     </button>
@@ -973,8 +1006,6 @@ const OnboardingFunnel = () => {
         </div>
     );
 };
-
-
 const AuthFlowScreen = () => {
     const { authFlowStep, goBack } = useApp();
     return (
@@ -983,13 +1014,12 @@ const AuthFlowScreen = () => {
                 <ArrowLeft className="w-6 h-6 text-slate-600" />
             </button>
             <div className="flex-1 w-full flex items-center justify-center transition-transform duration-500 ease-in-out">
-                 {authFlowStep === 'registration' && <RegistrationScreen />}
-                 {authFlowStep === 'onboarding-funnel' && <OnboardingFunnel />}
+                {authFlowStep === 'registration' && <RegistrationScreen />}
+                {authFlowStep === 'onboarding-funnel' && <OnboardingFunnel />}
             </div>
         </div>
     );
 }
-
 const TermsScreen = ({ type }) => {
     const { t, language } = useLanguage();
     const { goBack } = useApp();
@@ -1001,24 +1031,21 @@ const TermsScreen = ({ type }) => {
         agency_en: "Here are the detailed terms and conditions for partner agencies... 1. Partnership Agreement. 2. Platform Usage. 3. Confidentiality...",
     };
     const currentContent = content[`${type}_${language}`] || content[`${type}_pt`];
-
     return (
-         <div className="w-full h-full bg-[#FBF9F6] flex flex-col relative overflow-y-auto">
-            <header className="p-4 flex items-center border-b border-slate-200">
-                <button onClick={goBack} className="p-2 rounded-full hover:bg-slate-200/50 transition-colors">
-                    <ArrowLeft className="w-6 h-6 text-slate-600" />
-                </button>
-                <h1 className="text-xl font-bold text-[#192A56] mx-auto">{title}</h1>
-            </header>
-            <main className="flex-1 p-8 prose max-w-4xl mx-auto">
-                <h2>{title}</h2>
-                <p>{currentContent}</p>
-            </main>
-        </div>
+            <div className="w-full h-full bg-[#FBF9F6] flex flex-col relative overflow-y-auto">
+                <header className="p-4 flex items-center border-b border-slate-200">
+                    <button onClick={goBack} className="p-2 rounded-full hover:bg-slate-200/50 transition-colors">
+                        <ArrowLeft className="w-6 h-6 text-slate-600" />
+                    </button>
+                    <h1 className="text-xl font-bold text-[#192A56] mx-auto">{title}</h1>
+                </header>
+                <main className="flex-1 p-8 prose max-w-4xl mx-auto">
+                    <h2>{title}</h2>
+                    <p>{currentContent}</p>
+                </main>
+            </div>
     );
 };
-
-
 // --- Dashboard Components ---
 const WeatherWidget = ({ destination }) => {
     const weatherData = mockDatabase.weather[destination] || { temp: '--', icon: HelpCircle };
@@ -1030,12 +1057,10 @@ const WeatherWidget = ({ destination }) => {
         </div>
     )
 }
-
 const DashboardHeader = ({ userData, onBack, showBackButton }) => {
     const { t, language, setLanguage } = useLanguage();
     const { setUserData } = useApp();
     const photoInputRef = useRef(null);
-
     const handlePhotoClick = () => photoInputRef.current.click();
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -1047,15 +1072,14 @@ const DashboardHeader = ({ userData, onBack, showBackButton }) => {
     };
     
     const lang = language.toUpperCase();
-
     return (
         <header className="bg-[#FBF9F6] p-4">
             <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex items-center gap-3">
                     {showBackButton && (
-                         <button onClick={onBack} className="p-2 rounded-full hover:bg-slate-200/50">
-                             <ArrowLeft size={20} className="text-slate-600" />
-                         </button>
+                        <button onClick={onBack} className="p-2 rounded-full hover:bg-slate-200/50">
+                            <ArrowLeft size={20} className="text-slate-600" />
+                        </button>
                     )}
                     <input type="file" ref={photoInputRef} onChange={handleFileChange} accept="image/*" className="hidden" />
                     <button onClick={handlePhotoClick} className="relative flex-shrink-0">
@@ -1063,12 +1087,12 @@ const DashboardHeader = ({ userData, onBack, showBackButton }) => {
                     </button>
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2">
-                           <h2 className="text-lg font-bold text-[#192A56]">{t('hey')} {userData?.name?.split(' ')[0]}</h2>
-                           <button onClick={() => setLanguage(l => l === 'pt' ? 'en' : 'pt')} className="font-semibold text-slate-500 hover:text-[#192A56] text-xs px-1 py-0.5 rounded-md border border-slate-300 flex items-center gap-1">
-                               <span className={lang === 'PT' ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 font-bold' : ''}>PT</span>
-                               <span>|</span>
-                               <span className={lang === 'EN' ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 font-bold' : ''}>EN</span>
-                           </button>
+                            <h2 className="text-lg font-bold text-[#192A56]">{t('hey')} {userData?.name?.split(' ')[0]}</h2>
+                            <button onClick={() => setLanguage(l => l === 'pt' ? 'en' : 'pt')} className="font-semibold text-slate-500 hover:text-[#192A56] text-xs px-1 py-0.5 rounded-md border border-slate-300 flex items-center gap-1">
+                                <span className={lang === 'PT' ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 font-bold' : ''}>PT</span>
+                                <span>|</span>
+                                <span className={lang === 'EN' ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 font-bold' : ''}>EN</span>
+                            </button>
                         </div>
                         <div className="flex items-center gap-2 text-slate-500">
                             <div className="flex items-center gap-1.5">
@@ -1079,14 +1103,13 @@ const DashboardHeader = ({ userData, onBack, showBackButton }) => {
                         </div>
                     </div>
                 </div>
-                 <button onClick={() => alert("Notifications!")} className="p-2 rounded-full hover:bg-slate-200/50 transition-colors relative">
-                     <Bell size={24} className="text-[#192A56]/80" />
-                 </button>
+                <button onClick={() => alert("Notifications!")} className="p-2 rounded-full hover:bg-slate-200/50 transition-colors relative">
+                    <Bell size={24} className="text-[#192A56]/80" />
+                </button>
             </div>
         </header>
     );
 };
-
 const CountdownBar = ({ userData }) => {
     const { t } = useLanguage();
     const calculateTimeLeft = useCallback(() => {
@@ -1100,14 +1123,11 @@ const CountdownBar = ({ userData }) => {
             s: Math.floor((difference / 1000) % 60),
         };
     }, [userData?.departureDate]);
-
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
     useEffect(() => {
         const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
         return () => clearInterval(timer);
     }, [calculateTimeLeft]);
-
     return (
         <div className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white p-2 flex items-center justify-center text-center">
             <div className="flex flex-col items-center">
@@ -1118,17 +1138,17 @@ const CountdownBar = ({ userData }) => {
                         <span className="text-[9px] opacity-70">dias</span>
                     </div>
                     <span>:</span>
-                     <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center">
                         <span className="text-xl font-bold">{String(timeLeft.h).padStart(2, '0')}</span>
                         <span className="text-[9px] opacity-70">horas</span>
                     </div>
                     <span>:</span>
-                     <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center">
                         <span className="text-xl font-bold">{String(timeLeft.m).padStart(2, '0')}</span>
                         <span className="text-[9px] opacity-70">min</span>
                     </div>
                     <span>:</span>
-                     <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center">
                         <span className="text-xl font-bold">{String(timeLeft.s).padStart(2, '0')}</span>
                         <span className="text-[9px] opacity-70">seg</span>
                     </div>
@@ -1137,11 +1157,9 @@ const CountdownBar = ({ userData }) => {
         </div>
     )
 }
-
 const SpecialIconsBar = ({ onIconClick }) => {
     const { t } = useLanguage();
     const scrollRef = useRef(null);
-
     const icons = [
         { id: 'folder', icon: Folder, label: t('folder') },
         { id: 'currency', icon: Coins, label: t('currency') },
@@ -1150,13 +1168,11 @@ const SpecialIconsBar = ({ onIconClick }) => {
         { id: 'agenda', icon: CalendarClock, label: t('agenda') },
         { id: 'teacher_ana', icon: Glasses, label: t('teacher_ana') },
     ];
-
     const scroll = (direction) => {
         if (scrollRef.current) {
             scrollRef.current.scrollBy({ left: direction * 150, behavior: 'smooth' });
         }
     };
-
     return (
         <div className="bg-[#FBF9F6]/80 backdrop-blur-sm shadow-sm border-y border-slate-200/80 relative group">
             <button onClick={() => scroll(-1)} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 opacity-0 group-hover:opacity-50 hover:!opacity-100 transition-opacity bg-slate-100/50 hover:bg-slate-100 rounded-full">
@@ -1178,17 +1194,15 @@ const SpecialIconsBar = ({ onIconClick }) => {
         </div>
     );
 };
-
 const DashboardBottomNav = ({ onNavigate, activeSection }) => {
     const { t } = useLanguage();
     const navItems = [
-        { id: 'home', icon: Home, title: t('home') },
         { id: 'journey', icon: Milestone, title: t('journey') },
         { id: 'preparatorio', icon: Compass, title: t('preparatorio_title') },
+        { id: 'cases', icon: Briefcase, title: t('cases') },
         { id: 'bate_volta', icon: Map, title: t('bate_volta') },
         { id: 'premium', icon: Star, title: t('premium') },
     ];
-
     return (
         <nav className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-indigo-700 p-1 shadow-top z-40 md:hidden">
             <div className="max-w-7xl mx-auto flex justify-around items-center text-white">
@@ -1209,7 +1223,6 @@ const DashboardBottomNav = ({ onNavigate, activeSection }) => {
         </nav>
     );
 };
-
 const WelcomePopup = ({ userData, onClose, t }) => (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
         <div className="relative p-8 rounded-2xl shadow-2xl w-11/12 md:w-2/3 lg:max-w-xl flex flex-col animate-slide-down bg-gradient-to-br from-purple-600 to-indigo-700 text-white">
@@ -1224,7 +1237,6 @@ const WelcomePopup = ({ userData, onClose, t }) => (
         </div>
     </div>
 );
-
 // --- Modals ---
 const Modal = ({ title, children, onClose }) => (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={onClose}>
@@ -1241,17 +1253,49 @@ const Modal = ({ title, children, onClose }) => (
         </div>
     </div>
 );
+const JourneyStepPopup = ({ step, content, onClose, onSave }) => {
+    const { t } = useLanguage();
+    const Icon = step.icon;
 
+    return (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+            <div 
+                className="bg-stone-50 w-full max-w-md rounded-2xl shadow-2xl animate-slide-up flex flex-col relative overflow-hidden border border-stone-200" 
+                style={{backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23a8a29e\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}}
+                onClick={e => e.stopPropagation()}
+            >
+                <div className="p-8">
+                    <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                            <Icon size={28} />
+                        </div>
+                        <h3 className="text-2xl font-bold text-[#192A56]">{content.title}</h3>
+                    </div>
+                    <p className="text-slate-700 leading-relaxed mb-6">{content.content}</p>
+                </div>
+                <footer className="bg-white/50 backdrop-blur-sm p-4 border-t border-stone-200 flex gap-4">
+                     <button onClick={onClose} className="font-semibold text-[#192A56] bg-transparent py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5 w-full">{t('back')}</button>
+                    <button 
+                        onClick={() => { onSave({type: 'journey', content: `${content.title}: ${content.content}`}); onClose(); }} 
+                        className="font-semibold text-white bg-[#192A56] py-3 px-6 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center hover:bg-indigo-800 hover:-translate-y-0.5 hover:shadow-lg w-full"
+                    >
+                        {t('salvar')}
+                    </button>
+                </footer>
+            </div>
+        </div>
+    );
+};
 const FolderModal = ({ t, savedItems, setSavedItems }) => {
     const [search, setSearch] = useState('');
     const [customFolders, setCustomFolders] = useState([]);
     const [expandedFolders, setExpandedFolders] = useState({ 'tips': true });
     const pdfRef = useRef();
     const secondaryButtonClasses = "font-semibold text-[#192A56] bg-transparent transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5 px-3 py-3 rounded-lg";
-
     const allFolders = useMemo(() => {
         const baseFolders = [
             { id: 'tips', name: t('tip_of_the_day'), icon: Lightbulb, items: savedItems.filter(i => i.type === 'tip') },
+            { id: 'journey', name: t('journey'), icon: Milestone, items: savedItems.filter(i => i.type === 'journey') },
             { id: 'planning', name: t('planejamento'), icon: Wallet, items: savedItems.filter(i => i.type === 'planning') },
             { id: 'jei', name: t('jei_response_title'), icon: Bot, items: savedItems.filter(i => i.type === 'jei') },
             { id: 'documents', name: t('folder_modal_title'), icon: FileSignature, items: savedItems.filter(i => i.type === 'document') },
@@ -1259,7 +1303,6 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
         const customItems = customFolders.map(f => ({...f, items: savedItems.filter(i => i.folderId === f.id)}));
         return [...baseFolders, ...customItems];
     }, [savedItems, customFolders, t]);
-
     const filteredFolders = useMemo(() => {
         const lowerCaseSearch = search.toLowerCase();
         if (!search) return allFolders;
@@ -1272,18 +1315,15 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
             }))
             .filter(folder => folder.items.length > 0 || folder.name.toLowerCase().includes(lowerCaseSearch));
     }, [search, allFolders]);
-
     const toggleFolder = (id) => {
         setExpandedFolders(prev => ({ ...prev, [id]: !prev[id] }));
     };
-
     const createNewFolder = () => {
         const newFolderName = prompt(t('folder_name_placeholder'));
         if (newFolderName && newFolderName.trim() !== '') {
             setCustomFolders(prev => [...prev, { id: `folder-${Date.now()}`, name: newFolderName.trim(), icon: Folder, items: [] }]);
         }
     };
-
     const deleteItem = (id) => {
         setSavedItems(prev => prev.filter(item => item.id !== id));
     };
@@ -1308,7 +1348,6 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
             pdf.save("onliprep_docs.pdf");
         });
     };
-
     return (
         <div className="bg-[#FCFBF8] p-4 rounded-lg shadow-inner">
             <div className="flex gap-2 mb-4">
@@ -1341,19 +1380,18 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
                     </div>
                 ))}
             </div>
-             <div className="absolute -left-[9999px] top-auto" style={{width: '210mm'}}>
-                  <div ref={pdfRef} className="p-8 bg-white text-black">
-                      <h1 className="text-2xl font-bold text-[#192A56] mb-2">OnliPrep</h1>
-                      <h2 className="text-xl font-semibold border-b pb-2 mb-4">Seus Itens Salvos</h2>
-                      <ul className="list-disc pl-5 space-y-2">
-                          {savedItems.map(item => <li key={`pdf-${item.id}`}>{item.content}</li>)}
-                      </ul>
-                  </div>
-             </div>
+            <div className="absolute -left-[9999px] top-auto" style={{width: '210mm'}}>
+                <div ref={pdfRef} className="p-8 bg-white text-black">
+                    <h1 className="text-2xl font-bold text-[#192A56] mb-2">OnliPrep</h1>
+                    <h2 className="text-xl font-semibold border-b pb-2 mb-4">Seus Itens Salvos</h2>
+                    <ul className="list-disc pl-5 space-y-2">
+                        {savedItems.map(item => <li key={`pdf-${item.id}`}>{item.content}</li>)}
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 };
-
 const CalculatorModal = ({ t, onSave }) => {
     const [items, setItems] = useState([{ name: '', value: '' }]);
     const [searchQuery, setSearchQuery] = useState('');
@@ -1363,21 +1401,17 @@ const CalculatorModal = ({ t, onSave }) => {
     const inputClasses = "w-full py-3 px-5 rounded-lg border border-gray-300 bg-white transition-all duration-200 font-medium text-[#192A56] focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20";
     const primaryButtonClasses = "font-semibold text-white bg-[#192A56] py-3 px-6 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center hover:bg-indigo-800 hover:-translate-y-0.5 hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none";
     const secondaryButtonClasses = "font-semibold text-[#192A56] bg-transparent py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5";
-
     const handleItemChange = (index, field, value) => {
         const newItems = [...items];
         newItems[index][field] = value;
         setItems(newItems);
     };
-
     const addItem = () => setItems([...items, { name: '', value: '' }]);
     const removeItem = (index) => setItems(items.filter((_, i) => i !== index));
-
     const handleGeminiCostSearch = async () => {
         if (!searchQuery) return;
         setIsSearching(true);
         setSearchResult(null);
-
         const prompt = `Baseado em dados de custo de vida gerais, qual o custo médio estimado para "${searchQuery}"? Forneça um valor aproximado e a moeda (ex: EUR, USD, CAD). Responda de forma concisa em uma única linha, como: "Valor: 1200 EUR".`;
         
         try {
@@ -1412,7 +1446,6 @@ const CalculatorModal = ({ t, onSave }) => {
             setIsSearching(false);
         }
     };
-
     return (
         <div>
             <p className="text-sm text-slate-600 mb-4">{t('calculator_planning_info')}</p>
@@ -1453,7 +1486,6 @@ const CalculatorModal = ({ t, onSave }) => {
         </div>
     );
 };
-
 const CurrencyModal = ({t}) => {
     const [amount, setAmount] = useState(100);
     const [fromCurrency, setFromCurrency] = useState('BRL');
@@ -1462,8 +1494,6 @@ const CurrencyModal = ({t}) => {
     const [isUnlocking, setIsUnlocking] = useState(false);
     const inputClasses = "w-full py-3 px-5 rounded-lg border border-gray-300 bg-white transition-all duration-200 font-medium text-[#192A56] focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20";
     const secondaryButtonClasses = "font-semibold text-[#192A56] bg-transparent py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5";
-
-
     const rates = {
         'BRL': { name: 'Real Brasileiro', comercial: 1, turismo: 1 },
         'USD': { name: 'Dólar Americano', comercial: 0.185, turismo: 0.192 },
@@ -1472,7 +1502,6 @@ const CurrencyModal = ({t}) => {
         'CAD': { name: 'Dólar Canadense', comercial: 0.253, turismo: 0.261 },
         'AUD': { name: 'Dólar Australiano', comercial: 0.278, turismo: 0.287 },
     };
-
     const { comercial, turismo } = useMemo(() => {
         const amountInBRL = amount / rates[fromCurrency].comercial;
         const convertedComercial = amountInBRL * rates[toCurrency].comercial;
@@ -1487,7 +1516,6 @@ const CurrencyModal = ({t}) => {
             setIsUnlocked(true);
         }, 2000);
     }
-
     return (
         <div>
             <div className="grid grid-cols-1 gap-4 mb-4">
@@ -1517,7 +1545,7 @@ const CurrencyModal = ({t}) => {
                 <h4 className="font-bold text-[#192A56] text-center">{t('currency_partner_title')}</h4>
                 <div className="flex justify-center mt-3">
                     {isUnlocked ? (
-                         <div className={`${secondaryButtonClasses} bg-white text-green-600 border-green-600 animate-fade-in`}>{t('currency_coupon_code')}</div>
+                        <div className={`${secondaryButtonClasses} bg-white text-green-600 border-green-600 animate-fade-in`}>{t('currency_coupon_code')}</div>
                     ) : (
                         <button onClick={handleUnlock} disabled={isUnlocking} className={`${secondaryButtonClasses} flex items-center gap-2 disabled:opacity-50`}>
                             {isUnlocking ? (
@@ -1538,10 +1566,10 @@ const CurrencyModal = ({t}) => {
         </div>
     );
 }
-
 const TimezoneModal = ({t, userData}) => {
     const timezones = { 
         'Europe/Dublin': 'Dublin', 
+        'Europe/Malta': 'Malta',
         'America/Toronto': 'Toronto', 
         'Australia/Sydney': 'Sydney',
         'America/New_York': 'Nova Iorque',
@@ -1560,7 +1588,6 @@ const TimezoneModal = ({t, userData}) => {
         }, 1000);
         return () => clearInterval(timer);
     }, [destinationTz]);
-
     return (
         <div className="text-center">
             <div>
@@ -1571,7 +1598,7 @@ const TimezoneModal = ({t, userData}) => {
                 <ArrowDown size={24} className="mx-auto text-slate-400" />
             </div>
             <div>
-                 <select value={destinationTz} onChange={e => setDestinationTz(e.target.value)} className={`${inputClasses} mb-2`}>
+                <select value={destinationTz} onChange={e => setDestinationTz(e.target.value)} className={`${inputClasses} mb-2`}>
                     {Object.entries(timezones).map(([tz, city]) => <option key={tz} value={tz}>{city}</option>)}
                 </select>
                 <p className="text-5xl font-bold text-[#192A56] font-mono">{destinationTime}</p>
@@ -1579,7 +1606,6 @@ const TimezoneModal = ({t, userData}) => {
         </div>
     )
 }
-
 const getTaskIcon = (taskName, customIcon) => {
     if (customIcon) return customIcon;
     const name = taskName.toLowerCase();
@@ -1592,13 +1618,10 @@ const getTaskIcon = (taskName, customIcon) => {
     if (name.includes('check-in')) return Ticket;
     return ListChecks;
 }
-
 const CalendarView = ({ tasks, onDateClick, selectedDate }) => {
     const [date, setDate] = useState(new Date(selectedDate));
-
     const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-
     const tasksByDay = useMemo(() => {
         const map = {};
         tasks.forEach(task => {
@@ -1614,13 +1637,10 @@ const CalendarView = ({ tasks, onDateClick, selectedDate }) => {
         });
         return map;
     }, [tasks, date]);
-
     const changeMonth = (offset) => {
         setDate(prev => new Date(prev.getFullYear(), prev.getMonth() + offset, 1));
     }
-
     const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-
     return (
         <div className="bg-white p-4 rounded-lg shadow-inner">
             <div className="flex items-center justify-between mb-4">
@@ -1660,7 +1680,6 @@ const CalendarView = ({ tasks, onDateClick, selectedDate }) => {
         </div>
     )
 }
-
 const AgendaModal = ({t, agendaItems, onToggle, onAddTask, onUpdateTask}) => {
     const [taskName, setTaskName] = useState('');
     const [taskDate, setTaskDate] = useState('');
@@ -1669,8 +1688,6 @@ const AgendaModal = ({t, agendaItems, onToggle, onAddTask, onUpdateTask}) => {
     const inputClasses = "w-full py-3 px-5 rounded-lg border border-gray-300 bg-white transition-all duration-200 font-medium text-[#192A56] focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20";
     const primaryButtonClasses = "font-semibold text-white bg-[#192A56] py-3 px-6 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center hover:bg-indigo-800 hover:-translate-y-0.5 hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none";
     const secondaryButtonClasses = "font-semibold text-[#192A56] bg-transparent py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5";
-
-
     const handleAddTask = (e) => {
         e.preventDefault();
         if(taskName && taskDate) {
@@ -1679,7 +1696,6 @@ const AgendaModal = ({t, agendaItems, onToggle, onAddTask, onUpdateTask}) => {
             setTaskDate('');
         }
     }
-
     const handleUpdateTask = (e) => {
         e.preventDefault();
         if (editingTask && editingTask.name && editingTask.date) {
@@ -1694,11 +1710,9 @@ const AgendaModal = ({t, agendaItems, onToggle, onAddTask, onUpdateTask}) => {
             return itemDate.toDateString() === selectedDate.toDateString() && !item.completed;
         })
         .sort((a,b) => new Date(a.date) - new Date(b.date));
-
     const completedTasks = agendaItems
         .filter(item => item.completed)
         .sort((a,b) => new Date(b.completedAt) - new Date(a.completedAt));
-
     if (editingTask) {
         return (
             <form onSubmit={handleUpdateTask} className="space-y-4">
@@ -1712,7 +1726,6 @@ const AgendaModal = ({t, agendaItems, onToggle, onAddTask, onUpdateTask}) => {
             </form>
         )
     }
-
     return (
         <div>
             <CalendarView tasks={agendaItems} selectedDate={selectedDate} onDateClick={setSelectedDate} />
@@ -1748,12 +1761,11 @@ const AgendaModal = ({t, agendaItems, onToggle, onAddTask, onUpdateTask}) => {
             </div>
             
             <form onSubmit={handleAddTask} className="mt-6 pt-4 border-t border-slate-200 space-y-2">
-                 <h4 className="font-bold text-[#192A56]">{t('agenda_add_task')}</h4>
-                 <input type="text" placeholder={t('agenda_task_name')} value={taskName} onChange={e => setTaskName(e.target.value)} className={inputClasses} required />
-                 <input type="date" value={taskDate} onChange={e => setTaskDate(e.target.value)} className={inputClasses} required />
-                 <button type="submit" className={`${primaryButtonClasses} w-full`}>{t('salvar')}</button>
+                <h4 className="font-bold text-[#192A56]">{t('agenda_add_task')}</h4>
+                <input type="text" placeholder={t('agenda_task_name')} value={taskName} onChange={e => setTaskName(e.target.value)} className={inputClasses} required />
+                <input type="date" value={taskDate} onChange={e => setTaskDate(e.target.value)} className={inputClasses} required />
+                <button type="submit" className={`${primaryButtonClasses} w-full`}>{t('salvar')}</button>
             </form>
-
             {completedTasks.length > 0 && (
                 <div className="mt-6 pt-4 border-t border-slate-200">
                     <h4 className="font-bold text-[#192A56] mb-2">{t('agenda_completed_tasks')}</h4>
@@ -1777,18 +1789,15 @@ const AgendaModal = ({t, agendaItems, onToggle, onAddTask, onUpdateTask}) => {
         </div>
     )
 }
-
 const LeftFloatingActionButtons = ({ onTipClick, onJeiClick }) => {
     const [isActionsOpen, setActionsOpen] = useState(false);
-
     const actions = [
         { id: 'tip', icon: Lightbulb, title: 'Dica Rápida', color: 'bg-yellow-400', action: onTipClick },
         { id: 'help', icon: Siren, title: 'Help!', color: 'bg-red-500', action: () => alert('Help!') },
     ];
-
     return (
         <div className="fixed bottom-24 md:bottom-5 left-4 z-40 flex flex-col items-center gap-3">
-             {isActionsOpen && (
+            {isActionsOpen && (
                 <div className="flex flex-col items-center gap-3 animate-fade-in-fast">
                     {actions.map(action => (
                         <button key={action.id} onClick={action.action} className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg ${action.color} transform hover:scale-110 transition-transform`}>
@@ -1811,7 +1820,6 @@ const LeftFloatingActionButtons = ({ onTipClick, onJeiClick }) => {
         </div>
     );
 };
-
 const TipOfTheDayModal = ({ tip, onClose, onSave, t }) => (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={onClose}>
         <div className="bg-[#FBF9F6] p-6 rounded-2xl shadow-xl max-w-sm w-full animate-slide-up relative" onClick={e => e.stopPropagation()}>
@@ -1827,7 +1835,6 @@ const TipOfTheDayModal = ({ tip, onClose, onSave, t }) => (
         </div>
     </div>
 );
-
 const NotificationPermissionModal = ({ t, onClose }) => (
     <div className="fixed inset-0 bg-black/60 z-[102] flex items-center justify-center p-4">
         <div className="bg-[#FBF9F6] p-8 rounded-2xl shadow-xl max-w-sm w-full animate-slide-up text-center">
@@ -1841,7 +1848,6 @@ const NotificationPermissionModal = ({ t, onClose }) => (
         </div>
     </div>
 );
-
 const ToastNotification = ({ t, toast, onClose }) => {
     if (!toast) return null;
     const Icon = toast.icon;
@@ -1861,59 +1867,90 @@ const ToastNotification = ({ t, toast, onClose }) => {
                         </div>
                     )}
                 </div>
-                 <button onClick={onClose} className="p-1 -m-1 rounded-full hover:bg-white/20">
+                <button onClick={onClose} className="p-1 -m-1 rounded-full hover:bg-white/20">
                     <X size={16} />
                 </button>
             </div>
         </div>
     )
 }
-
-const JourneySection = ({ agendaItems, onOpenAgenda }) => {
+const JourneyTimeline = ({ userStatus, destinationCountry, onStepClick }) => {
     const { t } = useLanguage();
-    const upcomingTasks = agendaItems
-        .filter(task => !task.completed)
-        .sort((a, b) => new Date(a.date) - new Date(b.date))
-        .slice(0, 3);
+    const [currentStep, setCurrentStep] = useState(1);
+    const steps = mockDatabase.journeySteps[userStatus] || [];
+    const progress = (currentStep / steps.length) * 100;
+
+    const handleStepClick = (step) => {
+        setCurrentStep(step.id);
+        onStepClick(step);
+    };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="font-bold text-[#192A56] text-xl mb-4">Próximos Passos</h3>
-            {upcomingTasks.length > 0 ? (
-                <div className="space-y-4">
-                    {upcomingTasks.map(task => (
-                        <div key={task.id} className="flex items-center p-3 bg-slate-50 rounded-md">
-                            <CalendarClock size={20} className="text-purple-500 mr-4" />
-                            <div>
-                                <p className="font-semibold text-[#192A56]">{task.name}</p>
-                                <p className="text-sm text-slate-500">Prazo: {new Date(task.date + 'T00:00:00').toLocaleDateString('pt-BR')}</p>
+        <div className="w-full max-w-2xl mx-auto p-4">
+            <h2 className="text-3xl font-bold text-center text-[#192A56] mb-2">{t('journey')}</h2>
+            <p className="text-center text-slate-500 mb-8">Sua esteira de embarque personalizada. Clique em cada etapa para ver os detalhes.</p>
+            <div className="relative flex justify-center">
+                {/* --- A "Esteira" --- */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-full bg-slate-200 rounded-full">
+                     <div className="bg-gradient-to-b from-purple-400 to-indigo-500 w-full rounded-full transition-all duration-700 ease-out" style={{ height: `${progress}%` }}></div>
+                </div>
+
+                {/* --- Os Passos/Ícones --- */}
+                <div className="relative flex flex-col items-center gap-10">
+                    {steps.map((step, index) => (
+                        <div key={step.id} className="relative z-10 w-full flex items-center" style={{ flexDirection: index % 2 === 0 ? 'row' : 'row-reverse' }}>
+                            <div className="flex-1 flex items-center justify-center">
+                                <button 
+                                    onClick={() => handleStepClick(step)}
+                                    className="group flex flex-col items-center text-center w-28"
+                                >
+                                    <div className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 ${currentStep >= step.id ? 'bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg' : 'bg-white text-slate-400 border-2 border-slate-300'}`}>
+                                        <step.icon size={32} />
+                                    </div>
+                                    <span className={`mt-2 font-semibold text-sm transition-colors ${currentStep >= step.id ? 'text-[#192A56]' : 'text-slate-500'}`}>{step.name}</span>
+                                </button>
                             </div>
+                            <div className="w-1/2"></div>
                         </div>
                     ))}
-                    <button onClick={onOpenAgenda} className="font-semibold text-[#192A56] bg-transparent py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5 w-full mt-4">Ver agenda completa</button>
                 </div>
-            ) : (
-                <p className="text-center text-slate-500 py-4">Parabéns! Todas as tarefas da sua jornada estão em dia.</p>
-            )}
+            </div>
         </div>
     );
 };
-
+const CasesSection = () => {
+    const { t } = useLanguage();
+    return (
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h3 className="font-bold text-[#192A56] text-xl mb-4 text-center">{t('cases')}</h3>
+            <p className="text-slate-500 text-center mb-6">Inspire-se com as histórias de quem já viveu essa experiência.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {mockDatabase.cases.map(c => (
+                     <div key={c.id} className="bg-slate-50 rounded-lg overflow-hidden shadow-md group transform hover:-translate-y-1 transition-transform duration-300">
+                        <img src={c.image} alt={`Foto de ${c.name}`} className="w-full h-48 object-cover" />
+                        <div className="p-4">
+                            <h4 className="font-bold text-lg text-[#192A56]">{c.name}</h4>
+                            <p className="text-sm text-purple-600 font-semibold mb-2">{c.destination}</p>
+                            <p className="text-sm text-slate-600">{c.story}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
 const JeiSearchModal = ({ onSearch, onClose, t }) => {
     const [query, setQuery] = useState('');
     const inputRef = useRef(null);
-
     useEffect(() => {
         inputRef.current?.focus();
     }, []);
-
     const handleSearch = (e) => {
         e.preventDefault();
         if (query.trim()) {
             onSearch(query.trim());
         }
     };
-
     return (
         <div className="fixed inset-0 bg-black/50 z-[60] flex items-start pt-4" onClick={onClose}>
             <form onSubmit={handleSearch} className="bg-white p-2 rounded-lg shadow-2xl flex items-center gap-2 w-full max-w-full" onClick={e => e.stopPropagation()}>
@@ -1932,11 +1969,9 @@ const JeiSearchModal = ({ onSearch, onClose, t }) => {
         </div>
     );
 };
-
 const JeiResponseModal = ({ query, onSave, onClose, t }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [response, setResponse] = useState('');
-
     useEffect(() => {
         const fetchResponse = async () => {
             const prompt = `Com base no seguinte contexto, responda à pergunta do usuário. Seja direto e use as informações fornecidas.\n\nContexto:\n${KNOWLEDGE_BASE}\n\nPergunta do usuário: "${query}"\n\nResposta:`;
@@ -1952,11 +1987,9 @@ const JeiResponseModal = ({ query, onSave, onClose, t }) => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-
                 if (!apiResponse.ok) {
                     throw new Error(`API request failed with status ${apiResponse.status}`);
                 }
-
                 const result = await apiResponse.json();
                 
                 if (result.candidates && result.candidates[0]?.content?.parts[0]?.text) {
@@ -1974,7 +2007,6 @@ const JeiResponseModal = ({ query, onSave, onClose, t }) => {
         
         fetchResponse();
     }, [query]);
-
     return (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
             <div className="bg-[#FCFBF8] w-full max-w-lg rounded-2xl shadow-xl animate-slide-up max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
@@ -2009,147 +2041,223 @@ const JeiResponseModal = ({ query, onSave, onClose, t }) => {
         </div>
     )
 }
-
 const PremiumSection = () => {
     const { t } = useLanguage();
     const [isUnlocked, setIsUnlocked] = useState(false);
+    const [unlockedVideos, setUnlockedVideos] = useState({});
     const [timeLeft, setTimeLeft] = useState(0);
-    const [rating, setRating] = useState(0);
-    const [feedbackSent, setFeedbackSent] = useState(false);
-    const scrollRefs = {
-        accommodation: useRef(null),
-        work: useRef(null),
-        culture: useRef(null),
-        first_week: useRef(null),
-    };
+    const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
 
     useEffect(() => {
         let timer;
-        if (isUnlocked && timeLeft > 0) {
+        if (timeLeft > 0) {
             timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-        } else if (timeLeft === 0) {
-            setIsUnlocked(false);
         }
         return () => clearTimeout(timer);
-    }, [isUnlocked, timeLeft]);
+    }, [timeLeft]);
 
     const handleUnlock = () => {
-        setTimeLeft(20 * 60); // 20 minutes
-        setIsUnlocked(true);
-    };
-
-    const handleScroll = (key, direction) => {
-        scrollRefs[key].current.scrollBy({ left: direction * 300, behavior: 'smooth' });
+        setTimeLeft(60 * 60); // 1 hour
+        const newUnlocked = {};
+        mockDatabase.premiumContent['consultancy'].forEach(v => newUnlocked[v.id] = false);
+        setUnlockedVideos(newUnlocked);
     };
     
-    const handleRating = (rate) => {
-        setRating(rate);
-    }
-    
-    const handleSendFeedback = () => {
-        setFeedbackSent(true);
-        setTimeout(() => setFeedbackSent(false), 3000);
+    const handleWatchVideo = (videoId) => {
+        // Simulate watching a video
+        alert(`Assistindo vídeo: ${videoId}`);
+        if(timeLeft > 0) {
+           setUnlockedVideos(prev => ({...prev, [videoId]: true}));
+        } else {
+           alert("Seu tempo de acesso acabou. Assine para continuar.");
+        }
     }
 
-    const renderCarousel = (titleKey, contentKey) => (
-        <div>
-            <h3 className="text-2xl font-bold text-[#192A56] mb-4">{t(titleKey)}</h3>
-            <div className="relative">
-                <button onClick={() => handleScroll(contentKey, -1)} className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/50 rounded-full shadow-md hover:bg-white"><ChevronLeft/></button>
-                <div ref={scrollRefs[contentKey]} className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
-                    {mockDatabase.premiumContent[contentKey].map(item => (
-                        <div key={item.id} className="flex-shrink-0 w-64 h-64 bg-white rounded-xl shadow-lg p-4 flex flex-col justify-between relative overflow-hidden">
-                            {(item.locked && !isUnlocked) && (
-                                <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-10">
-                                    <Lock size={40} className="text-yellow-400"/>
-                                </div>
-                            )}
-                            <span className="text-xs font-semibold bg-yellow-400/30 text-yellow-800 px-2 py-1 rounded-full self-start">{t(titleKey)}</span>
-                            <h4 className="text-lg font-bold text-[#192A56]">{item.title}</h4>
-                            <button className="text-sm font-semibold text-purple-600 self-end">Ver mais</button>
+    const sendWhatsAppAlert = (message) => {
+        const phoneNumber = "11959868557";
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    };
+
+    const ContactAgencyForm = () => {
+        const [formState, setFormState] = useState({ agency: '', reason: '', message: '' });
+        const [satisfaction, setSatisfaction] = useState(null);
+        const [formSubmitted, setFormSubmitted] = useState(false);
+
+        const handleFormChange = (e) => {
+            const { name, value } = e.target;
+            setFormState(prev => ({ ...prev, [name]: value }));
+        };
+
+        const handleFormSubmit = (e) => {
+            e.preventDefault();
+            console.log("Form submitted:", formState);
+            setFormSubmitted(true);
+        };
+        
+        const handleSatisfactionSelect = (level) => {
+             setSatisfaction(level);
+             const alertMessage = `ALERTA: Cliente com avaliação "${level}" para a agência ${formState.agency}. Motivo: ${formState.reason}. Mensagem: ${formState.message}`;
+             sendWhatsAppAlert(alertMessage);
+             alert(`Feedback "${level}" enviado! Notificação enviada para a agência.`);
+             // Reset form
+             setTimeout(() => {
+                 setFormSubmitted(false);
+                 setSatisfaction(null);
+                 setFormState({ agency: '', reason: '', message: '' });
+             }, 3000);
+        }
+
+        if (formSubmitted && !satisfaction) {
+            return (
+                 <div className="bg-white p-6 rounded-xl shadow-lg animate-fade-in">
+                     <p className="text-center text-green-600 font-semibold mb-4">{t('premium_contact_sent_success')}</p>
+                     <h4 className="font-bold text-lg text-center text-[#192A56] mb-4">{t('premium_eval_title')}</h4>
+                     <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                        <button onClick={() => handleSatisfactionSelect(t('premium_eval_satisfied'))} className="flex-1 p-3 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 transition-colors flex items-center justify-center gap-2"><ThumbsUp size={20}/> {t('premium_eval_satisfied')}</button>
+                        <button onClick={() => handleSatisfactionSelect(t('premium_eval_ok'))} className="flex-1 p-3 rounded-lg bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition-colors flex items-center justify-center gap-2"><Hand size={20}/> {t('premium_eval_ok')}</button>
+                        <button onClick={() => handleSatisfactionSelect(t('premium_eval_unsatisfied'))} className="flex-1 p-3 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition-colors flex items-center justify-center gap-2"><ThumbsDown size={20}/> {t('premium_eval_unsatisfied')}</button>
+                     </div>
+                 </div>
+            )
+        }
+        
+        if (satisfaction) {
+             return <div className="bg-white p-6 rounded-xl shadow-lg animate-fade-in text-center font-semibold text-[#192A56]">{t('premium_eval_thanks')}</div>
+        }
+
+        return (
+            <form onSubmit={handleFormSubmit} className="bg-white p-6 rounded-xl shadow-lg space-y-4">
+                <select name="agency" value={formState.agency} onChange={handleFormChange} className="w-full p-3 rounded-lg border border-slate-300" required>
+                    <option value="">{t('premium_agency_select')}</option>
+                    {mockDatabase.agencies.map(a => <option key={a} value={a}>{a}</option>)}
+                </select>
+                <select name="reason" value={formState.reason} onChange={handleFormChange} className="w-full p-3 rounded-lg border border-slate-300" required>
+                    <option value="">{t('premium_contact_reason')}</option>
+                    <option value="doubt">{t('premium_contact_reason_doubt')}</option>
+                    <option value="suggestion">{t('premium_contact_reason_suggestion')}</option>
+                    <option value="praise">{t('premium_contact_reason_praise')}</option>
+                    <option value="complaint">{t('premium_contact_reason_complaint')}</option>
+                    <option value="urgency">{t('premium_contact_reason_urgency')}</option>
+                </select>
+                <textarea name="message" value={formState.message} onChange={handleFormChange} placeholder={t('premium_contact_message')} className="w-full h-24 p-3 rounded-lg border border-slate-300" required></textarea>
+                <button type="submit" className="font-semibold text-white bg-[#192A56] py-3 px-6 rounded-lg transition-all w-full hover:bg-indigo-800">{t('premium_contact_send')}</button>
+            </form>
+        );
+    };
+    
+    const SubscriptionModal = ({ onClose }) => (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[100] flex items-center justify-center p-4" onClick={onClose}>
+            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full animate-slide-up" onClick={e => e.stopPropagation()}>
+                <h3 className="text-2xl font-bold text-center text-[#192A56] mb-6">{t('premium_subscription_title')}</h3>
+                <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 border rounded-lg">
+                        <div>
+                            <p className="font-bold">{t('premium_plan_24h')}</p>
+                            <p className="text-xl font-bold text-purple-600">R$ 10,00</p>
                         </div>
-                    ))}
+                        <button className="font-semibold text-purple-600 border border-purple-600 py-2 px-4 rounded-lg hover:bg-purple-50">{t('premium_buy_voucher')}</button>
+                    </div>
+                     <div className="flex justify-between items-center p-4 border rounded-lg">
+                        <div>
+                            <p className="font-bold">{t('premium_plan_48h')}</p>
+                            <p className="text-xl font-bold text-purple-600">R$ 20,00</p>
+                        </div>
+                        <button className="font-semibold text-purple-600 border border-purple-600 py-2 px-4 rounded-lg hover:bg-purple-50">{t('premium_buy_voucher')}</button>
+                    </div>
+                     <div className="flex justify-between items-center p-4 border rounded-lg">
+                        <div>
+                            <p className="font-bold">{t('premium_plan_72h')}</p>
+                            <p className="text-xl font-bold text-purple-600">R$ 30,00</p>
+                        </div>
+                        <button className="font-semibold text-purple-600 border border-purple-600 py-2 px-4 rounded-lg hover:bg-purple-50">{t('premium_buy_voucher')}</button>
+                    </div>
+                    <div className="flex justify-between items-center p-4 border-2 border-purple-600 rounded-lg bg-purple-50">
+                        <div>
+                            <p className="font-bold">{t('premium_plan_monthly')}</p>
+                            <p className="text-xl font-bold text-purple-600">R$ 49,90/mês</p>
+                        </div>
+                        <button className="font-semibold text-white bg-purple-600 py-2 px-4 rounded-lg hover:bg-purple-700">{t('premium_subscribe_monthly')}</button>
+                    </div>
                 </div>
-                <button onClick={() => handleScroll(contentKey, 1)} className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/50 rounded-full shadow-md hover:bg-white"><ChevronRight/></button>
             </div>
         </div>
     );
 
     return (
-        <div className="p-4 md:p-6 bg-gradient-to-br from-white via-[#FBF9F6] to-yellow-100/50 rounded-lg shadow-sm">
+        <div className="p-4 md:p-6 bg-gradient-to-br from-purple-50 via-yellow-50 to-orange-50 rounded-lg shadow-sm min-h-full">
+            {showSubscriptionModal && <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} />}
+            
             <div className="text-center mb-8">
-                <h2 className="text-4xl font-extrabold tracking-tighter relative inline-flex items-center">
-                    <span className="text-[#192A56] font-light">Onli</span>
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-amber-600">Premium</span>
-                    <Star className="w-8 h-8 ml-2 text-yellow-500" />
+                 <h2 className="text-4xl font-extrabold tracking-tighter relative inline-flex items-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">
+                    Premium
+                    <Sparkles className="w-8 h-8 ml-2 text-yellow-400" />
                 </h2>
+                <p className="text-slate-600 mt-2">Conteúdo exclusivo, consultorias e ferramentas para uma experiência inesquecível.</p>
             </div>
-
-            {!isUnlocked ? (
-                <div className="bg-white rounded-2xl shadow-lg p-8 text-center max-w-md mx-auto mb-12">
-                     <Lock size={40} className="text-yellow-500 mx-auto mb-4"/>
-                     <h3 className="text-xl font-bold text-[#192A56] mb-2">{t('premium_unlock_title')}</h3>
-                     <p className="text-slate-600 mb-6">{t('premium_unlock_text')}</p>
-                     <button onClick={handleUnlock} className="font-semibold text-white bg-gradient-to-r from-yellow-500 to-amber-600 py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform">
-                         {t('premium_unlock_button')}
-                     </button>
+            
+            {timeLeft <= 0 ? (
+                 <div className="bg-white rounded-2xl shadow-lg p-8 text-center max-w-md mx-auto mb-12 border border-slate-200">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white">
+                        <Play size={32} />
+                    </div>
+                    <h3 className="text-xl font-bold text-[#192A56] mb-2">Assista uma prévia</h3>
+                    <p className="text-slate-600 mb-6">Assista ao vídeo de introdução para desbloquear 8 vídeos de consultoria por 1 hora.</p>
+                    <button onClick={handleUnlock} className="font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-700 py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform">
+                        Assistir e Desbloquear
+                    </button>
                 </div>
             ) : (
-                 <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-lg mb-8 text-center">
-                     <p className="font-bold">{t('premium_unlocked_text')}</p>
-                     <p>{t('premium_timer_text')} {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</p>
-                 </div>
+                <div className="bg-green-100 border-l-4 border-green-500 text-green-800 p-4 rounded-lg mb-8 text-center font-semibold">
+                    {t('premium_unlocked_text')} {t('premium_timer_text')} {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                </div>
             )}
-            
-            <div className="space-y-12">
-                {renderCarousel('premium_accommodation', 'accommodation')}
-                {renderCarousel('premium_work', 'work')}
-                {renderCarousel('premium_culture', 'culture')}
-                {renderCarousel('premium_first_week', 'first_week')}
-            </div>
-            
-            <div className="mt-16 text-center">
-                <a href="#" className="font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-700 py-4 px-10 rounded-full shadow-lg hover:scale-105 transition-transform inline-block">
-                    {t('premium_subscribe_now')}
-                </a>
-            </div>
 
-            <div className="mt-16 pt-8 border-t-2 border-dashed border-slate-300 max-w-2xl mx-auto">
-                <h3 className="text-2xl font-bold text-[#192A56] text-center mb-2">{t('premium_rate_agency')}</h3>
-                <p className="text-slate-600 text-center mb-6">{t('premium_rate_consultant')}</p>
-                {feedbackSent ? (
-                     <div className="bg-green-100 text-green-700 p-4 rounded-lg text-center font-semibold animate-fade-in">
-                         {t('premium_feedback_sent')}
-                     </div>
-                ) : (
-                    <div className="bg-white p-6 rounded-xl shadow-lg">
-                        <div className="flex justify-center gap-2 mb-4">
-                            {[1, 2, 3, 4, 5].map(star => (
-                                <button key={star} onClick={() => handleRating(star)}>
-                                    <Star size={32} className={`transition-colors ${rating >= star ? 'text-yellow-400 fill-current' : 'text-slate-300'}`} />
+            <div className="space-y-8">
+                <div>
+                    <h3 className="text-2xl font-bold text-[#192A56] mb-4">Catálogo Consultoria</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {mockDatabase.premiumContent['consultancy'].map(item => (
+                            <div key={item.id} className="relative group aspect-video">
+                                <button onClick={() => handleWatchVideo(item.id)} className="w-full h-full bg-slate-800 rounded-xl shadow-lg p-4 flex flex-col justify-end text-left text-white overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
+                                    <h4 className="relative z-20 font-bold">{item.title}</h4>
                                 </button>
-                            ))}
-                        </div>
-                        <textarea placeholder={t('premium_your_feedback')} className="w-full h-24 p-3 rounded-lg border border-slate-300 focus:ring-purple-500 focus:border-purple-500 transition"></textarea>
-                        <button onClick={handleSendFeedback} className="font-semibold text-white bg-[#192A56] py-3 px-6 rounded-lg transition-all w-full mt-4 hover:bg-indigo-800">{t('premium_send_feedback')}</button>
+                                {((timeLeft <= 0) || !unlockedVideos[item.id]) && (
+                                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-30 rounded-xl">
+                                        <Lock size={32} className="text-yellow-400"/>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
                     </div>
-                )}
+                </div>
+
+                <div className="mt-12 text-center">
+                    <button onClick={() => setShowSubscriptionModal(true)} className="font-bold text-white bg-gradient-to-r from-orange-500 to-pink-500 py-4 px-10 rounded-full shadow-lg hover:scale-105 transition-transform inline-block">
+                        {t('premium_subscribe_now')}
+                    </button>
+                </div>
+
+                <div className="mt-12 pt-8 border-t-2 border-dashed border-slate-300 max-w-2xl mx-auto">
+                     <h3 className="text-2xl font-bold text-[#192A56] text-center mb-4">{t('premium_contact_agency_title')}</h3>
+                     <ContactAgencyForm />
+                </div>
             </div>
         </div>
     );
 };
-
-
 const DashboardScreen = () => {
     const { t } = useLanguage();
     const { userData, isFirstTimeUser, showToast, saveItem, savedItems, setSavedItems, toast, setToast, agendaItems, addAgendaItem, toggleAgendaItem, updateAgendaItem, showTips, setShowTips, goBack } = useApp();
-    const [activeSection, setActiveSection] = useState('home');
+    const [activeSection, setActiveSection] = useState('journey');
     const [showWelcome, setShowWelcome] = useState(isFirstTimeUser);
     const [showPermission, setShowPermission] = useState(false);
     const [activeModal, setActiveModal] = useState(null);
     const [activeTip, setActiveTip] = useState(null);
     const [jeiQuery, setJeiQuery] = useState(null);
     const [showSearchModal, setShowSearchModal] = useState(false);
+    const [journeyPopup, setJourneyPopup] = useState(null);
     const headerRef = useRef(null);
     const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -2194,6 +2302,15 @@ const DashboardScreen = () => {
         setJeiQuery(query);
     }
 
+    const handleJourneyStepClick = (step) => {
+        const content = mockDatabase.journeyContent[userData.destinationCountry]?.[step.id] || mockDatabase.journeyContent['default'][step.id];
+        if(content) {
+            setJourneyPopup({ step, content });
+        } else {
+            alert(`Conteúdo para a etapa "${step.name}" ainda não disponível.`);
+        }
+    };
+
     const renderModalContent = () => {
         switch(activeModal) {
             case 'folder': return <FolderModal t={t} savedItems={savedItems} setSavedItems={setSavedItems} />;
@@ -2207,14 +2324,10 @@ const DashboardScreen = () => {
     
     const renderActiveSection = () => {
         switch(activeSection) {
-            case 'home':
-                return (
-                  <div className="p-4">
-                    <iframe className="w-full aspect-video rounded-lg shadow-lg" src="https://www.youtube.com/embed/UkmJGrEqWnY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                  </div>
-                );
+            case 'cases':
+                return <CasesSection />;
             case 'journey':
-                return <JourneySection agendaItems={agendaItems} onOpenAgenda={() => setActiveModal('agenda')} />;
+                return <JourneyTimeline userStatus={userData.status} destinationCountry={userData.destinationCountry} onStepClick={handleJourneyStepClick} />;
             case 'premium':
                 return <PremiumSection />;
             default:
@@ -2225,7 +2338,6 @@ const DashboardScreen = () => {
                 );
         }
     }
-
     return (
         <div className="w-full h-dvh flex flex-col bg-slate-100">
             {showWelcome && <WelcomePopup userData={userData} onClose={() => setShowWelcome(false)} t={t} />}
@@ -2234,29 +2346,28 @@ const DashboardScreen = () => {
             {activeTip && <TipOfTheDayModal tip={activeTip} onClose={() => setActiveTip(null)} onSave={saveItem} t={t} />}
             {jeiQuery && <JeiResponseModal query={jeiQuery} onClose={() => setJeiQuery(null)} onSave={saveItem} t={t} />}
             {showSearchModal && <JeiSearchModal onSearch={handleJeiSearch} onClose={() => setShowSearchModal(false)} t={t} />}
+            {journeyPopup && <JourneyStepPopup step={journeyPopup.step} content={journeyPopup.content} onClose={() => setJourneyPopup(null)} onSave={saveItem} />}
             <ToastNotification toast={toast} onClose={() => setToast(null)} t={t} />
             
             <div ref={headerRef} className="fixed top-0 left-0 right-0 z-30 bg-slate-100 shadow-md">
-                <DashboardHeader userData={userData} onBack={goBack} showBackButton={true} />
-                {activeSection === 'home' ? (
-                    <CountdownBar userData={userData} />
-                ) : (
-                    <SpecialIconsBar onIconClick={setActiveModal} />
+                {activeSection !== 'premium' && (
+                    <>
+                        <DashboardHeader userData={userData} onBack={goBack} showBackButton={true} />
+                        <SpecialIconsBar onIconClick={setActiveModal} />
+                    </>
                 )}
             </div>
             
-            <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-24" style={{ marginTop: headerHeight }}>
+            <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-24" style={{ marginTop: activeSection !== 'premium' ? headerHeight : 0 }}>
                 <div className="max-w-7xl mx-auto space-y-6">
                     {renderActiveSection()}
                 </div>
             </main>
-
             <LeftFloatingActionButtons onTipClick={handleOpenTipModal} onJeiClick={() => setShowSearchModal(true)} />
             <DashboardBottomNav onNavigate={setActiveSection} activeSection={activeSection} />
         </div>
     );
 };
-
 // --- Main App Component ---
 const Main = () => {
     const { screen } = useApp();
@@ -2269,7 +2380,6 @@ const Main = () => {
         default: return <AuthScreen />;
     }
 }
-
 function AppContent() {
     const [isLoading, setIsLoading] = useState(true);
     
@@ -2281,12 +2391,10 @@ function AppContent() {
             script.src = 'https://cdn.tailwindcss.com';
             document.head.appendChild(script);
         }
-
         const scriptUrls = [
             'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
         ];
-
         scriptUrls.forEach(url => {
             const scriptId = url.split('/').pop();
             if (!document.getElementById(scriptId)) {
@@ -2297,7 +2405,6 @@ function AppContent() {
                 document.body.appendChild(script);
             }
         });
-
         const timer = setTimeout(() => setIsLoading(false), 1500);
         return () => clearTimeout(timer);
     }, []);
@@ -2305,7 +2412,7 @@ function AppContent() {
     return (
         <>
             <style>{`
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
                 body { 
                     font-family: 'Inter', sans-serif; 
                     -webkit-font-smoothing: antialiased; 
@@ -2313,12 +2420,10 @@ function AppContent() {
                 }
                 .font-title-elegant { font-family: 'Inter', sans-serif; font-weight: 300; }
                 .shadow-top { box-shadow: 0 -4px 15px -1px rgb(0 0 0 / 0.1), 0 -2px 8px -2px rgb(0 0 0 / 0.1); }
-
                 .custom-scrollbar::-webkit-scrollbar { height: 6px; }
                 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: #facc15; border-radius: 10px; }
-                .custom-scrollbar { scrollbar-width: thin; scrollbar-color: #facc15 transparent; }
-
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #eab308; border-radius: 10px; }
+                .custom-scrollbar { scrollbar-width: thin; scrollbar-color: #eab308 transparent; }
                 @keyframes loading-bar-full { from { width: 0%; } to { width: 100%; } }
                 .animate-loading-bar-full { animation: loading-bar-full 1.5s ease-in-out forwards; }
                 
@@ -2330,7 +2435,6 @@ function AppContent() {
                     100% { opacity: 1; transform: translateY(0); }
                 }
                 .animate-fade-slide-up { animation: fade-slide-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-
                 @keyframes text-gradient-anim-bg {
                     0% { opacity: 0; }
                     100% { opacity: 1; }
@@ -2338,11 +2442,10 @@ function AppContent() {
                 .animate-text-gradient-bg { animation: text-gradient-anim-bg 1s 0.5s forwards; }
                 
                 @keyframes text-gradient-anim-fg {
-                     0% { background-size: 200% 200%; background-position: 200% center; }
-                     100% { background-size: 100% 100%; background-position: 0% center; }
+                    0% { background-size: 200% 200%; background-position: 200% center; }
+                    100% { background-size: 100% 100%; background-position: 0% center; }
                 }
                 .animate-text-gradient-fg { animation: text-gradient-anim-fg 1s 0.5s forwards; }
-
                 @keyframes fade-in-fast { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
                 .animate-fade-in-fast { animation: fade-in-fast 0.3s ease-in-out forwards; }
                 @keyframes slide-up-modal { from { transform: translateY(100%); } to { transform: translateY(0); } }
@@ -2368,7 +2471,6 @@ function AppContent() {
         </>
     );
 }
-
 export default function App() {
     return (
         <LanguageProvider>
