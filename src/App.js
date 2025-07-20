@@ -1,7 +1,8 @@
 import React, { useState, useEffect, createContext, useContext, useCallback, useRef, useMemo } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import {
     Search, Briefcase, Plane, Globe, ChevronLeft, ChevronRight, Menu, Lightbulb, X,
     MessageCircle, Bookmark, CalendarClock, PlusCircle, ListChecks, ArrowLeft, Handshake,
@@ -13,120 +14,22 @@ import {
     MapPin, Check, GraduationCap, Video, Image as ImageIcon, ThumbsUp, AlertTriangle,
     UserCheck, Building2, Camera, Music, BrainCircuit, Puzzle, Play, Pause, RefreshCw,
     Target, PenSquare, FolderOpen, Coins, FolderPlus, Compass, Award, Sparkles, Instagram, Linkedin,
-    ArrowRight, Bot, Folder, ArrowDown, Hand, MessageSquarePlus, AlertCircle, Calculator, Send, Wifi, Utensils, Route, HeartPulse, Bell, User, Building as Agency, ExternalLink, Moon, Sun, Download, Trash2, Edit, CheckSquare, Square, Mail as MailIcon, Plus, Minus, Tv2, GripVertical, FileDown, Cloud, SunDim, HelpCircle, Phone, MessageSquare, ThumbsDown
+    ArrowRight, Bot, Folder, ArrowDown, Hand, MessageSquarePlus, AlertCircle, Calculator, Send, Wifi, Utensils, Route, HeartPulse, Bell, User, Building as Agency, ExternalLink, Moon, Sun, Download, Trash2, Edit, CheckSquare, Square, Mail as MailIcon, Plus, Minus, Tv2, GripVertical, FileDown, Cloud, SunDim, HelpCircle, Phone, MessageSquare, ThumbsDown, BarChart3, Settings, FileText, Filter, Crown
 } from 'lucide-react';
 
 // --- Firebase Mock Initialization ---
-let app, auth, db, provider;
+// Inicialização simulada do Firebase. Em um ambiente real, as configurações viriam de um arquivo seguro.
 try {
     const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-    app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db = getFirestore(app);
-    provider = new GoogleAuthProvider();
+    initializeApp(firebaseConfig);
 } catch (error) {
     console.error("Firebase initialization failed. Using mock setup.", error);
 }
 
-// --- Knowledge Base for Jei AI ---
-const KNOWLEDGE_BASE = `
-# O Manual de Operações de Intercâmbio Global 2025: Um Guia Estratégico para o Mercado Brasileiro
-## Parte I: O Funil da Jornada do Estudante: da Prospecção à Colocação
-Esta seção inaugural estabelece a estrutura de processos internos para a agência, conectando metodologias de vendas e atendimento ao contexto específico e de alto impacto da gestão de programas de intercâmbio internacional. O objetivo é criar um padrão de excelência que alinhe as expectativas do estudante com a realidade, garantindo não apenas a conversão, mas a satisfação e o sucesso do intercambista.
-### O Funil de Vendas de Intercâmbio: Uma Estrutura para a Conversão
-#### O Protocolo de Pré-Atendimento do SDR: Qualificação e Análise de Perfil
-A função do Sales Development Representative (SDR) no setor de intercâmbio transcende a simples qualificação de leads; ela representa o primeiro e mais crítico ponto de contato para o gerenciamento das expectativas do estudante. Este protocolo visa transformar o contato inicial de um script reativo para uma conversa diagnóstica, estabelecendo uma base de confiança e realismo desde o início.
-##### Estrutura de Qualificação de Leads
-A função primordial do SDR é realizar uma triagem criteriosa dos contatos que chegam à agência, garantindo que o tempo da equipe de consultores especialistas seja investido em prospects com real potencial de conversão. Para o mercado de intercâmbio, essa qualificação deve ser profunda e multifacetada, utilizando uma matriz de critérios específicos:
-- **Capacidade Financeira:** A abordagem inicial deve ser sutil, mas eficaz, para aferir o orçamento do estudante. Perguntas como "Você já tem uma ideia do investimento que pretende fazer nesta experiência?" ou "Para te ajudar a encontrar as melhores opções, qual faixa de orçamento devemos considerar?" ajudam a direcionar a conversa sem serem invasivas.
-- **Intenção do Programa:** É fundamental identificar o objetivo principal do intercâmbio. Trata-se de um curso de idiomas, um programa de estudo e trabalho, trabalho voluntário, ensino médio (high school) ou um curso universitário? Cada modalidade possui pré-requisitos, custos e processos de visto distintos.
-- **Horizonte de Tempo:** A urgência e a flexibilidade do estudante são fatores determinantes. Um lead que pretende viajar em três meses tem necessidades diferentes de um que planeja para o próximo ano. Essa informação qualifica a prioridade do atendimento.
-- **Perfil do Estudante:** Coletar dados demográficos essenciais como idade, formação acadêmica e experiência profissional é crucial. Um recém-formado buscando experiência de trabalho tem um perfil diferente de um adolescente em seu primeiro intercâmbio.
-##### Análise de Perfil para Escolha do Destino
-O SDR deve atuar como um analista de perfil preliminar, realizando uma primeira análise de "compatibilidade" entre o estudante e os possíveis destinos. O SDR pode utilizar um "Questionário de Persona" para guiar a conversa e entender as motivações intrínsecas do cliente. Este questionário ajuda a alinhar a "vibe" do estudante com as características dos destinos.
-**Exemplo de Questionário de Persona para SDRs:**
-1. **O que você mais busca nesta experiência no exterior?**
-   (A) Acelerar minha carreira com experiência de trabalho internacional.
-   (B) Viver uma imersão cultural profunda e aprender um novo idioma com calma.
-   (C) Aventurar-me na natureza e ter um estilo de vida mais tranquilo e ao ar livre.
-   (D) Estudar em uma instituição de prestígio e ter uma vida acadêmica intensa.
-2. **Como você descreveria seu final de semana ideal?**
-   (A) Em eventos de networking, feiras urbanas e jantares em restaurantes badalados.
-   (B) Explorando museus, cafés históricos e livrarias.
-   (C) Fazendo trilhas, visitando praias e parques nacionais.
-   (D) Em bibliotecas, grupos de estudo e eventos no campus universitário.
-Com base nas respostas, o SDR pode fazer uma pré-qualificação de destino. Um perfil predominantemente "A" pode se alinhar melhor com centros como Dubai ou Toronto, enquanto um perfil "C" pode ser mais compatível com a Nova Zelândia ou a Cidade do Cabo.
-#### A Venda Consultiva: O Papel do Consultor Especialista
-O papel do consultor é consolidar a transição de "agente de viagens" para "consultor estratégico de vida".
-**Construindo o Pitch de Venda Consultivo:**
-1. **Diagnosticar o Sonho Central:** Qual é a motivação mais profunda do estudante?
-2. **Apresentar o Destino como a Solução Estratégica:** Apresentar o destino como o cenário ideal para a realização daquele objetivo.
-3. **Utilizar o "Empilhamento de Argumentos":** Construir um caso lógico e convincente. Exemplo para a Irlanda: "Na Irlanda, você terá um ambiente de imersão total no inglês, com a permissão de trabalho de 20 horas semanais para ajudar a custear a experiência, e tudo isso em um país que serve como uma base incrível e de baixo custo para explorar toda a Europa."
-4. **Abordar Objeções com Transparência:** Antecipar e abordar proativamente os desafios. Exemplo: "É importante que você saiba que encontrar acomodação em Dublin é um dos maiores desafios. O mercado é competitivo e os preços são altos. É por isso que nosso pacote inclui um suporte robusto de acomodação."
-## Parte II: O Dossiê de Destinos Globais
-### África do Sul
-- **Cidades Principais:** Cidade do Cabo, Joanesburgo.
-- **Perfil:** Excelente custo-benefício, combina educação de qualidade com diversidade cultural e natural. Moeda (Rand - ZAR) desvalorizada em relação ao Real. Brasileiros não necessitam de visto para estadias de até 90 dias. Atraente para trabalho voluntário.
-- **Vistos (2025):**
-  - **Até 90 dias:** Não precisa de visto. Necessário passaporte válido e Certificado Internacional de Vacinação contra febre amarela.
-  - **Acima de 90 dias:** Necessário aplicar para um **Study Visa** antes da viagem no Brasil.
-  - **Permissão de Trabalho:** O Study Visa permite trabalho part-time.
-- **Custo de Vida (Cidade do Cabo):** Total mensal estimado de R 9.064 a R 14.964 (ZAR), sem mensalidade do curso.
-- **Acomodação:** Opções são residências estudantis, homestay e quartos compartilhados. Mercado competitivo.
-- **Segurança:** Percepção similar à do Brasil, exige atenção constante. Evitar andar sozinho à noite e exibir objetos de valor.
-### Alemanha
-- **Cidades Principais:** Berlim, Hamburgo, Munique, Frankfurt.
-- **Perfil:** Foco em carreira e educação superior. Universidades públicas com taxas baixas ou inexistentes. Permissão de trabalho e possibilidade de ficar 18 meses após a graduação para buscar emprego.
-- **Vistos (2025):**
-  - **Até 90 dias:** Não precisa de visto.
-  - **Acima de 90 dias:** Entrar sem visto e solicitar a **Autorização de Residência (Aufenthaltserlaubnis)** em até 90 dias na Alemanha.
-  - **Documentação Essencial:** Carta de admissão, **conta bloqueada (*Sperrkonto*)** com €11.208 por ano, e seguro saúde obrigatório.
-  - **Permissão de Trabalho:** Estudantes podem trabalhar até 140 dias completos ou 280 meios-dias por ano.
-- **Custo de Vida (Berlim):** Total mensal estimado de €829 a €1.430.
-- **Acomodação:** Mais comum é o apartamento compartilhado (WG - Wohngemeinschaft). Mercado muito competitivo, buscar com meses de antecedência.
-### Austrália
-- **Cidades Principais:** Sydney, Melbourne, Brisbane, Gold Coast, Adelaide, Perth.
-- **Perfil:** Alta qualidade de vida, sistema educacional de excelência e permissão para trabalhar.
-- **Vistos (2025):**
-  - **Visto de Estudante (Subclass 500):** Aplicação online via ImmiAccount. Processo competitivo devido a limites de matrículas.
-  - **Documentação Essencial:** Passaporte, **Confirmation of Enrolment (CoE)**, comprovação financeira, e seguro saúde obrigatório **(OSHC)**.
-  - **Permissão de Trabalho:** Máximo de **48 horas por quinzena** durante o período letivo. Horas ilimitadas nas férias.
-- **Custo de Vida (Sydney):** Total mensal estimado de A$2,380 a A$3,620.
-- **Acomodação:** Mercado extremamente competitivo e caro.
-### Argentina
-- **Cidades Principais:** Buenos Aires, Córdoba.
-- **Perfil:** Acessível e culturalmente rico. Universidades públicas gratuitas e de prestígio (UBA).
-- **Vistos (2025):**
-  - **Até 90 dias:** Não precisa de visto, pode entrar com RG.
-  - **Acima de 90 dias:** **ALERTA:** Governo intensificou a fiscalização. A recomendação oficial é **solicitar o visto de estudante no Brasil, antes da viagem**.
-  - **Permissão de Trabalho:** Visto de estudante **não autoriza** trabalho remunerado.
-- **Custo de Vida (Buenos Aires):** Total mensal estimado de US$548 a US$1,000. Instabilidade econômica e alta inflação.
-- **Saúde:** Sistema público gratuito, mas com filas. Muitos contratam plano privado (*prepaga*).
-### Canadá
-- **Cidades Principais:** Toronto, Vancouver, Montreal, Calgary.
-- **Perfil:** Alta qualidade de vida, multicultural, cidades seguras. Vias de imigração pós-estudo.
-- **Vistos (2025):**
-  - **Permissão de Estudos (Study Permit):** Obrigatório para cursos acima de 6 meses. Aplicação online no site do IRCC.
-  - **Permissão de Trabalho:** Até 20 horas por semana durante as aulas.
-  - **Mudança Crítica 2025:** Permissão de trabalho para cônjuges será restrita apenas a parceiros de estudantes de **mestrado e doutorado**.
-- **Custo de Vida (Toronto):** Total mensal estimado de CAD$1,706 a CAD$2,656. Crise de habitação em Toronto e Vancouver.
-- **Saúde:** Sistema provincial, varia por província. Em Ontário (Toronto), estudantes contratam plano privado (UHIP). Em British Columbia (Vancouver), inscrevem-se no plano provincial (MSP) pagando taxa.
-### Estados Unidos
-- **Cidades Principais:** Nova York, Los Angeles, Boston, Miami.
-- **Perfil:** Destino icônico, universidades renomadas. Alto custo e regras de visto restritivas.
-- **Vistos (2025):**
-  - **Visto de Estudante (F-1):** Processo complexo com entrevista presencial.
-  - **Permissão de Trabalho:** **Extremamente restritiva**. Trabalho fora do campus geralmente proibido no primeiro ano. O foco não deve ser contar com trabalho para se manter.
-- **Custo de Vida (Nova York):** Total mensal estimado de US$2,632 a US$4,232.
-- **Saúde:** Sistema privado e **extremamente caro**. Seguro saúde abrangente é exigido pelas escolas.
-### Emirados Árabes Unidos
-- **Cidade Principal:** Dubai.
-- **Perfil:** Moderno, seguro, multicultural. Ambiente de negócios dinâmico.
-- **Vistos (2025):**
-  - **Visto de Estudante:** Para cursos acima de 90 dias, a própria escola facilita o processo.
-  - **Permissão de Trabalho:** Permitido para estudantes universitários em regime de meio período.
-`;
-// --- i18n (Internationalization & Translations) ---
+// --- KNOWLEDGE BASE & MOCK DATA (Expanded for Agency) ---
+// Base de conhecimento para a IA e dados simulados para popular a aplicação.
+const KNOWLEDGE_BASE = `A Prep-ON é uma ferramenta que chamamos de assistente ou app com o objetivo de ajudar futuros intercambistas a chegarem preparados no destino. Para isso, foi criada uma estrutura organizada pensando em cada usuário e o destino escolhido. A partir daí, uma linha do tempo é apresentada em ordem cronológica para não só ajudar na organização, mas também para ser um ambiente para alertar o futuro intercambista de situações ou coisas que faltam e que talvez ele tenha esquecido. Todas as dicas e orientações são geradas com fontes oficiais de consulados, imigrações, órgãos oficiais do governo, através de IA do Gemini, assim como com experiências práticas de quem já vivenciou tudo isso que está sendo informado. A ferramenta não substitui a importância do consultor, agência ou escolas, mas sim é mais uma peça na engrenagem, estando ali quando outras opções, por algum motivo, estiverem ocupadas. Um consultor também precisa ajudar milhares de clientes, e muitas vezes uma informação que pode ser difícil de encontrar na internet, no Prep-ON está ali na mão, ligado e pronto.`;
+
 const translations = {
     pt: {
         // Geral
@@ -158,18 +61,18 @@ const translations = {
         // Auth & Landing Page
         auth_login: "Login",
         auth_register: "Cadastro",
-        auth_slogan: "Sua jornada de intercâmbio inteligente",
+        auth_slogan: "Sua jornada de intercâmbio, <span class='font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600'>inteligente</span> e <span class='font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600'>conectada</span>.",
         auth_iam_student: "Sou Intercambista",
         auth_iam_agency: "Sou Agência",
         login_with_google: "Continuar com o Google",
-        landing_main_title: "Chegou seu aliado na preparação e planejamento do seu intercâmbio.",
-        landing_main_subtitle: "Aliado é quem soma. O OnliPrep não substitui seu consultor, ele caminha junto — e entra em cena quando você mais precisar, na palma da sua mão.",
+        landing_main_title: "Seu intercâmbio, do <span class='text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600'>sonho</span> ao <span class='text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600'>embarque</span>, sem imprevistos.",
+        landing_main_subtitle: "Somos a peça que faltava na engrenagem. O OnliPrep une a precisão da Inteligência Artificial com a experiência de quem já viveu o intercâmbio, garantindo que você esteja sempre um passo à frente.",
         value_prop_1_title: "Jornada Organizada",
         value_prop_1_text: "Uma linha do tempo inteligente que se adapta ao seu perfil e destino, garantindo que você não perca nenhum prazo e saiba exatamente o próximo passo.",
         value_prop_2_title: "Inteligência & Experiência",
         value_prop_2_text: "Nossa IA, turbinada pelo Gemini, cruza dados de fontes oficiais com a experiência prática de quem já viveu tudo isso, entregando a informação que você precisa.",
         value_prop_3_title: "Seu Suporte, Sempre ON",
-        value_prop_3_text: "Somos a peça que faltava na engrenagem. Quando sua agência ou consultor estiverem ocupados, o OnliPrep está aqui, pronto para te ajudar.",
+        value_prop_3_text: "Seu consultor está ocupado? Sem problemas. O OnliPrep é seu assistente pessoal, pronto para te ajudar a qualquer hora, em qualquer lugar.",
         partners_title: "Parceiros de jornada",
         // Registration Screen
         register_title: "Cadastro rápido",
@@ -211,86 +114,54 @@ const translations = {
         creating_your_dashboard: "Criando seu dashboard...",
         // Dashboard & Tools
         cases: "Cases",
-        cases_info: "Veja histórias de sucesso e exemplos de intercâmbios.",
         journey: "Jornada",
-        journey_info: "Um guia passo a passo para te levar até o seu sonho, desde a decisão até a sua formatura no exterior.",
         preparatorio_title: "Preparatório",
-        preparatorio_info: "Aprenda e se divirta enquanto se prepara. Ferramentas, jogos e dicas para você chegar voando no destino.",
         bate_volta: "Bate Volta",
-        bate_volta_info: "Acesso rápido a informações essenciais do seu destino. Tudo que você precisa na palma da sua mão.",
-        premium: "Premium",
-        premium_info: "Desbloqueie funcionalidades exclusivas, descontos e suporte prioritário para uma jornada ainda mais completa.",
+        onlipremium: "OnliPremium",
         welcome_title_dynamic: "Estávamos te esperando, {name}!",
         welcome_subtitle: "O menu mapa te levará pra onde você quiser. Explore!",
         welcome_button: "Explorar Dashboard",
         folder: "Pasta",
-        folder_info: "Acesse todos os seus documentos e dicas salvas em um só lugar.",
         currency: "Câmbio",
-        currency_info: "Converta moedas e veja as cotações mais recentes para o seu planejamento.",
         calculator: "Calc",
-        calculator_info: "Calcule os custos do seu intercâmbio para um planejamento financeiro sem surpresas.",
         timezone: "Fuso",
-        timezone_info: "Veja a hora exata no seu destino e nunca mais se confunda com o fuso horário.",
         agenda: "Agenda",
-        agenda_info: "Organize suas datas e tarefas importantes para não perder nenhum prazo.",
-        
         // Modal Titles
         folder_modal_title: "Meus Documentos",
         currency_modal_title: "Conversor de Moedas",
         calculator_modal_title: "Calculadora de Investimento",
         timezone_modal_title: "Fuso Horário",
         agenda_modal_title: "Minha Agenda",
-        flight_info_modal_title: "Informações do Voo",
         teacher_ana_modal_title: "Teacher Ana - Prática de Inglês",
-        personalized_checklist_title: "✨ Checklist Personalizado",
-        // Folder Modal
-        folder_search_placeholder: "Procurar em pastas...",
-        folder_instruction_title: "Organize suas dicas!",
-        folder_instruction_text: "Arraste e solte para reordenar. Suas alterações são salvas automaticamente. Use o botão de download para gerar um PDF!",
-        new_folder: "Nova Pasta",
-        new_document: "Novo Documento",
-        create_folder_title: "Criar Nova Pasta",
-        folder_name_placeholder: "Nome da pasta",
-        create: "Criar",
-        save_to_folder_title: "Salvar em...",
-        select_folder: "Selecione uma pasta",
-        // Agenda Modal
+        jei_response_title: "Resposta do Jei",
         edit_task: "Editar Tarefa",
         update_task: "Atualizar Tarefa",
-        
-        // Jei AI Chat
-        jei_prompt_placeholder: "Tire uma dúvida rápida...",
-        jei_search_button: "Perguntar ao Jei",
+        agenda_add_task: "Adicionar nova tarefa",
+        agenda_task_name: "Nome da tarefa",
+        agenda_completed_tasks: "Tarefas Concluídas",
+        folder_search_placeholder: "Buscar nos seus itens...",
+        new_folder: "Nova Pasta",
+        new_document: "Baixar como PDF",
+        folder_name_placeholder: "Nome da nova pasta",
+        calculator_planning_info: "Planeje seus gastos mensais. Use a busca inteligente para estimar custos.",
+        investment_item_name: "Nome do item (ex: Aluguel)",
+        investment_add_item: "Adicionar item",
+        investment_total: "Total estimado",
+        calculator_search_label: "Busca Inteligente de Custos",
+        calculator_search_placeholder: "Ex: Custo de vida em Dublin",
+        calculator_search_result_title: "Custo estimado para {item}:",
+        calculator_search_result_source: "Fonte: Estimativa baseada em IA",
+        currency_source: "Cotações apenas para referência",
+        currency_last_updated: "Atualizado em:",
+        currency_partner_title: "Desconto exclusivo com nosso parceiro",
+        currency_coupon_code: "ONLIPREP10",
+        currency_unlocking: "Desbloqueando...",
+        currency_unlock_prompt: "Desbloquear cupom",
+        timezone_your_location: "Sua localização",
         jei_thinking: "Jei está pensando...",
-        jei_response_title: "Resposta do Jei",
-        // Teacher Ana
-        teacher_ana_prompt: "✨ Gerar nova frase para praticar",
-        teacher_ana_generating: "Gerando frase...",
-        // Personalized Checklist
-        checklist_prompt: "Seu intercâmbio está cada vez mais perto! Gostaria de um checklist personalizado para te ajudar a organizar os próximos passos?",
-        checklist_button: "✨ Sim, criar meu checklist!",
-        checklist_generating: "Criando seu checklist personalizado...",
+        jei_prompt_placeholder: "Pergunte qualquer coisa sobre seu intercâmbio...",
+
         // Premium Section
-        premium_unlock_title: "Desbloqueie o Premium",
-        premium_unlock_text: "Assista a um vídeo rápido para ter um gostinho do Premium por 20 minutos.",
-        premium_unlock_button: "Desbloquear Acesso",
-        premium_unlocked_text: "Acesso Premium temporário ativado!",
-        premium_timer_text: "Tempo restante:",
-        premium_subscribe_now: "Assinar Agora",
-        premium_search_destination: "Pesquise um destino para ver o conteúdo",
-        premium_accommodation: "Acomodação",
-        premium_work: "Trabalho",
-        premium_culture: "Imersão Cultural",
-        premium_first_week: "Primeira Semana",
-        premium_see_more: "Veja +",
-        premium_courses: "Cursos",
-        premium_pre_departure_meeting: "Reunião Pré-Embarque",
-        premium_vouchers: "Vouchers de Desconto",
-        premium_rate_agency: "Avalie sua Agência",
-        premium_rate_consultant: "Como foi sua experiência com seu consultor?",
-        premium_your_feedback: "Seu feedback",
-        premium_send_feedback: "Enviar Avaliação",
-        premium_feedback_sent: "Avaliação enviada! Obrigado.",
         premium_contact_agency_title: "Falar com a minha agência",
         premium_contact_reason: "Motivo do contato",
         premium_contact_reason_doubt: "Dúvida",
@@ -307,183 +178,96 @@ const translations = {
         premium_eval_ok: "Satisfeito, com ressalvas",
         premium_eval_unsatisfied: "Muito Insatisfeito",
         premium_eval_thanks: "Obrigado pelo seu feedback!",
-        premium_subscription_title: "Escolha seu plano Premium",
-        premium_plan_24h: "Acesso por 24 horas",
-        premium_plan_48h: "Acesso por 48 horas",
-        premium_plan_72h: "Acesso por 72 horas",
-        premium_plan_monthly: "Assinatura Mensal",
-        premium_buy_voucher: "Comprar Voucher",
-        premium_subscribe_monthly: "Assinar",
         // Other
         tip_of_the_day: "Dica do Dia",
-        tip_of_the_day_info: "Receba uma dica valiosa sobre seu destino todos os dias.",
         teacher_ana: "Teacher Ana",
-        teacher_ana_info: "Sua professora particular de inglês para acelerar seu aprendizado.",
-        help_info: "Precisa de ajuda urgente? Contate nosso suporte emergencial.",
-        currency_source: "Fonte: Dados simulados (Banco Central do Brasil)",
-        currency_last_updated: "Atualizado:",
-        currency_partner_title: "Compre moeda com nosso parceiro!",
-        currency_unlock_prompt: "Assista um vídeo para desbloquear",
-        currency_unlocking: "Desbloqueando...",
-        currency_coupon_code: "ONLIPREP2CAMBIO",
-        investment_item_name: "Nome do Item",
-        investment_item_value: "Valor",
-        investment_add_item: "Adicionar Item",
-        investment_total: "Total Estimado",
-        timezone_your_location: "Sua Localização",
-        timezone_destination: "Destino",
-        agenda_departure_date: "Data de Embarque",
-        agenda_add_task: "Adicionar nova tarefa",
-        agenda_task_name: "Nome da tarefa",
-        agenda_task_date: "Data",
-        agenda_completed_tasks: "Tarefas Realizadas",
-        flight_info_prompt: "Adicione os dados do seu voo para receber atualizações e facilitar o check-in.",
-        flight_airline: "Companhia Aérea",
-        flight_number: "Número do Voo",
-        flight_checkin_button: "Check-in Online",
-        calculator_planning_info: "Use esta calculadora para planejar seus gastos. Para uma estimativa de custos, use nossa pesquisa inteligente abaixo.",
-        calculator_search_label: "✨ Qual o custo médio de...",
-        calculator_search_placeholder: "Ex: Aluguel de 1 quarto em Dublin",
-        calculator_search_button: "Pesquisar Custo",
-        calculator_search_result_title: "Custo estimado para {item}",
-        calculator_search_result_source: "Fonte: Gemini (dados simulados)",
+        // AGENCY LANDING PAGE
+        agency_landing_title: "Eleve a <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500'>experiência</span> do seu intercambista.",
+        agency_landing_subtitle: "O OnliPrep é o seu braço direito digital. Automatizamos a jornada do aluno e liberamos seus consultores para focarem no que fazem de melhor: vender sonhos.",
+        agency_login_title: "Acesse seu painel",
+        agency_name_placeholder: "Nome da Agência",
+        agency_id_placeholder: "ID da Agência ou E-mail",
+        agency_password_placeholder: "Sua senha",
+        agency_login_button: "Entrar",
+        agency_pricing_title: "Planos pensados para o <span class='text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600'>sucesso</span> da sua agência",
+        voucher_title: "Vouchers Individuais",
+        voucher_subtitle: "Ideal para começar ou para demandas pontuais.",
+        voucher_1_title: "Pacote Bronze",
+        voucher_1_desc: "5 clientes",
+        voucher_1_price: "R$ 50,00",
+        voucher_2_title: "Pacote Prata",
+        voucher_2_desc: "10 clientes",
+        voucher_2_price: "R$ 70,00",
+        voucher_3_title: "Pacote Ouro",
+        voucher_3_desc: "20 clientes",
+        voucher_3_price: "R$ 100,00",
+        subscription_title: "Assinaturas Mensais",
+        subscription_subtitle: "A melhor opção para crescimento e escala.",
+        sub_1_title: "Plano Essencial",
+        sub_1_price: "R$ 99,90",
+        sub_1_features: ["Até 30 clientes/mês", "90 dias de OnliPremium", "Suporte via Chat"],
+        sub_2_title: "Plano Performance",
+        sub_2_price: "R$ 149,90",
+        sub_2_features: ["Até 50 clientes/mês", "OnliPremium Vitalício", "Painel para Consultores", "Relatórios NPS"],
+        most_popular: "Mais Popular",
+        buy_button: "Comprar",
+        subscribe_button: "Assinar",
+
+        // AGENCY DASHBOARD
+        agency_dashboard_home: "Início",
+        agency_dashboard_clients: "Clientes",
+        agency_dashboard_reports: "Relatórios",
+        agency_dashboard_settings: "Configurações",
+        agency_dashboard_nps: "NPS Mensal",
+        agency_dashboard_recent_activity: "Atividades Recentes",
+        agency_dashboard_no_activity: "Nenhuma atividade recente.",
+        agency_dashboard_client_profile: "Perfil do Cliente",
+        agency_dashboard_satisfaction: "Satisfação",
+        agency_dashboard_journey_progress: "Progresso da Jornada",
+        agency_dashboard_tasks_completed: "Tarefas Concluídas",
+        agency_dashboard_tasks_pending: "Tarefas Pendentes",
+        agency_dashboard_confirm_receipt: "Confirmar recebimento",
+        agency_dashboard_send_content: "Enviar Conteúdo Personalizado",
+        agency_dashboard_content_title: "Título do Conteúdo",
+        agency_dashboard_video_link: "Link do Vídeo (YouTube, Vimeo, etc.)",
+        agency_dashboard_message: "Mensagem para o aluno",
+        agency_dashboard_send_whatsapp: "Enviar por WhatsApp",
+        agency_dashboard_send_dashboard: "Enviar para o Dashboard",
+        agency_dashboard_support_onliprep: "Suporte OnliPrep",
+        agency_dashboard_talk_to_jei: "Falar com Jei",
+        agency_dashboard_whatsapp_support: "Suporte via WhatsApp",
+        agency_dashboard_churn_strategy: "Estratégia Anti-Churn",
+        agency_dashboard_churn_text: "Baseado no NPS deste mês, recomendamos focar em [Ação Sugerida pela IA] para melhorar a satisfação dos clientes em fase de [Estágio do Funil]."
     },
-    en: {
-        // For brevity, only essential EN keys are included
-        hey: "Hey,",
-        journey: "Journey",
-        preparatorio_title: "Prep Course",
-        bate_volta: "Day Trip",
-        premium: "Premium",
-        cases: "Cases",
-        folder: "Folder",
-        currency: "Currency",
-        calculator: "Calc",
-        timezone: "Timezone",
-        teacher_ana: "Teacher Ana",
-        agenda: "Agenda",
-    }
+    en: { /* ... */ }
 };
 
-// --- KNOWLEDGE BASE & MOCK DATA ---
 const mockDatabase = {
-    destinations: {
-        "África do Sul": ["Cidade do Cabo", "Joanesburgo"], "Alemanha": ["Berlim", "Munique", "Hamburgo", "Frankfurt"], "Argentina": ["Buenos Aires", "Córdoba"], "Austrália": ["Sydney", "Melbourne", "Brisbane", "Gold Coast", "Adelaide", "Perth"], "Canadá": ["Toronto", "Vancouver", "Montreal", "Calgary"], "Emirados Árabes Unidos": ["Dubai"], "Espanha": ["Madri", "Barcelona"], "Estados Unidos": ["Nova Iorque", "Los Angeles", "Boston", "Miami"], "Inglaterra": ["Londres", "Manchester"], "Irlanda": ["Dublin", "Cork"], "Malta": ["St. Julian's", "Sliema"], "Nova Zelândia": ["Auckland"],
-    },
+    destinations: { "África do Sul": ["Cidade do Cabo", "Joanesburgo"], "Alemanha": ["Berlim", "Munique", "Hamburgo", "Frankfurt"], "Argentina": ["Buenos Aires", "Córdoba"], "Austrália": ["Sydney", "Melbourne", "Brisbane", "Gold Coast", "Adelaide", "Perth"], "Canadá": ["Toronto", "Vancouver", "Montreal", "Calgary"], "Emirados Árabes Unidos": ["Dubai"], "Espanha": ["Madri", "Barcelona"], "Estados Unidos": ["Nova Iorque", "Los Angeles", "Boston", "Miami"], "Inglaterra": ["Londres", "Manchester"], "Irlanda": ["Dublin", "Cork"], "Malta": ["St. Julian's", "Sliema"], "Nova Zelândia": ["Auckland"], },
     agencies: ["WEGO Intercâmbios", "CI Intercâmbio", "Experimento", "STB"],
-    weather: {
-        "Dublin, Irlanda": { temp: 14, icon: Cloud },
-        "Toronto, Canadá": { temp: 22, icon: SunDim },
-        "Sydney, Austrália": { temp: 18, icon: Sun },
-        "St. Julian's, Malta": { temp: 28, icon: Sun },
-        "Nova Iorque, Estados Unidos": {temp: 25, icon: Sun }
-    },
-    valueSlides: [
-        { icon: Compass, titleKey: 'value_prop_1_title', textKey: 'value_prop_1_text' },
-        { icon: BrainCircuit, titleKey: 'value_prop_2_title', textKey: 'value_prop_2_text' },
-        { icon: Handshake, titleKey: 'value_prop_3_title', textKey: 'value_prop_3_text' },
-    ],
+    weather: { "Dublin, Irlanda": { temp: 14, icon: Cloud }, "Toronto, Canadá": { temp: 22, icon: SunDim }, "Sydney, Austrália": { temp: 18, icon: Sun }, "St. Julian's, Malta": { temp: 28, icon: Sun }, "Nova Iorque, Estados Unidos": {temp: 25, icon: Sun } },
+    valueSlides: [ { icon: Compass, titleKey: 'value_prop_1_title', textKey: 'value_prop_1_text' }, { icon: BrainCircuit, titleKey: 'value_prop_2_title', textKey: 'value_prop_2_text' }, { icon: Handshake, titleKey: 'value_prop_3_title', textKey: 'value_prop_3_text' }, ],
     partners: ["WEGO Intercâmbios", "Itaú", "Wise", "TM"],
-    tips: {
-     "Irlanda": [
-         "Sempre tenha um guarda-chuva à mão, o tempo em Dublin muda a cada 5 minutos!",
-         "A melhor pint de Guinness está no Gravity Bar, no topo da Guinness Storehouse.",
-         "Use o Leap Card para economizar no transporte público.",
-         "Os penhascos de Moher são um passeio de um dia imperdível saindo de Dublin."
-       ],
-       "Canadá": [
-         "Prepare-se para o frio! Um bom casaco de inverno é essencial.",
-         "Tim Hortons é uma instituição canadense. Experimente um 'Double-Double'.",
-         "A gorjeta (tip) é geralmente de 15-20% em restaurantes.",
-         "Explore os parques nacionais, a natureza do Canadá é deslumbrante."
-       ],
-       "Malta": [
-            "Não se esqueça do protetor solar! O sol em Malta é forte o ano todo.",
-            "Explore as praias escondidas como St. Peter's Pool.",
-            "Use o app da Bolt ou Uber para se locomover, é mais prático que o ônibus.",
-            "A vida noturna em Paceville é agitada, mas vá com um grupo de amigos."
-       ]
-    },
-    journeyTasks: [
-        { step: 1, task: "Definir destino e tipo de curso", daysBefore: 240 },
-        { step: 2, task: "Aplicar para o Passaporte", daysBefore: 180 },
-        { step: 3, task: "Pesquisar e aplicar para o Visto", daysBefore: 120 },
-        { step: 4, task: "Comprar passagens aéreas", daysBefore: 90 },
-        { step: 5, task: "Contratar seguro viagem", daysBefore: 60 },
-        { step: 6, task: "Agendar exame médico", daysBefore: 50 },
-        { step: 7, task: "Confirmar acomodação inicial", daysBefore: 30 },
-        { step: 8, task: "Fazer check-in online", daysBefore: 1 },
+    tips: { "Irlanda": ["Sempre tenha um guarda-chuva à mão, o tempo em Dublin muda a cada 5 minutos!", "A melhor pint de Guinness está no Gravity Bar, no topo da Guinness Storehouse.", "Use o Leap Card para economizar no transporte público.", "Os penhascos de Moher são um passeio de um dia imperdível saindo de Dublin."], "Canadá": ["Prepare-se para o frio! Um bom casaco de inverno é essencial.", "Tim Hortons é uma instituição canadense. Experimente um 'Double-Double'.", "A gorjeta (tip) é geralmente de 15-20% em restaurantes.", "Explore os parques nacionais, a natureza do Canadá é deslumbrante."], "Malta": ["Não se esqueça do protetor solar! O sol em Malta é forte o ano todo.", "Explore as praias escondidas como St. Peter's Pool.", "Use o app da Bolt ou Uber para se locomover, é mais prático que o ônibus.", "A vida noturna em Paceville é agitada, mas vá com um grupo de amigos."] },
+    journeyTasks: [ { step: 1, task: "Definir destino e tipo de curso", daysBefore: 240 }, { step: 2, task: "Aplicar para o Passaporte", daysBefore: 180 }, { step: 3, task: "Pesquisar e aplicar para o Visto", daysBefore: 120 }, { step: 4, task: "Comprar passagens aéreas", daysBefore: 90 }, { step: 5, task: "Contratar seguro viagem", daysBefore: 60 }, { step: 6, task: "Agendar exame médico", daysBefore: 50 }, { step: 7, task: "Confirmar acomodação inicial", daysBefore: 30 }, { step: 8, task: "Fazer check-in online", daysBefore: 1 }, ],
+    journeySteps: { pesquisando: [ { id: 1, name: "Definir Sonho", icon: Lightbulb }, { id: 2, name: "Análise Financeira", icon: Wallet }, { id: 3, name: "Escolher Destino", icon: MapPin }, { id: 4, name: "Tipo de Visto", icon: Stamp }, { id: 5, name: "Escolher Agência", icon: Handshake }, { id: 6, name: "Assinar Contrato", icon: FileSignature }, ], contrato_assinado: [ { id: 1, name: "Pagamento Inicial", icon: Coins, completed: true }, { id: 2, name: "Matrícula Escola", icon: GraduationCap, completed: true }, { id: 3, name: "Passaporte", icon: Passport, completed: true }, { id: 4, name: "Aplicação Visto", icon: Stamp, completed: true }, { id: 5, name: "Comprovação Financeira", icon: FolderOpen, completed: false }, { id: 6, name: "Exames Médicos", icon: HeartPulse, completed: false }, { id: 7, name: "Compra Passagem", icon: Plane, completed: false }, { id: 8, name: "Seguro Viagem", icon: ShieldCheck, completed: false }, { id: 9, name: "Acomodação", icon: BedDouble, completed: false }, { id: 10, name: "Moeda Estrangeira", icon: Coins, completed: false }, { id: 11, name: "Reunião Pré-Embarque", icon: Users, completed: false }, { id: 12, name: "Fazer as Malas", icon: Backpack, completed: false }, ], de_malas_prontas: [ { id: 1, name: "Pagamento Final", icon: CheckCircle }, { id: 2, name: "Documentos Finais", icon: FileSignature }, { id: 3, name: "Passaporte OK", icon: Passport }, { id: 4, name: "Visto Aprovado", icon: Stamp }, { id: 5, name: "Finanças OK", icon: Wallet }, { id: 6, name: "Saúde OK", icon: HeartPulse }, { id: 7, name: "Passagem Comprada", icon: Plane }, { id: 8, name: "Seguro OK", icon: ShieldCheck }, { id: 9, name: "Acomodação OK", icon: BedDouble }, { id: 10, name: "Moeda Comprada", icon: Coins }, { id: 11, name: "Reunião OK", icon: Users }, { id: 12, name: "Malas Prontas", icon: Backpack }, ] },
+    journeyContent: { 'Malta': { '4': { title: 'Visto para Malta', content: 'Para cursos de até 90 dias, brasileiros não precisam de visto. Acima disso, você entra como turista e aplica para a permissão de estudante já em Malta. É crucial levar todos os documentos organizados (carta da escola, comprovação financeira, seguro, etc.) para apresentar na imigração. Nosso time te dará o checklist completo!' }, '9': { title: 'Acomodação em Malta', content: 'Malta tem muitas opções, desde residências estudantis (ótimo para fazer amigos) a apartamentos compartilhados. St. Julian\'s e Sliema são populares, mas podem ser mais caros. Considere áreas como Msida ou Gzira para um melhor custo-benefício. Comece a procurar com pelo menos 2 meses de antecedência!' } }, 'default': { '4': { title: 'Tipo de Visto', content: 'Cada país tem sua regra. Visto de estudante, trabalho, turismo... a escolha certa depende do seu objetivo. Esse é um dos passos mais críticos, e um erro aqui pode custar caro. Vamos analisar seu perfil para definir a melhor estratégia.' }, '9': { title: 'Acomodação Inicial', content: 'Recomendamos fechar as primeiras 2 a 4 semanas de acomodação ainda no Brasil. Isso te dá segurança e tempo para procurar um lugar definitivo com calma quando chegar. Homestay (casa de família) é uma ótima opção para imersão cultural no início.' } } },
+    premiumContent: { 'consultancy': Array.from({ length: 8 }, (_, i) => ({ id: `cons-${i}`, title: `Consultoria Exclusiva #${i + 1}`, locked: true })), },
+    cases: [ { id: 1, name: "Mariana L.", destination: "Dublin, Irlanda", story: "Realizou o sonho de estudar e trabalhar na Europa, hoje é gerente de projetos.", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=500&fit=crop" }, { id: 2, name: "João P.", destination: "Toronto, Canadá", story: "Fez um curso de especialização e conseguiu imigrar através do programa de estudos.", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" }, { id: 3, name: "Carla S.", destination: "Sydney, Austrália", story: "Aprendeu inglês na prática e viajou por todo o sudeste asiático nas férias.", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop" }, ],
+    agencyStudents: [
+        { id: 1, name: "Mariana L.", destination: "Dublin, Irlanda", status: 'de_malas_prontas', photoURL: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop", nps: 5, journeyStatus: 95, email: "mariana.l@example.com", phone: "5511987654321", course: "Inglês Geral", period: "24 semanas", departure: "2025-09-15" },
+        { id: 2, name: "João P.", destination: "Toronto, Canadá", status: 'contrato_assinado', photoURL: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop", nps: 4, journeyStatus: 40, email: "joao.p@example.com", phone: "5521912345678", course: "Business English", period: "12 semanas", departure: "2025-10-01" },
+        { id: 3, name: "Carla S.", destination: "Sydney, Austrália", status: 'de_malas_prontas', photoURL: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop", nps: 5, journeyStatus: 90, email: "carla.s@example.com", phone: "5531998761234", course: "IELTS Prep", period: "8 semanas", departure: "2025-08-20" },
+        { id: 4, name: "Pedro G.", destination: "St. Julian's, Malta", status: 'pesquisando', photoURL: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop", nps: null, journeyStatus: 15, email: "pedro.g@example.com", phone: "5541987654321", course: "Curso de Férias", period: "4 semanas", departure: "2026-01-10" },
     ],
-    journeySteps: {
-        pesquisando: [
-            { id: 1, name: "Definir Sonho", icon: Lightbulb },
-            { id: 2, name: "Análise Financeira", icon: Wallet },
-            { id: 3, name: "Escolher Destino", icon: MapPin },
-            { id: 4, name: "Tipo de Visto", icon: Stamp },
-            { id: 5, name: "Escolher Agência", icon: Handshake },
-            { id: 6, name: "Assinar Contrato", icon: FileSignature },
-        ],
-        contrato_assinado: [
-            { id: 1, name: "Pagamento Inicial", icon: Coins },
-            { id: 2, name: "Matrícula Escola", icon: GraduationCap },
-            { id: 3, name: "Passaporte", icon: Passport },
-            { id: 4, name: "Aplicação Visto", icon: Stamp },
-            { id: 5, name: "Comprovação Financeira", icon: FolderOpen },
-            { id: 6, name: "Exames Médicos", icon: HeartPulse },
-            { id: 7, name: "Compra Passagem", icon: Plane },
-            { id: 8, name: "Seguro Viagem", icon: ShieldCheck },
-            { id: 9, name: "Acomodação", icon: BedDouble },
-            { id: 10, name: "Moeda Estrangeira", icon: Coins },
-            { id: 11, name: "Reunião Pré-Embarque", icon: Users },
-            { id: 12, name: "Fazer as Malas", icon: Backpack },
-        ],
-        de_malas_prontas: [
-            { id: 1, name: "Pagamento Final", icon: CheckCircle },
-            { id: 2, name: "Documentos Finais", icon: FileSignature },
-            { id: 3, name: "Passaporte OK", icon: Passport },
-            { id: 4, name: "Visto Aprovado", icon: Stamp },
-            { id: 5, name: "Finanças OK", icon: Wallet },
-            { id: 6, name: "Saúde OK", icon: HeartPulse },
-            { id: 7, name: "Passagem Comprada", icon: Plane },
-            { id: 8, name: "Seguro OK", icon: ShieldCheck },
-            { id: 9, name: "Acomodação OK", icon: BedDouble },
-            { id: 10, name: "Moeda Comprada", icon: Coins },
-            { id: 11, name: "Reunião OK", icon: Users },
-            { id: 12, name: "Malas Prontas", icon: Backpack },
-        ]
-    },
-    journeyContent: {
-        'Malta': {
-            '4': {
-                title: 'Visto para Malta',
-                content: 'Para cursos de até 90 dias, brasileiros não precisam de visto. Acima disso, você entra como turista e aplica para a permissão de estudante já em Malta. É crucial levar todos os documentos organizados (carta da escola, comprovação financeira, seguro, etc.) para apresentar na imigração. Nosso time te dará o checklist completo!'
-            },
-            '9': {
-                title: 'Acomodação em Malta',
-                content: 'Malta tem muitas opções, desde residências estudantis (ótimo para fazer amigos) a apartamentos compartilhados. St. Julian\'s e Sliema são populares, mas podem ser mais caros. Considere áreas como Msida ou Gzira para um melhor custo-benefício. Comece a procurar com pelo menos 2 meses de antecedência!'
-            }
-        },
-        'default': {
-             '4': {
-                title: 'Tipo de Visto',
-                content: 'Cada país tem sua regra. Visto de estudante, trabalho, turismo... a escolha certa depende do seu objetivo. Esse é um dos passos mais críticos, e um erro aqui pode custar caro. Vamos analisar seu perfil para definir a melhor estratégia.'
-            },
-            '9': {
-                title: 'Acomodação Inicial',
-                content: 'Recomendamos fechar as primeiras 2 a 4 semanas de acomodação ainda no Brasil. Isso te dá segurança e tempo para procurar um lugar definitivo com calma quando chegar. Homestay (casa de família) é uma ótima opção para imersão cultural no início.'
-            }
-        }
-    },
-    premiumContent: {
-        'consultancy': Array.from({ length: 8 }, (_, i) => ({ id: `cons-${i}`, title: `Consultoria Exclusiva #${i + 1}`, locked: true })),
-    },
-    cases: [
-        { id: 1, name: "Mariana L.", destination: "Dublin, Irlanda", story: "Realizou o sonho de estudar e trabalhar na Europa, hoje é gerente de projetos.", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=500&fit=crop" },
-        { id: 2, name: "João P.", destination: "Toronto, Canadá", story: "Fez um curso de especialização e conseguiu imigrar através do programa de estudos.", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" },
-        { id: 3, name: "Carla S.", destination: "Sydney, Austrália", story: "Aprendeu inglês na prática e viajou por todo o sudeste asiático nas férias.", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop" },
+    npsData: [
+        { month: 'Jan', nps: 8.5, reviews: 15 }, { month: 'Fev', nps: 8.8, reviews: 18 }, { month: 'Mar', nps: 9.1, reviews: 22 },
+        { month: 'Abr', nps: 9.0, reviews: 20 }, { month: 'Mai', nps: 9.3, reviews: 25 }, { month: 'Jun', nps: 9.5, reviews: 28 },
     ]
 };
+
 // --- Contexts ---
+// Contexto para gerenciamento de idioma e traduções.
 const LanguageContext = createContext(null);
 const useLanguage = () => useContext(LanguageContext);
 const LanguageProvider = ({ children }) => {
@@ -498,6 +282,8 @@ const LanguageProvider = ({ children }) => {
     const value = { language, setLanguage, t };
     return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
+
+// Contexto principal da aplicação para gerenciar estado global.
 const AppContext = createContext(null);
 const useApp = () => useContext(AppContext);
 const AppProvider = ({ children }) => {
@@ -509,9 +295,22 @@ const AppProvider = ({ children }) => {
     const [savedItems, setSavedItems] = useState([]);
     const [agendaItems, setAgendaItems] = useState([]);
     const [showTips, setShowTips] = useState(true);
+    const [agencyNotifications, setAgencyNotifications] = useState([]);
+
+    // Função para exibir notificações toast.
     const showToast = (message, icon = Info, duration = 5000, actions = []) => {
         setToast({ message, icon, id: Date.now(), actions });
     };
+
+    // Função para exibir notificações no dashboard da agência.
+    const showAgencyNotification = (message, icon = Bell) => {
+        const newNotif = { id: Date.now(), message, icon };
+        setAgencyNotifications(prev => [newNotif, ...prev]);
+        // Simula um alerta sonoro para feedback do usuário.
+        console.log("PLAY_SOUND: new-notification.mp3");
+    };
+    
+    // Gerencia o processo de login do usuário.
     const handleLogin = (user) => {
         setUserData({
             name: user.displayName || "Novo Usuário",
@@ -529,6 +328,7 @@ const AppProvider = ({ children }) => {
         }
     };
     
+    // Simula login com Google.
     const handleGoogleLogin = () => {
         const mockUser = {
             displayName: "Usuário Teste",
@@ -540,6 +340,7 @@ const AppProvider = ({ children }) => {
         handleLogin(mockUser);
     };
     
+    // Simula login com e-mail e senha.
     const handleEmailLogin = (e) => {
         e.preventDefault();
         const mockUser = {
@@ -555,28 +356,42 @@ const AppProvider = ({ children }) => {
         };
         handleLogin(mockUser);
     }
+
+    // Gerencia o login da agência.
+    const handleAgencyLogin = () => {
+        setScreen('agency-dashboard');
+        setTimeout(() => showAgencyNotification("Nova avaliação de Mariana L. (5 estrelas)", Star), 2000);
+    };
+
+    // Finaliza o processo de onboarding do novo usuário.
     const completeOnboarding = (onboardingData) => {
         setUserData(prev => ({ ...prev, ...onboardingData }));
         setScreen('dashboard');
     };
     
+    // Efetua o logout do usuário.
     const logout = () => {
         setUserData(null);
         setScreen('auth');
         setAuthFlowStep('registration');
     };
+
+    // Navega para a tela anterior.
     const goBack = () => {
-        if (screen === 'dashboard') {
+        if (screen === 'dashboard' || screen === 'agency-landing' || screen === 'agency-dashboard') {
             setScreen('auth');
         } else if (screen.startsWith('terms-') || screen === 'auth-flow') {
             setScreen('auth');
         }
     }
+
+    // Salva um item na pasta do usuário.
     const saveItem = (item) => {
         setSavedItems(prev => [...prev, {id: Date.now(), ...item, isNew: true}]);
         showToast("Salvo na sua pasta!", CheckCircle, 3000);
     }
     
+    // Funções para gerenciar a agenda do usuário.
     const addAgendaItem = (item) => {
         setAgendaItems(prev => [...prev, {id: `user-${Date.now()}`, ...item, completed: false, completedAt: null, isJourneyTask: false}]);
     }
@@ -587,8 +402,9 @@ const AppProvider = ({ children }) => {
         setAgendaItems(prev => prev.map(item => item.id === id ? {...item, completed: !item.completed, completedAt: !item.completed ? new Date().toISOString() : null} : item));
     }
     
+    // Efeito para popular a agenda com tarefas da jornada quando a data de embarque é definida.
     useEffect(() => {
-        if(userData?.departureDate && mockDatabase.journeyTasks) { // Added check for journeyTasks
+        if(userData?.departureDate && mockDatabase.journeyTasks) {
             const journeyRelatedTasks = mockDatabase.journeyTasks.map(task => {
                 const taskDate = new Date(userData.departureDate + "T00:00:00");
                 taskDate.setDate(taskDate.getDate() - task.daysBefore);
@@ -614,14 +430,23 @@ const AppProvider = ({ children }) => {
             setAgendaItems([...journeyRelatedTasks, departureTask, ...userTasks]);
         }
     }, [userData?.departureDate]);
+
     const value = {  
-        screen, userData, isFirstTimeUser, toast, authFlowStep, savedItems, agendaItems, showTips,
-        setScreen, setUserData, setIsFirstTimeUser, showToast, setToast, setAuthFlowStep,
-        handleLogin, handleGoogleLogin, handleEmailLogin, completeOnboarding, logout, goBack, saveItem,
-        addAgendaItem, toggleAgendaItem, setSavedItems, setShowTips, updateAgendaItem
+        screen, setScreen,  
+        userData, setUserData,  
+        isFirstTimeUser, setIsFirstTimeUser,  
+        toast, showToast, setToast,  
+        authFlowStep, setAuthFlowStep,  
+        savedItems, setSavedItems,  
+        agendaItems, addAgendaItem, toggleAgendaItem, updateAgendaItem,
+        showTips, setShowTips,
+        handleLogin, handleGoogleLogin, handleEmailLogin,  
+        completeOnboarding, logout, goBack, saveItem,
+        handleAgencyLogin, agencyNotifications, setAgencyNotifications, showAgencyNotification
     };
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
+
 // --- UI Components ---
 const LoadingScreen = ({ text }) => (
     <div className="w-full h-full flex flex-col items-center justify-center bg-[#FBF9F6] animate-fade-in">
@@ -635,9 +460,9 @@ const LoadingScreen = ({ text }) => (
 );
 const AppLogo = ({ className }) => (
     <div className={`text-center ${className}`}>
-        <h1 className="text-6xl md:text-7xl font-extrabold tracking-tighter relative inline-flex items-center">
-            <span className="text-[#192A56] font-light animate-text-gradient-bg">Onli</span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8A2BE2] via-[#4169E1] to-[#4B0082] animate-text-gradient-fg">Prep</span>
+        <h1 className="text-6xl md:text-7xl font-extrabold tracking-tighter relative inline-flex items-center font-serif">
+            <span className="text-[#192A56] font-light">Onli</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8A2BE2] via-[#4169E1] to-[#4B0082]">Prep</span>
         </h1>
     </div>
 );
@@ -660,11 +485,11 @@ const Footer = () => {
         <footer className="bg-gradient-to-r from-purple-800 via-indigo-800 to-[#192A56] text-white p-8 mt-16">
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
-                    <h1 className="text-4xl font-extrabold tracking-tighter relative inline-flex items-center mb-4">
+                    <h1 className="text-4xl font-extrabold tracking-tighter relative inline-flex items-center mb-4 font-serif">
                         <span className="font-light text-white/80">Onli</span>
                         <span className="text-white">Prep</span>
                     </h1>
-                    <p className="text-slate-300 text-sm">{t('auth_slogan')}</p>
+                    <p className="text-slate-300 text-sm" dangerouslySetInnerHTML={{ __html: t('auth_slogan') }}></p>
                 </div>
                 <div>
                     <h4 className="font-bold mb-4 text-slate-100">{t('terms_and_conditions')}</h4>
@@ -676,8 +501,8 @@ const Footer = () => {
                 <div>
                     <h4 className="font-bold mb-4 text-slate-100">Social</h4>
                     <div className="flex justify-center md:justify-start gap-4">
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white transition-colors"><Linkedin size={24} /></a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white transition-colors"><Instagram size={24} /></a>
+                        <a href="https://www.linkedin.com/in/maur%C3%ADciosantana?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white transition-colors"><Linkedin size={24} /></a>
+                        <a href="https://www.instagram.com/meajuda_intercambio?igsh=aWd6N3g3ZnNyZ2gy" target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:text-white transition-colors"><Instagram size={24} /></a>
                     </div>
                 </div>
             </div>
@@ -696,11 +521,8 @@ const AuthScreen = () => {
         setScreen('auth-flow');
     };
     
-    const handleAgencyClick = () => {
-        alert('Agency flow coming soon!');
-    };
     return (
-        <div className="w-full min-h-full flex flex-col bg-[#FBF9F6]">
+        <div className="w-full min-h-full flex flex-col bg-white">
             <div className="flex-grow overflow-y-auto px-4 pt-4">
                 <header className="w-full max-w-lg mx-auto">
                     <form onSubmit={handleEmailLogin} className="flex items-center justify-center gap-2 mb-4">
@@ -713,17 +535,16 @@ const AuthScreen = () => {
                 <div className="flex flex-col items-center justify-center pt-8 md:pt-12 relative animate-fade-slide-up">
                     <div className="w-full max-w-4xl z-10 flex flex-col items-center text-center">
                         <AppLogo />
-                        <p className="text-slate-600 mt-2 mb-8 text-lg">{t('auth_slogan')}</p>
-                        <div className="w-full p-8 md:p-12 rounded-2xl bg-gradient-to-r from-[#8A2BE2]/10 via-[#4169E1]/10 to-[#4B0082]/10 mb-8">
-                            <h2 className="text-[#192A56] text-2xl md:text-3xl font-bold text-center">{t('landing_main_title')}</h2>
+                        <p className="text-slate-600 mt-2 mb-8 text-lg" dangerouslySetInnerHTML={{ __html: t('auth_slogan') }}></p>
+                        <div className="w-full p-8 md:p-12 rounded-2xl bg-slate-50 mb-8">
+                            <h2 className="text-[#192A56] text-2xl md:text-3xl font-bold text-center" dangerouslySetInnerHTML={{ __html: t('landing_main_title') }}></h2>
                             <p className="text-slate-600 text-center mt-2">{t('landing_main_subtitle')}</p>
                         </div>
                         
-                        <div className="text-center text-sm text-[#192A56] font-semibold mb-2">{t('fazer_cadastro')}:</div>
                         <div className="flex justify-center items-center gap-4 text-base font-semibold text-[#192A56] mb-4">
                             <button onClick={handleRegisterClick} className="hover:underline">{t('auth_iam_student')}</button>
                             <span className="text-slate-300">|</span>
-                            <button onClick={handleAgencyClick} className="hover:underline">{t('auth_iam_agency')}</button>
+                            <button onClick={() => setScreen('agency-landing')} className="hover:underline">{t('auth_iam_agency')}</button>
                         </div>
                         <button type="button" onClick={handleGoogleLogin} className="inline-flex items-center justify-center font-semibold text-gray-700 bg-white py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-gray-300 hover:bg-gray-50 w-full max-w-xs mb-16">
                             <svg className="w-5 h-5 mr-2" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"></path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"></path><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path><path fill="#1976D2" d="M43.611 20.083H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C42.012 36.49 44 30.861 44 24c0-1.341-.138-2.65-.389-3.917z"></path></svg>
@@ -778,6 +599,7 @@ const RegistrationScreen = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (!isPasswordValid || !doPasswordsMatch || !isCaptchaChecked) {
+            // Using a custom toast/alert instead of window.alert
             alert("Por favor, preencha todos os campos corretamente.");
             return;
         }
@@ -1046,7 +868,429 @@ const TermsScreen = ({ type }) => {
             </div>
     );
 };
-// --- Dashboard Components ---
+
+// --- NEW AGENCY COMPONENTS ---
+const AgencyLandingScreen = () => {
+    const { t } = useLanguage();
+    const { handleAgencyLogin, setScreen } = useApp();
+
+    const PricingCard = ({ title, price, features, popular = false }) => (
+        <div className={`relative border rounded-2xl p-6 flex flex-col ${popular ? 'border-purple-600 border-2' : 'border-slate-200'}`}>
+            {popular && <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">{t('most_popular')}</div>}
+            <h3 className="text-xl font-bold text-[#192A56]">{title}</h3>
+            <p className="text-3xl font-extrabold my-4">{price}<span className="text-base font-normal text-slate-500">/mês</span></p>
+            <ul className="space-y-2 text-slate-600 mb-6">
+                {features.map(f => <li key={f} className="flex items-center gap-2"><CheckCircle size={16} className="text-green-500"/>{f}</li>)}
+            </ul>
+            <button className={`mt-auto font-semibold py-3 px-6 rounded-lg w-full transition-transform hover:scale-105 ${popular ? 'bg-purple-600 text-white' : 'bg-slate-100 text-[#192A56]'}`}>{t('subscribe_button')}</button>
+        </div>
+    );
+    
+    const VoucherCard = ({ title, desc, price }) => (
+       <div className="border border-slate-200 rounded-2xl p-6 text-center">
+            <h3 className="text-xl font-bold text-[#192A56]">{title}</h3>
+            <p className="text-slate-500">{desc}</p>
+            <p className="text-3xl font-extrabold my-4">{price}</p>
+            <button className="font-semibold py-3 px-6 rounded-lg w-full transition-transform hover:scale-105 bg-amber-400 text-[#192A56]">{t('buy_button')}</button>
+        </div>
+    );
+
+    return (
+        <div className="w-full min-h-dvh bg-[#111827] text-white overflow-y-auto">
+            <button onClick={() => setScreen('auth')} className="absolute top-4 left-4 p-2 rounded-full hover:bg-white/10 transition-colors z-20">
+                <ArrowLeft />
+            </button>
+            {/* Hero Section */}
+            <div className="relative h-screen flex items-center justify-center text-center p-4">
+                <div className="absolute inset-0 overflow-hidden">
+                     {/* O vídeo do YouTube pode ser bloqueado em alguns iframes. Usando um vídeo de estoque como fallback. */}
+                     <video
+                         autoPlay
+                         loop
+                         muted
+                         playsInline
+                         className="w-full h-full object-cover opacity-20"
+                         src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"
+                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/80 to-transparent"></div>
+                </div>
+                <div className="relative z-10 w-full max-w-3xl">
+                     <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4"
+                         dangerouslySetInnerHTML={{ __html: t('agency_landing_title') }} />
+                     <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8">
+                         {t('agency_landing_subtitle')}
+                    </p>
+                    <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl max-w-sm mx-auto">
+                        <h2 className="text-xl font-bold mb-4">{t('agency_login_title')}</h2>
+                        <form onSubmit={(e) => { e.preventDefault(); handleAgencyLogin(); }} className="space-y-4">
+                            <input type="text" placeholder={t('agency_name_placeholder')} className="w-full py-3 px-4 bg-white/10 rounded-lg border border-white/20 focus:ring-2 focus:ring-amber-400 outline-none" required />
+                            <input type="email" placeholder={t('agency_id_placeholder')} className="w-full py-3 px-4 bg-white/10 rounded-lg border border-white/20 focus:ring-2 focus:ring-amber-400 outline-none" required />
+                            <input type="password" placeholder={t('agency_password_placeholder')} className="w-full py-3 px-4 bg-white/10 rounded-lg border border-white/20 focus:ring-2 focus:ring-amber-400 outline-none" required />
+                            <button type="submit" className="w-full font-semibold bg-amber-400 text-[#192A56] py-3 rounded-lg hover:bg-amber-300 transition-colors">
+                                {t('agency_login_button')}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {/* Pricing Section */}
+            <div className="py-20 px-4 bg-[#FBF9F6] text-[#192A56]">
+                <div className="max-w-5xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-center mb-12"
+                        dangerouslySetInnerHTML={{ __html: t('agency_pricing_title') }} />
+
+                    <div className="mb-16">
+                        <h3 className="text-2xl font-bold text-center">{t('subscription_title')}</h3>
+                        <p className="text-center text-slate-500 mb-8">{t('subscription_subtitle')}</p>
+                        <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                            <PricingCard title={t('sub_1_title')} price={t('sub_1_price')} features={t('sub_1_features')} />
+                            <PricingCard title={t('sub_2_title')} price={t('sub_2_price')} features={t('sub_2_features')} popular={true} />
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 className="text-2xl font-bold text-center">{t('voucher_title')}</h3>
+                        <p className="text-center text-slate-500 mb-8">{t('voucher_subtitle')}</p>
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <VoucherCard title={t('voucher_1_title')} desc={t('voucher_1_desc')} price={t('voucher_1_price')} />
+                            <VoucherCard title={t('voucher_2_title')} desc={t('voucher_2_desc')} price={t('voucher_2_price')} />
+                            <VoucherCard title={t('voucher_3_title')} desc={t('voucher_3_desc')} price={t('voucher_3_price')} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const AgencyDashboard = () => {
+    const [activeView, setActiveView] = useState('home'); // home, clients, reports, settings
+    const [selectedClient, setSelectedClient] = useState(null);
+    const { t } = useLanguage();
+    const { logout, agencyNotifications, setAgencyNotifications } = useApp();
+
+    const renderView = () => {
+        if(selectedClient) return <AgencyClientProfile client={selectedClient} onBack={() => setSelectedClient(null)} />;
+        switch(activeView) {
+            case 'clients': return <AgencyClientsList onClientSelect={setSelectedClient} />;
+            case 'reports': return <AgencyReports />;
+            case 'home':
+            default:
+                return <AgencyDashboardHome />;
+        }
+    };
+
+    return (
+        <div className="w-full h-dvh flex bg-slate-100">
+            {/* Sidebar */}
+            <nav className="w-20 lg:w-64 bg-white flex flex-col border-r border-slate-200">
+                <div className="p-4 border-b border-slate-200 flex items-center justify-center lg:justify-start gap-2">
+                    <Agency size={28} className="text-purple-600 flex-shrink-0" />
+                    <span className="hidden lg:block font-bold text-xl text-[#192A56]">OnliPrep</span>
+                </div>
+                <div className="flex-1 py-4 space-y-2">
+                    <NavItem icon={Home} label={t('agency_dashboard_home')} active={activeView === 'home' && !selectedClient} onClick={() => { setActiveView('home'); setSelectedClient(null); }} />
+                    <NavItem icon={Users} label={t('agency_dashboard_clients')} active={activeView === 'clients' || !!selectedClient} onClick={() => { setActiveView('clients'); setSelectedClient(null); }} />
+                    <NavItem icon={BarChart3} label={t('agency_dashboard_reports')} active={activeView === 'reports'} onClick={() => { setActiveView('reports'); setSelectedClient(null); }} />
+                    <NavItem icon={Settings} label={t('agency_dashboard_settings')} active={activeView === 'settings'} onClick={() => { setActiveView('settings'); setSelectedClient(null); }} />
+                </div>
+                <div className="p-4 border-t border-slate-200">
+                    <button onClick={logout} className="w-full flex items-center justify-center lg:justify-start gap-2 p-2 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600">
+                        <LogOut size={20} />
+                        <span className="hidden lg:block font-semibold text-sm">Sair</span>
+                    </button>
+                </div>
+            </nav>
+            {/* Main Content */}
+            <main className="flex-1 flex flex-col">
+                <header className="bg-white p-4 border-b border-slate-200 flex justify-end items-center gap-4">
+                    <button onClick={() => window.open('https://wa.me/5511959868557', '_blank')} className="flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-purple-600">
+                        <Headset size={20}/>
+                        <span className="hidden sm:inline">{t('agency_dashboard_support_onliprep')}</span>
+                    </button>
+                    <div className="relative">
+                         <button className="p-2 rounded-full hover:bg-slate-100">
+                             <Bell size={20} className="text-slate-600"/>
+                         </button>
+                         {agencyNotifications.length > 0 && <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>}
+                    </div>
+                </header>
+                <div className="flex-1 overflow-y-auto p-6">
+                    {renderView()}
+                </div>
+            </main>
+            {/* Notifications */}
+            <div className="fixed bottom-5 right-5 z-50 space-y-3 w-80">
+                {agencyNotifications.map(notif => (
+                    <div key={notif.id} className="bg-white rounded-lg shadow-2xl p-4 flex items-start gap-3 animate-slide-in-left">
+                        <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0 mt-1">
+                            <notif.icon size={18}/>
+                        </div>
+                        <p className="text-sm text-slate-700 flex-1">{notif.message}</p>
+                        <button onClick={() => setAgencyNotifications(p => p.filter(n => n.id !== notif.id))} className="p-1 text-slate-400 hover:text-slate-600"><X size={16}/></button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const NavItem = ({ icon: Icon, label, active, onClick }) => (
+    <button onClick={onClick} className={`w-full flex items-center justify-center lg:justify-start gap-3 px-4 lg:px-6 py-3 transition-colors text-sm font-semibold ${active ? 'bg-purple-50 text-purple-700 border-r-4 border-purple-600' : 'text-slate-600 hover:bg-slate-50'}`}>
+        <Icon size={20} className="flex-shrink-0" />
+        <span className="hidden lg:block">{label}</span>
+    </button>
+);
+
+const AgencyDashboardHome = () => {
+    const { t } = useLanguage();
+    const avgNPS = (mockDatabase.npsData.reduce((acc, item) => acc + item.nps, 0) / mockDatabase.npsData.length).toFixed(1);
+    const totalReviews = mockDatabase.npsData.reduce((acc, item) => acc + item.reviews, 0);
+
+    return (
+        <div className="animate-fade-in">
+            <h2 className="text-3xl font-bold text-[#192A56] mb-8">Dashboard</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+                    <div className="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 className="font-bold text-lg">{t('agency_dashboard_nps')}</h3>
+                            <p className="text-sm text-slate-500">Total de {totalReviews} avaliações</p>
+                        </div>
+                        <div className="text-right">
+                            <p className="text-sm text-slate-500">Média NPS</p>
+                            <p className="font-bold text-2xl text-green-500">{avgNPS}</p>
+                        </div>
+                    </div>
+                    <div style={{width: '100%', height: 300}}>
+                        <ResponsiveContainer>
+                            <BarChart data={mockDatabase.npsData}>
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                                <XAxis dataKey="month" tick={{fill: '#64748b', fontSize: 12}} />
+                                <YAxis domain={[8, 10]} tick={{fill: '#64748b', fontSize: 12}} />
+                                <Tooltip cursor={{fill: 'rgba(124, 58, 237, 0.1)'}}/>
+                                <Bar dataKey="nps" fill="url(#colorNps)" barSize={30} radius={[4, 4, 0, 0]} />
+                                <defs>
+                                    <linearGradient id="colorNps" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/>
+                                    <stop offset="95%" stopColor="#6366f1" stopOpacity={0.8}/>
+                                    </linearGradient>
+                                </defs>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                     <div className="mt-4 p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
+                         <h4 className="font-bold text-amber-800">{t('agency_dashboard_churn_strategy')}</h4>
+                         <p className="text-sm text-amber-700">{t('agency_dashboard_churn_text')}</p>
+                     </div>
+                </div>
+                <div className="bg-white p-6 rounded-xl shadow-sm">
+                     <h3 className="font-bold text-lg mb-4">{t('agency_dashboard_recent_activity')}</h3>
+                     <p className="text-sm text-slate-500">{t('agency_dashboard_no_activity')}</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const AgencyClientsList = ({ onClientSelect }) => {
+    const { t } = useLanguage();
+    const [filter, setFilter] = useState('all');
+    const [sort, setSort] = useState('name');
+    const [clients, setClients] = useState(mockDatabase.agencyStudents);
+
+    const filteredAndSortedClients = useMemo(() => {
+        let filtered = clients;
+        if (filter !== 'all') {
+            filtered = clients.filter(c => c.status === filter);
+        }
+        return filtered.sort((a, b) => {
+            if (sort === 'name') return a.name.localeCompare(b.name);
+            if (sort === 'destination') return a.destination.localeCompare(b.destination);
+            if (sort === 'course') return a.course.localeCompare(b.course);
+            return 0;
+        });
+    }, [clients, filter, sort]);
+
+    const funnelStages = [
+        { id: 'all', name: 'Todos' },
+        { id: 'pesquisando', name: 'Pesquisando' },
+        { id: 'contrato_assinado', name: 'Contrato Assinado' },
+        { id: 'de_malas_prontas', name: 'De Malas Prontas' }
+    ];
+
+    return (
+        <div className="animate-fade-in">
+            <h2 className="text-3xl font-bold text-[#192A56] mb-4">{t('agency_dashboard_clients')}</h2>
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div className="p-4 flex flex-wrap gap-4 border-b border-slate-100">
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold text-slate-500">Funil:</span>
+                        {funnelStages.map(stage => (
+                            <button key={stage.id} onClick={() => setFilter(stage.id)} className={`px-3 py-1 text-sm rounded-full ${filter === stage.id ? 'bg-purple-600 text-white font-semibold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
+                                {stage.name}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold text-slate-500">Ordenar por:</span>
+                        <select value={sort} onChange={e => setSort(e.target.value)} className="bg-slate-100 border-none rounded-full px-3 py-1 text-sm text-slate-600 focus:ring-2 focus:ring-purple-500">
+                            <option value="name">Nome</option>
+                            <option value="destination">Destino</option>
+                            <option value="course">Curso</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="divide-y divide-slate-100">
+                    {filteredAndSortedClients.map(client => (
+                        <button key={client.id} onClick={() => onClientSelect(client)} className="w-full flex items-center justify-between p-4 hover:bg-purple-50 transition-colors text-left">
+                            <div className="flex items-center gap-4">
+                                <img src={client.photoURL} alt={client.name} className="w-12 h-12 rounded-full object-cover"/>
+                                <div>
+                                    <p className="font-bold text-[#192A56]">{client.name}</p>
+                                    <p className="text-sm text-slate-500">{client.destination}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-1 text-amber-500">
+                                    <Star size={16} fill="currentColor"/>
+                                    <span className="font-bold">{client.nps || 'N/A'}</span>
+                                </div>
+                                <ChevronRight size={20} className="text-slate-400"/>
+                            </div>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const AgencyClientProfile = ({ client, onBack }) => {
+    const { t } = useLanguage();
+    const { showToast, showAgencyNotification } = useApp();
+    const [journeySteps, setJourneySteps] = useState(mockDatabase.journeySteps[client.status] || []);
+    
+    // Simula a sincronização de notificações com o lado do aluno.
+    const handleConfirmReceipt = (stepId, taskName) => {
+        showToast(`${taskName}: Recebimento confirmado para ${client.name}!`, CheckSquare);
+        // Simula o alerta sonoro e a notificação push para o aluno.
+        console.log(`STUDENT_NOTIFICATION: Push para ${client.name} - "${taskName}" confirmado!`);
+        console.log("STUDENT_ALERT: play-confirmation-sound.mp3");
+        
+        showAgencyNotification(`Tarefa "${taskName}" de ${client.name} foi marcada como concluída.`, UserCheck);
+
+        setJourneySteps(prevSteps => prevSteps.map(step => 
+            step.id === stepId ? { ...step, completed: true } : step
+        ));
+    };
+
+    // Gerencia o envio de conteúdo personalizado.
+    const handleSendContent = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const title = formData.get('title');
+        const message = formData.get('message');
+        const whatsapp = formData.get('whatsapp');
+        
+        const notificationMessage = `Você recebeu um novo conteúdo da sua agência: "${title}"`;
+        showToast(notificationMessage, FileText); // Simula a notificação no dashboard do aluno.
+        showAgencyNotification(`Conteúdo "${title}" enviado para ${client.name}.`, Send);
+
+        if(whatsapp){
+            const whatsappMessage = `Olá ${client.name.split(' ')[0]}! Sua agência enviou um novo conteúdo para você:\n\n*${title}*\n${message}\n\nVeja no seu dashboard OnliPrep!`;
+            window.open(`https://wa.me/${client.phone}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+        }
+        e.target.reset();
+    }
+    
+    return (
+       <div className="animate-fade-in">
+            <button onClick={onBack} className="flex items-center gap-2 text-sm font-semibold text-slate-600 mb-4 hover:text-purple-600">
+                <ArrowLeft size={16}/> {t('back')}
+            </button>
+            <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div className="flex flex-col sm:flex-row items-start gap-6">
+                    <img src={client.photoURL} alt={client.name} className="w-24 h-24 rounded-full object-cover"/>
+                    <div>
+                        <h2 className="text-3xl font-bold text-[#192A56]">{client.name}</h2>
+                        <div className="flex items-center gap-1 text-amber-500 mt-1">
+                            {Array.from({length: 5}).map((_, i) => <Star key={i} size={20} fill={i < client.nps ? 'currentColor' : 'none'}/>)}
+                            <span className="text-slate-600 font-semibold ml-2">({client.nps || 'N/A'} / 5.0)</span>
+                        </div>
+                        <div className="mt-2 text-sm text-slate-600">
+                            <p><strong>Curso:</strong> {client.course}, {client.period}</p>
+                            <p><strong>Embarque:</strong> {new Date(client.departure + 'T00:00:00').toLocaleDateString('pt-BR')}</p>
+                        </div>
+                        <div className="mt-4 flex flex-wrap gap-4 text-sm">
+                            <a href={`mailto:${client.email}`} className="flex items-center gap-2 text-slate-600 hover:text-purple-600"><Mail size={16}/>E-mail</a>
+                            <a href={`https://wa.me/${client.phone}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-600 hover:text-purple-600"><MessageSquare size={16}/>WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 bg-white rounded-xl shadow-sm p-6">
+                    <h3 className="font-bold text-lg mb-4">{t('agency_dashboard_journey_progress')}</h3>
+                    <div className="w-full bg-slate-200 rounded-full h-2.5 mb-4">
+                        <div className="bg-gradient-to-r from-purple-500 to-indigo-600 h-2.5 rounded-full" style={{width: `${client.journeyStatus}%`}}></div>
+                    </div>
+                    <div className="space-y-3">
+                        {journeySteps.map(step => (
+                            <div key={step.id} className={`p-3 rounded-lg flex items-center justify-between ${step.completed ? 'bg-green-50 text-green-800' : 'bg-slate-50'}`}>
+                                <div className="flex items-center gap-3">
+                                    {step.completed ? <CheckCircle size={20} /> : <Clock size={20} className="text-slate-400"/>}
+                                    <span className="font-semibold">{step.name}</span>
+                                </div>
+                                {!step.completed && <button onClick={() => handleConfirmReceipt(step.id, step.name)} className="text-xs font-bold text-purple-600 hover:underline">{t('agency_dashboard_confirm_receipt')}</button>}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm p-6 space-y-4">
+                    <div>
+                        <h3 className="font-bold text-lg mb-4">{t('agency_dashboard_send_content')}</h3>
+                        <form onSubmit={handleSendContent} className="space-y-3">
+                            <input name="title" type="text" placeholder={t('agency_dashboard_content_title')} className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200" required/>
+                            <input name="video" type="url" placeholder={t('agency_dashboard_video_link')} className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200"/>
+                            <textarea name="message" placeholder={t('agency_dashboard_message')} rows="3" className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200" required></textarea>
+                            <label className="flex items-center gap-2 text-sm text-slate-600">
+                                <input type="checkbox" name="whatsapp" className="rounded text-purple-600 focus:ring-purple-500" />
+                                {t('agency_dashboard_send_whatsapp')}
+                            </label>
+                            <button type="submit" className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 flex items-center justify-center gap-2">
+                                <Send size={16}/> {t('agency_dashboard_send_dashboard')}
+                            </button>
+                        </form>
+                    </div>
+                    <div className="border-t border-slate-200 pt-4">
+                         <button className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 flex items-center justify-center gap-2">
+                            <Bot size={16}/> {t('agency_dashboard_talk_to_jei')}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+const AgencyReports = () => {
+    const { t } = useLanguage();
+    return (
+        <div className="animate-fade-in">
+            <h2 className="text-3xl font-bold text-[#192A56] mb-4">{t('agency_dashboard_reports')}</h2>
+            <div className="bg-white rounded-xl shadow-sm p-8 text-center">
+                <BarChart3 size={48} className="mx-auto text-slate-300 mb-4" />
+                <p className="text-slate-500">{t('in_construction')}</p>
+            </div>
+        </div>
+    );
+};
+
+
+// --- Dashboard Components (Original Code) ---
 const WeatherWidget = ({ destination }) => {
     const weatherData = mockDatabase.weather[destination] || { temp: '--', icon: HelpCircle };
     const Icon = weatherData.icon;
@@ -1201,7 +1445,7 @@ const DashboardBottomNav = ({ onNavigate, activeSection }) => {
         { id: 'preparatorio', icon: Compass, title: t('preparatorio_title') },
         { id: 'cases', icon: Briefcase, title: t('cases') },
         { id: 'bate_volta', icon: Map, title: t('bate_volta') },
-        { id: 'premium', icon: Star, title: t('premium') },
+        { id: 'onlipremium', icon: Crown, title: t('onlipremium') },
     ];
     return (
         <nav className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-indigo-700 p-1 shadow-top z-40 md:hidden">
@@ -1237,7 +1481,7 @@ const WelcomePopup = ({ userData, onClose, t }) => (
         </div>
     </div>
 );
-// --- Modals ---
+// --- Modals (Original Code) ---
 const Modal = ({ title, children, onClose }) => (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={onClose}>
         <div className="bg-[#FBF9F6] w-full max-w-lg rounded-2xl shadow-xl animate-slide-up max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
@@ -1274,7 +1518,7 @@ const JourneyStepPopup = ({ step, content, onClose, onSave }) => {
                     <p className="text-slate-700 leading-relaxed mb-6">{content.content}</p>
                 </div>
                 <footer className="bg-white/50 backdrop-blur-sm p-4 border-t border-stone-200 flex gap-4">
-                     <button onClick={onClose} className="font-semibold text-[#192A56] bg-transparent py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5 w-full">{t('back')}</button>
+                        <button onClick={onClose} className="font-semibold text-[#192A56] bg-transparent py-3 px-6 rounded-lg transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5 w-full">{t('back')}</button>
                     <button 
                         onClick={() => { onSave({type: 'journey', content: `${content.title}: ${content.content}`}); onClose(); }} 
                         className="font-semibold text-white bg-[#192A56] py-3 px-6 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center hover:bg-indigo-800 hover:-translate-y-0.5 hover:shadow-lg w-full"
@@ -1290,7 +1534,7 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
     const [search, setSearch] = useState('');
     const [customFolders, setCustomFolders] = useState([]);
     const [expandedFolders, setExpandedFolders] = useState({ 'tips': true });
-    const pdfRef = useRef();
+    const pdfRef = useRef(null);
     const secondaryButtonClasses = "font-semibold text-[#192A56] bg-transparent transition-all duration-300 ease-in-out border border-[#192A56] flex items-center justify-center hover:bg-[#192A56]/5 px-3 py-3 rounded-lg";
     const allFolders = useMemo(() => {
         const baseFolders = [
@@ -1346,6 +1590,8 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
             const height = width / ratio;
             pdf.addImage(imgData, 'PNG', 10, 10, width, height);
             pdf.save("onliprep_docs.pdf");
+            // Simula o envio do PDF para o aluno.
+            console.log("PDF generated. Simulating send to student via Email, WhatsApp, and Dashboard notification.");
         });
     };
     return (
@@ -1380,13 +1626,21 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
                     </div>
                 ))}
             </div>
+            {/* Div oculta para geração de PDF com template personalizável. */}
             <div className="absolute -left-[9999px] top-auto" style={{width: '210mm'}}>
                 <div ref={pdfRef} className="p-8 bg-white text-black">
+                    {/* O logo da agência seria inserido dinamicamente aqui. */}
+                    <img src="https://placehold.co/150x50/cccccc/000000?text=Sua+Logo+Aqui" alt="Agency Logo" className="mb-4" />
                     <h1 className="text-2xl font-bold text-[#192A56] mb-2">OnliPrep</h1>
                     <h2 className="text-xl font-semibold border-b pb-2 mb-4">Seus Itens Salvos</h2>
                     <ul className="list-disc pl-5 space-y-2">
                         {savedItems.map(item => <li key={`pdf-${item.id}`}>{item.content}</li>)}
                     </ul>
+                    {/* O rodapé da agência seria inserido dinamicamente aqui. */}
+                    <div className="border-t mt-8 pt-4 text-xs text-gray-500">
+                        <p>Gerado por OnliPrep para [Nome da Agência]</p>
+                        <p>[Endereço da Agência] | [Contato da Agência]</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1793,7 +2047,7 @@ const LeftFloatingActionButtons = ({ onTipClick, onJeiClick }) => {
     const [isActionsOpen, setActionsOpen] = useState(false);
     const actions = [
         { id: 'tip', icon: Lightbulb, title: 'Dica Rápida', color: 'bg-yellow-400', action: onTipClick },
-        { id: 'help', icon: Siren, title: 'Help!', color: 'bg-red-500', action: () => alert('Help!') },
+        { id: 'help', icon: Siren, title: 'Help!', color: 'bg-red-500', action: () => window.open('https://wa.me/5511959868557', '_blank') },
     ];
     return (
         <div className="fixed bottom-24 md:bottom-5 left-4 z-40 flex flex-col items-center gap-3">
@@ -1890,12 +2144,12 @@ const JourneyTimeline = ({ userStatus, destinationCountry, onStepClick }) => {
             <h2 className="text-3xl font-bold text-center text-[#192A56] mb-2">{t('journey')}</h2>
             <p className="text-center text-slate-500 mb-8">Sua esteira de embarque personalizada. Clique em cada etapa para ver os detalhes.</p>
             <div className="relative flex justify-center">
-                {/* --- A "Esteira" --- */}
+                {/* --- The "Conveyor Belt" --- */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-full bg-slate-200 rounded-full">
-                     <div className="bg-gradient-to-b from-purple-400 to-indigo-500 w-full rounded-full transition-all duration-700 ease-out" style={{ height: `${progress}%` }}></div>
+                        <div className="bg-gradient-to-b from-purple-400 to-indigo-500 w-full rounded-full transition-all duration-700 ease-out" style={{ height: `${progress}%` }}></div>
                 </div>
 
-                {/* --- Os Passos/Ícones --- */}
+                {/* --- The Steps/Icons --- */}
                 <div className="relative flex flex-col items-center gap-10">
                     {steps.map((step, index) => (
                         <div key={step.id} className="relative z-10 w-full flex items-center" style={{ flexDirection: index % 2 === 0 ? 'row' : 'row-reverse' }}>
@@ -1926,14 +2180,14 @@ const CasesSection = () => {
             <p className="text-slate-500 text-center mb-6">Inspire-se com as histórias de quem já viveu essa experiência.</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {mockDatabase.cases.map(c => (
-                     <div key={c.id} className="bg-slate-50 rounded-lg overflow-hidden shadow-md group transform hover:-translate-y-1 transition-transform duration-300">
-                        <img src={c.image} alt={`Foto de ${c.name}`} className="w-full h-48 object-cover" />
-                        <div className="p-4">
-                            <h4 className="font-bold text-lg text-[#192A56]">{c.name}</h4>
-                            <p className="text-sm text-purple-600 font-semibold mb-2">{c.destination}</p>
-                            <p className="text-sm text-slate-600">{c.story}</p>
+                        <div key={c.id} className="bg-slate-50 rounded-lg overflow-hidden shadow-md group transform hover:-translate-y-1 transition-transform duration-300">
+                            <img src={c.image} alt={`Foto de ${c.name}`} className="w-full h-48 object-cover" />
+                            <div className="p-4">
+                                <h4 className="font-bold text-lg text-[#192A56]">{c.name}</h4>
+                                <p className="text-sm text-purple-600 font-semibold mb-2">{c.destination}</p>
+                                <p className="text-sm text-slate-600">{c.story}</p>
+                            </div>
                         </div>
-                    </div>
                 ))}
             </div>
         </div>
@@ -2041,12 +2295,10 @@ const JeiResponseModal = ({ query, onSave, onClose, t }) => {
         </div>
     )
 }
-const PremiumSection = () => {
+const OnliPremiumSection = () => {
     const { t } = useLanguage();
-    const [isUnlocked, setIsUnlocked] = useState(false);
-    const [unlockedVideos, setUnlockedVideos] = useState({});
+    const { showAgencyNotification } = useApp();
     const [timeLeft, setTimeLeft] = useState(0);
-    const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
 
     useEffect(() => {
         let timer;
@@ -2057,24 +2309,11 @@ const PremiumSection = () => {
     }, [timeLeft]);
 
     const handleUnlock = () => {
-        setTimeLeft(60 * 60); // 1 hour
-        const newUnlocked = {};
-        mockDatabase.premiumContent['consultancy'].forEach(v => newUnlocked[v.id] = false);
-        setUnlockedVideos(newUnlocked);
+        setTimeLeft(20 * 60); // 20 minutes
     };
-    
-    const handleWatchVideo = (videoId) => {
-        // Simulate watching a video
-        alert(`Assistindo vídeo: ${videoId}`);
-        if(timeLeft > 0) {
-           setUnlockedVideos(prev => ({...prev, [videoId]: true}));
-        } else {
-           alert("Seu tempo de acesso acabou. Assine para continuar.");
-        }
-    }
 
     const sendWhatsAppAlert = (message) => {
-        const phoneNumber = "11959868557";
+        const phoneNumber = "5511959868557";
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     };
@@ -2095,12 +2334,13 @@ const PremiumSection = () => {
             setFormSubmitted(true);
         };
         
-        const handleSatisfactionSelect = (level) => {
-             setSatisfaction(level);
-             const alertMessage = `ALERTA: Cliente com avaliação "${level}" para a agência ${formState.agency}. Motivo: ${formState.reason}. Mensagem: ${formState.message}`;
-             sendWhatsAppAlert(alertMessage);
-             alert(`Feedback "${level}" enviado! Notificação enviada para a agência.`);
-             // Reset form
+        const handleSatisfactionSelect = (level, levelText) => {
+             setSatisfaction(levelText);
+             const alertMessage = `ALERTA: Cliente com avaliação "${levelText}" (${level} estrelas) para a agência ${formState.agency}. Motivo: ${formState.reason}. Mensagem: ${formState.message}`;
+             // sendWhatsAppAlert(alertMessage); // This would open a new tab
+             console.log("Simulating WhatsApp Alert:", alertMessage);
+             showAgencyNotification(`Nova avaliação de cliente: ${levelText} (${level} estrelas)`);
+             alert(`Feedback "${levelText}" enviado! Notificação enviada para a agência.`);
              setTimeout(() => {
                  setFormSubmitted(false);
                  setSatisfaction(null);
@@ -2111,13 +2351,13 @@ const PremiumSection = () => {
         if (formSubmitted && !satisfaction) {
             return (
                  <div className="bg-white p-6 rounded-xl shadow-lg animate-fade-in">
-                     <p className="text-center text-green-600 font-semibold mb-4">{t('premium_contact_sent_success')}</p>
-                     <h4 className="font-bold text-lg text-center text-[#192A56] mb-4">{t('premium_eval_title')}</h4>
-                     <div className="flex flex-col sm:flex-row gap-2 justify-center">
-                        <button onClick={() => handleSatisfactionSelect(t('premium_eval_satisfied'))} className="flex-1 p-3 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 transition-colors flex items-center justify-center gap-2"><ThumbsUp size={20}/> {t('premium_eval_satisfied')}</button>
-                        <button onClick={() => handleSatisfactionSelect(t('premium_eval_ok'))} className="flex-1 p-3 rounded-lg bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition-colors flex items-center justify-center gap-2"><Hand size={20}/> {t('premium_eval_ok')}</button>
-                        <button onClick={() => handleSatisfactionSelect(t('premium_eval_unsatisfied'))} className="flex-1 p-3 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition-colors flex items-center justify-center gap-2"><ThumbsDown size={20}/> {t('premium_eval_unsatisfied')}</button>
-                     </div>
+                      <p className="text-center text-green-600 font-semibold mb-4">{t('premium_contact_sent_success')}</p>
+                      <h4 className="font-bold text-lg text-center text-[#192A56] mb-4">{t('premium_eval_title')}</h4>
+                      <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                         <button onClick={() => handleSatisfactionSelect(5, t('premium_eval_satisfied'))} className="flex-1 p-3 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 transition-colors flex items-center justify-center gap-2"><ThumbsUp size={20}/> {t('premium_eval_satisfied')}</button>
+                         <button onClick={() => handleSatisfactionSelect(3, t('premium_eval_ok'))} className="flex-1 p-3 rounded-lg bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition-colors flex items-center justify-center gap-2"><Hand size={20}/> {t('premium_eval_ok')}</button>
+                         <button onClick={() => handleSatisfactionSelect(1, t('premium_eval_unsatisfied'))} className="flex-1 p-3 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition-colors flex items-center justify-center gap-2"><ThumbsDown size={20}/> {t('premium_eval_unsatisfied')}</button>
+                      </div>
                  </div>
             )
         }
@@ -2145,104 +2385,20 @@ const PremiumSection = () => {
             </form>
         );
     };
-    
-    const SubscriptionModal = ({ onClose }) => (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full animate-slide-up" onClick={e => e.stopPropagation()}>
-                <h3 className="text-2xl font-bold text-center text-[#192A56] mb-6">{t('premium_subscription_title')}</h3>
-                <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 border rounded-lg">
-                        <div>
-                            <p className="font-bold">{t('premium_plan_24h')}</p>
-                            <p className="text-xl font-bold text-purple-600">R$ 10,00</p>
-                        </div>
-                        <button className="font-semibold text-purple-600 border border-purple-600 py-2 px-4 rounded-lg hover:bg-purple-50">{t('premium_buy_voucher')}</button>
-                    </div>
-                     <div className="flex justify-between items-center p-4 border rounded-lg">
-                        <div>
-                            <p className="font-bold">{t('premium_plan_48h')}</p>
-                            <p className="text-xl font-bold text-purple-600">R$ 20,00</p>
-                        </div>
-                        <button className="font-semibold text-purple-600 border border-purple-600 py-2 px-4 rounded-lg hover:bg-purple-50">{t('premium_buy_voucher')}</button>
-                    </div>
-                     <div className="flex justify-between items-center p-4 border rounded-lg">
-                        <div>
-                            <p className="font-bold">{t('premium_plan_72h')}</p>
-                            <p className="text-xl font-bold text-purple-600">R$ 30,00</p>
-                        </div>
-                        <button className="font-semibold text-purple-600 border border-purple-600 py-2 px-4 rounded-lg hover:bg-purple-50">{t('premium_buy_voucher')}</button>
-                    </div>
-                    <div className="flex justify-between items-center p-4 border-2 border-purple-600 rounded-lg bg-purple-50">
-                        <div>
-                            <p className="font-bold">{t('premium_plan_monthly')}</p>
-                            <p className="text-xl font-bold text-purple-600">R$ 49,90/mês</p>
-                        </div>
-                        <button className="font-semibold text-white bg-purple-600 py-2 px-4 rounded-lg hover:bg-purple-700">{t('premium_subscribe_monthly')}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
 
     return (
         <div className="p-4 md:p-6 bg-gradient-to-br from-purple-50 via-yellow-50 to-orange-50 rounded-lg shadow-sm min-h-full">
-            {showSubscriptionModal && <SubscriptionModal onClose={() => setShowSubscriptionModal(false)} />}
-            
             <div className="text-center mb-8">
-                 <h2 className="text-4xl font-extrabold tracking-tighter relative inline-flex items-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">
-                    Premium
+               <h2 className="text-4xl font-extrabold tracking-tighter relative inline-flex items-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">
+                    {t('onlipremium')}
                     <Sparkles className="w-8 h-8 ml-2 text-yellow-400" />
                 </h2>
                 <p className="text-slate-600 mt-2">Conteúdo exclusivo, consultorias e ferramentas para uma experiência inesquecível.</p>
             </div>
             
-            {timeLeft <= 0 ? (
-                 <div className="bg-white rounded-2xl shadow-lg p-8 text-center max-w-md mx-auto mb-12 border border-slate-200">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white">
-                        <Play size={32} />
-                    </div>
-                    <h3 className="text-xl font-bold text-[#192A56] mb-2">Assista uma prévia</h3>
-                    <p className="text-slate-600 mb-6">Assista ao vídeo de introdução para desbloquear 8 vídeos de consultoria por 1 hora.</p>
-                    <button onClick={handleUnlock} className="font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-700 py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform">
-                        Assistir e Desbloquear
-                    </button>
-                </div>
-            ) : (
-                <div className="bg-green-100 border-l-4 border-green-500 text-green-800 p-4 rounded-lg mb-8 text-center font-semibold">
-                    {t('premium_unlocked_text')} {t('premium_timer_text')} {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
-                </div>
-            )}
-
-            <div className="space-y-8">
-                <div>
-                    <h3 className="text-2xl font-bold text-[#192A56] mb-4">Catálogo Consultoria</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {mockDatabase.premiumContent['consultancy'].map(item => (
-                            <div key={item.id} className="relative group aspect-video">
-                                <button onClick={() => handleWatchVideo(item.id)} className="w-full h-full bg-slate-800 rounded-xl shadow-lg p-4 flex flex-col justify-end text-left text-white overflow-hidden">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
-                                    <h4 className="relative z-20 font-bold">{item.title}</h4>
-                                </button>
-                                {((timeLeft <= 0) || !unlockedVideos[item.id]) && (
-                                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-30 rounded-xl">
-                                        <Lock size={32} className="text-yellow-400"/>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="mt-12 text-center">
-                    <button onClick={() => setShowSubscriptionModal(true)} className="font-bold text-white bg-gradient-to-r from-orange-500 to-pink-500 py-4 px-10 rounded-full shadow-lg hover:scale-105 transition-transform inline-block">
-                        {t('premium_subscribe_now')}
-                    </button>
-                </div>
-
-                <div className="mt-12 pt-8 border-t-2 border-dashed border-slate-300 max-w-2xl mx-auto">
-                     <h3 className="text-2xl font-bold text-[#192A56] text-center mb-4">{t('premium_contact_agency_title')}</h3>
-                     <ContactAgencyForm />
-                </div>
+            <div className="mt-12 pt-8 border-t-2 border-dashed border-slate-300 max-w-2xl mx-auto">
+                   <h3 className="text-2xl font-bold text-[#192A56] text-center mb-4">{t('premium_contact_agency_title')}</h3>
+                   <ContactAgencyForm />
             </div>
         </div>
     );
@@ -2328,8 +2484,8 @@ const DashboardScreen = () => {
                 return <CasesSection />;
             case 'journey':
                 return <JourneyTimeline userStatus={userData.status} destinationCountry={userData.destinationCountry} onStepClick={handleJourneyStepClick} />;
-            case 'premium':
-                return <PremiumSection />;
+            case 'onlipremium':
+                return <OnliPremiumSection />;
             default:
                 return (
                     <div className="bg-white p-8 rounded-lg shadow-sm">
@@ -2350,7 +2506,7 @@ const DashboardScreen = () => {
             <ToastNotification toast={toast} onClose={() => setToast(null)} t={t} />
             
             <div ref={headerRef} className="fixed top-0 left-0 right-0 z-30 bg-slate-100 shadow-md">
-                {activeSection !== 'premium' && (
+                {activeSection !== 'onlipremium' && (
                     <>
                         <DashboardHeader userData={userData} onBack={goBack} showBackButton={true} />
                         <SpecialIconsBar onIconClick={setActiveModal} />
@@ -2358,7 +2514,7 @@ const DashboardScreen = () => {
                 )}
             </div>
             
-            <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-24" style={{ marginTop: activeSection !== 'premium' ? headerHeight : 0 }}>
+            <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-24" style={{ marginTop: activeSection !== 'onlipremium' ? headerHeight : 0 }}>
                 <div className="max-w-7xl mx-auto space-y-6">
                     {renderActiveSection()}
                 </div>
@@ -2375,6 +2531,8 @@ const Main = () => {
         case 'auth': return <AuthScreen />;
         case 'auth-flow': return <AuthFlowScreen />;
         case 'dashboard': return <DashboardScreen />;
+        case 'agency-landing': return <AgencyLandingScreen />;
+        case 'agency-dashboard': return <AgencyDashboard />;
         case 'terms-student': return <TermsScreen type="student" />;
         case 'terms-agency': return <TermsScreen type="agency" />;
         default: return <AuthScreen />;
@@ -2393,7 +2551,8 @@ function AppContent() {
         }
         const scriptUrls = [
             'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'
+            'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',
+            'https://unpkg.com/recharts/umd/Recharts.min.js'
         ];
         scriptUrls.forEach(url => {
             const scriptId = url.split('/').pop();
@@ -2413,11 +2572,13 @@ function AppContent() {
         <>
             <style>{`
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
                 body { 
                     font-family: 'Inter', sans-serif; 
                     -webkit-font-smoothing: antialiased; 
                     background-color: #FBF9F6;
                 }
+                .font-serif { font-family: 'Playfair Display', serif; }
                 .font-title-elegant { font-family: 'Inter', sans-serif; font-weight: 300; }
                 .shadow-top { box-shadow: 0 -4px 15px -1px rgb(0 0 0 / 0.1), 0 -2px 8px -2px rgb(0 0 0 / 0.1); }
                 .custom-scrollbar::-webkit-scrollbar { height: 6px; }
@@ -2454,7 +2615,7 @@ function AppContent() {
                 .animate-slide-down { animation: slide-down 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
                 @keyframes slide-up { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
                 .animate-slide-up { animation: slide-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
-                @keyframes slide-in-left { from { opacity: 0; transform: translateX(-100%); } to { opacity: 1; transform: translateX(0); } }
+                @keyframes slide-in-left { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
                 .animate-slide-in-left { animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
                 .prose {
                     color: #374151; line-height: 1.7;
@@ -2465,12 +2626,13 @@ function AppContent() {
             `}</style>
             <div className="w-full h-dvh antialiased flex flex-col">
                 <div className="relative w-full flex-grow flex flex-col bg-[#FBF9F6]">
-                    {isLoading ? <LoadingScreen /> : <Main />}
+                    {isLoading ? <LoadingScreen text="Carregando OnliPrep..."/> : <Main />}
                 </div>
             </div>
         </>
     );
 }
+
 export default function App() {
     return (
         <LanguageProvider>
