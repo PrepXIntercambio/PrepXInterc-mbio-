@@ -18,7 +18,6 @@ import {
 } from 'lucide-react';
 
 // --- Firebase Mock Initialization ---
-// Inicialização simulada do Firebase. Em um ambiente real, as configurações viriam de um arquivo seguro.
 try {
     const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
     initializeApp(firebaseConfig);
@@ -27,7 +26,6 @@ try {
 }
 
 // --- KNOWLEDGE BASE & MOCK DATA (Expanded for Agency) ---
-// Base de conhecimento para a IA e dados simulados para popular a aplicação.
 const KNOWLEDGE_BASE = `A Prep-ON é uma ferramenta que chamamos de assistente ou app com o objetivo de ajudar futuros intercambistas a chegarem preparados no destino. Para isso, foi criada uma estrutura organizada pensando em cada usuário e o destino escolhido. A partir daí, uma linha do tempo é apresentada em ordem cronológica para não só ajudar na organização, mas também para ser um ambiente para alertar o futuro intercambista de situações ou coisas que faltam e que talvez ele tenha esquecido. Todas as dicas e orientações são geradas com fontes oficiais de consulados, imigrações, órgãos oficiais do governo, através de IA do Gemini, assim como com experiências práticas de quem já vivenciou tudo isso que está sendo informado. A ferramenta não substitui a importância do consultor, agência ou escolas, mas sim é mais uma peça na engrenagem, estando ali quando outras opções, por algum motivo, estiverem ocupadas. Um consultor também precisa ajudar milhares de clientes, e muitas vezes uma informação que pode ser difícil de encontrar na internet, no Prep-ON está ali na mão, ligado e pronto.`;
 
 const translations = {
@@ -185,7 +183,6 @@ const translations = {
         agency_landing_title: "Eleve a <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500'>experiência</span> do seu intercambista.",
         agency_landing_subtitle: "O OnliPrep é o seu braço direito digital. Automatizamos a jornada do aluno e liberamos seus consultores para focarem no que fazem de melhor: vender sonhos.",
         agency_login_title: "Acesse seu painel",
-        agency_name_placeholder: "Nome da Agência",
         agency_id_placeholder: "ID da Agência ou E-mail",
         agency_password_placeholder: "Sua senha",
         agency_login_button: "Entrar",
@@ -261,13 +258,12 @@ const mockDatabase = {
         { id: 4, name: "Pedro G.", destination: "St. Julian's, Malta", status: 'pesquisando', photoURL: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop", nps: null, journeyStatus: 15, email: "pedro.g@example.com", phone: "5541987654321", course: "Curso de Férias", period: "4 semanas", departure: "2026-01-10" },
     ],
     npsData: [
-        { month: 'Jan', nps: 8.5, reviews: 15 }, { month: 'Fev', nps: 8.8, reviews: 18 }, { month: 'Mar', nps: 9.1, reviews: 22 },
-        { month: 'Abr', nps: 9.0, reviews: 20 }, { month: 'Mai', nps: 9.3, reviews: 25 }, { month: 'Jun', nps: 9.5, reviews: 28 },
+        { month: 'Jan', nps: 8.5 }, { month: 'Fev', nps: 8.8 }, { month: 'Mar', nps: 9.1 },
+        { month: 'Abr', nps: 9.0 }, { month: 'Mai', nps: 9.3 }, { month: 'Jun', nps: 9.5 },
     ]
 };
 
 // --- Contexts ---
-// Contexto para gerenciamento de idioma e traduções.
 const LanguageContext = createContext(null);
 const useLanguage = () => useContext(LanguageContext);
 const LanguageProvider = ({ children }) => {
@@ -283,7 +279,6 @@ const LanguageProvider = ({ children }) => {
     return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
-// Contexto principal da aplicação para gerenciar estado global.
 const AppContext = createContext(null);
 const useApp = () => useContext(AppContext);
 const AppProvider = ({ children }) => {
@@ -297,20 +292,17 @@ const AppProvider = ({ children }) => {
     const [showTips, setShowTips] = useState(true);
     const [agencyNotifications, setAgencyNotifications] = useState([]);
 
-    // Função para exibir notificações toast.
     const showToast = (message, icon = Info, duration = 5000, actions = []) => {
         setToast({ message, icon, id: Date.now(), actions });
     };
 
-    // Função para exibir notificações no dashboard da agência.
     const showAgencyNotification = (message, icon = Bell) => {
         const newNotif = { id: Date.now(), message, icon };
         setAgencyNotifications(prev => [newNotif, ...prev]);
-        // Simula um alerta sonoro para feedback do usuário.
+        // Simulate sound for user feedback
         console.log("PLAY_SOUND: new-notification.mp3");
     };
     
-    // Gerencia o processo de login do usuário.
     const handleLogin = (user) => {
         setUserData({
             name: user.displayName || "Novo Usuário",
@@ -328,7 +320,6 @@ const AppProvider = ({ children }) => {
         }
     };
     
-    // Simula login com Google.
     const handleGoogleLogin = () => {
         const mockUser = {
             displayName: "Usuário Teste",
@@ -340,7 +331,6 @@ const AppProvider = ({ children }) => {
         handleLogin(mockUser);
     };
     
-    // Simula login com e-mail e senha.
     const handleEmailLogin = (e) => {
         e.preventDefault();
         const mockUser = {
@@ -357,26 +347,21 @@ const AppProvider = ({ children }) => {
         handleLogin(mockUser);
     }
 
-    // Gerencia o login da agência.
     const handleAgencyLogin = () => {
         setScreen('agency-dashboard');
         setTimeout(() => showAgencyNotification("Nova avaliação de Mariana L. (5 estrelas)", Star), 2000);
     };
 
-    // Finaliza o processo de onboarding do novo usuário.
     const completeOnboarding = (onboardingData) => {
         setUserData(prev => ({ ...prev, ...onboardingData }));
         setScreen('dashboard');
     };
     
-    // Efetua o logout do usuário.
     const logout = () => {
         setUserData(null);
         setScreen('auth');
         setAuthFlowStep('registration');
     };
-
-    // Navega para a tela anterior.
     const goBack = () => {
         if (screen === 'dashboard' || screen === 'agency-landing' || screen === 'agency-dashboard') {
             setScreen('auth');
@@ -384,14 +369,11 @@ const AppProvider = ({ children }) => {
             setScreen('auth');
         }
     }
-
-    // Salva um item na pasta do usuário.
     const saveItem = (item) => {
         setSavedItems(prev => [...prev, {id: Date.now(), ...item, isNew: true}]);
         showToast("Salvo na sua pasta!", CheckCircle, 3000);
     }
     
-    // Funções para gerenciar a agenda do usuário.
     const addAgendaItem = (item) => {
         setAgendaItems(prev => [...prev, {id: `user-${Date.now()}`, ...item, completed: false, completedAt: null, isJourneyTask: false}]);
     }
@@ -402,7 +384,6 @@ const AppProvider = ({ children }) => {
         setAgendaItems(prev => prev.map(item => item.id === id ? {...item, completed: !item.completed, completedAt: !item.completed ? new Date().toISOString() : null} : item));
     }
     
-    // Efeito para popular a agenda com tarefas da jornada quando a data de embarque é definida.
     useEffect(() => {
         if(userData?.departureDate && mockDatabase.journeyTasks) {
             const journeyRelatedTasks = mockDatabase.journeyTasks.map(task => {
@@ -432,15 +413,15 @@ const AppProvider = ({ children }) => {
     }, [userData?.departureDate]);
 
     const value = {  
-        screen, setScreen,  
-        userData, setUserData,  
-        isFirstTimeUser, setIsFirstTimeUser,  
-        toast, showToast, setToast,  
-        authFlowStep, setAuthFlowStep,  
-        savedItems, setSavedItems,  
+        screen, setScreen, 
+        userData, setUserData, 
+        isFirstTimeUser, setIsFirstTimeUser, 
+        toast, showToast, setToast, 
+        authFlowStep, setAuthFlowStep, 
+        savedItems, setSavedItems, 
         agendaItems, addAgendaItem, toggleAgendaItem, updateAgendaItem,
         showTips, setShowTips,
-        handleLogin, handleGoogleLogin, handleEmailLogin,  
+        handleLogin, handleGoogleLogin, handleEmailLogin, 
         completeOnboarding, logout, goBack, saveItem,
         handleAgencyLogin, agencyNotifications, setAgencyNotifications, showAgencyNotification
     };
@@ -903,27 +884,26 @@ const AgencyLandingScreen = () => {
             {/* Hero Section */}
             <div className="relative h-screen flex items-center justify-center text-center p-4">
                 <div className="absolute inset-0 overflow-hidden">
-                     {/* O vídeo do YouTube pode ser bloqueado em alguns iframes. Usando um vídeo de estoque como fallback. */}
                      <video
-                         autoPlay
-                         loop
-                         muted
-                         playsInline
-                         className="w-full h-full object-cover opacity-20"
-                         src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"
-                     />
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-20"
+                        src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"
+                        // Note: Using a stock video as direct YouTube embeds are not feasible.
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/80 to-transparent"></div>
                 </div>
                 <div className="relative z-10 w-full max-w-3xl">
                      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4"
-                         dangerouslySetInnerHTML={{ __html: t('agency_landing_title') }} />
+                        dangerouslySetInnerHTML={{ __html: t('agency_landing_title') }} />
                      <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8">
-                         {t('agency_landing_subtitle')}
+                        {t('agency_landing_subtitle')}
                     </p>
                     <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl max-w-sm mx-auto">
                         <h2 className="text-xl font-bold mb-4">{t('agency_login_title')}</h2>
                         <form onSubmit={(e) => { e.preventDefault(); handleAgencyLogin(); }} className="space-y-4">
-                            <input type="text" placeholder={t('agency_name_placeholder')} className="w-full py-3 px-4 bg-white/10 rounded-lg border border-white/20 focus:ring-2 focus:ring-amber-400 outline-none" required />
                             <input type="email" placeholder={t('agency_id_placeholder')} className="w-full py-3 px-4 bg-white/10 rounded-lg border border-white/20 focus:ring-2 focus:ring-amber-400 outline-none" required />
                             <input type="password" placeholder={t('agency_password_placeholder')} className="w-full py-3 px-4 bg-white/10 rounded-lg border border-white/20 focus:ring-2 focus:ring-amber-400 outline-none" required />
                             <button type="submit" className="w-full font-semibold bg-amber-400 text-[#192A56] py-3 rounded-lg hover:bg-amber-300 transition-colors">
@@ -1011,7 +991,7 @@ const AgencyDashboard = () => {
                     </button>
                     <div className="relative">
                          <button className="p-2 rounded-full hover:bg-slate-100">
-                             <Bell size={20} className="text-slate-600"/>
+                            <Bell size={20} className="text-slate-600"/>
                          </button>
                          {agencyNotifications.length > 0 && <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>}
                     </div>
@@ -1045,24 +1025,12 @@ const NavItem = ({ icon: Icon, label, active, onClick }) => (
 
 const AgencyDashboardHome = () => {
     const { t } = useLanguage();
-    const avgNPS = (mockDatabase.npsData.reduce((acc, item) => acc + item.nps, 0) / mockDatabase.npsData.length).toFixed(1);
-    const totalReviews = mockDatabase.npsData.reduce((acc, item) => acc + item.reviews, 0);
-
     return (
         <div className="animate-fade-in">
             <h2 className="text-3xl font-bold text-[#192A56] mb-8">Dashboard</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
-                    <div className="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 className="font-bold text-lg">{t('agency_dashboard_nps')}</h3>
-                            <p className="text-sm text-slate-500">Total de {totalReviews} avaliações</p>
-                        </div>
-                        <div className="text-right">
-                            <p className="text-sm text-slate-500">Média NPS</p>
-                            <p className="font-bold text-2xl text-green-500">{avgNPS}</p>
-                        </div>
-                    </div>
+                    <h3 className="font-bold text-lg mb-4">{t('agency_dashboard_nps')}</h3>
                     <div style={{width: '100%', height: 300}}>
                         <ResponsiveContainer>
                             <BarChart data={mockDatabase.npsData}>
@@ -1081,9 +1049,9 @@ const AgencyDashboardHome = () => {
                         </ResponsiveContainer>
                     </div>
                      <div className="mt-4 p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
-                         <h4 className="font-bold text-amber-800">{t('agency_dashboard_churn_strategy')}</h4>
-                         <p className="text-sm text-amber-700">{t('agency_dashboard_churn_text')}</p>
-                     </div>
+                        <h4 className="font-bold text-amber-800">{t('agency_dashboard_churn_strategy')}</h4>
+                        <p className="text-sm text-amber-700">{t('agency_dashboard_churn_text')}</p>
+                    </div>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-sm">
                      <h3 className="font-bold text-lg mb-4">{t('agency_dashboard_recent_activity')}</h3>
@@ -1096,54 +1064,16 @@ const AgencyDashboardHome = () => {
 
 const AgencyClientsList = ({ onClientSelect }) => {
     const { t } = useLanguage();
-    const [filter, setFilter] = useState('all');
-    const [sort, setSort] = useState('name');
-    const [clients, setClients] = useState(mockDatabase.agencyStudents);
-
-    const filteredAndSortedClients = useMemo(() => {
-        let filtered = clients;
-        if (filter !== 'all') {
-            filtered = clients.filter(c => c.status === filter);
-        }
-        return filtered.sort((a, b) => {
-            if (sort === 'name') return a.name.localeCompare(b.name);
-            if (sort === 'destination') return a.destination.localeCompare(b.destination);
-            if (sort === 'course') return a.course.localeCompare(b.course);
-            return 0;
-        });
-    }, [clients, filter, sort]);
-
-    const funnelStages = [
-        { id: 'all', name: 'Todos' },
-        { id: 'pesquisando', name: 'Pesquisando' },
-        { id: 'contrato_assinado', name: 'Contrato Assinado' },
-        { id: 'de_malas_prontas', name: 'De Malas Prontas' }
-    ];
-
     return (
         <div className="animate-fade-in">
             <h2 className="text-3xl font-bold text-[#192A56] mb-4">{t('agency_dashboard_clients')}</h2>
             <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-                <div className="p-4 flex flex-wrap gap-4 border-b border-slate-100">
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-slate-500">Funil:</span>
-                        {funnelStages.map(stage => (
-                            <button key={stage.id} onClick={() => setFilter(stage.id)} className={`px-3 py-1 text-sm rounded-full ${filter === stage.id ? 'bg-purple-600 text-white font-semibold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
-                                {stage.name}
-                            </button>
-                        ))}
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-slate-500">Ordenar por:</span>
-                        <select value={sort} onChange={e => setSort(e.target.value)} className="bg-slate-100 border-none rounded-full px-3 py-1 text-sm text-slate-600 focus:ring-2 focus:ring-purple-500">
-                            <option value="name">Nome</option>
-                            <option value="destination">Destino</option>
-                            <option value="course">Curso</option>
-                        </select>
-                    </div>
+                <div className="p-4 flex gap-4">
+                    <input type="search" placeholder="Buscar cliente..." className="w-full py-2 px-4 bg-slate-50 rounded-lg border border-slate-200"/>
+                    <button className="flex items-center gap-2 py-2 px-4 bg-slate-100 rounded-lg text-sm font-semibold"><Filter size={16}/> Filtrar</button>
                 </div>
                 <div className="divide-y divide-slate-100">
-                    {filteredAndSortedClients.map(client => (
+                    {mockDatabase.agencyStudents.map(client => (
                         <button key={client.id} onClick={() => onClientSelect(client)} className="w-full flex items-center justify-between p-4 hover:bg-purple-50 transition-colors text-left">
                             <div className="flex items-center gap-4">
                                 <img src={client.photoURL} alt={client.name} className="w-12 h-12 rounded-full object-cover"/>
@@ -1172,21 +1102,13 @@ const AgencyClientProfile = ({ client, onBack }) => {
     const { showToast, showAgencyNotification } = useApp();
     const [journeySteps, setJourneySteps] = useState(mockDatabase.journeySteps[client.status] || []);
     
-    // Simula a sincronização de notificações com o lado do aluno.
     const handleConfirmReceipt = (stepId, taskName) => {
         showToast(`${taskName}: Recebimento confirmado para ${client.name}!`, CheckSquare);
-        // Simula o alerta sonoro e a notificação push para o aluno.
-        console.log(`STUDENT_NOTIFICATION: Push para ${client.name} - "${taskName}" confirmado!`);
-        console.log("STUDENT_ALERT: play-confirmation-sound.mp3");
-        
-        showAgencyNotification(`Tarefa "${taskName}" de ${client.name} foi marcada como concluída.`, UserCheck);
-
         setJourneySteps(prevSteps => prevSteps.map(step => 
             step.id === stepId ? { ...step, completed: true } : step
         ));
     };
 
-    // Gerencia o envio de conteúdo personalizado.
     const handleSendContent = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -1195,7 +1117,7 @@ const AgencyClientProfile = ({ client, onBack }) => {
         const whatsapp = formData.get('whatsapp');
         
         const notificationMessage = `Você recebeu um novo conteúdo da sua agência: "${title}"`;
-        showToast(notificationMessage, FileText); // Simula a notificação no dashboard do aluno.
+        showToast(notificationMessage, FileText); // Simulates student notification
         showAgencyNotification(`Conteúdo "${title}" enviado para ${client.name}.`, Send);
 
         if(whatsapp){
@@ -1217,14 +1139,10 @@ const AgencyClientProfile = ({ client, onBack }) => {
                         <h2 className="text-3xl font-bold text-[#192A56]">{client.name}</h2>
                         <div className="flex items-center gap-1 text-amber-500 mt-1">
                             {Array.from({length: 5}).map((_, i) => <Star key={i} size={20} fill={i < client.nps ? 'currentColor' : 'none'}/>)}
-                            <span className="text-slate-600 font-semibold ml-2">({client.nps || 'N/A'} / 5.0)</span>
-                        </div>
-                        <div className="mt-2 text-sm text-slate-600">
-                            <p><strong>Curso:</strong> {client.course}, {client.period}</p>
-                            <p><strong>Embarque:</strong> {new Date(client.departure + 'T00:00:00').toLocaleDateString('pt-BR')}</p>
+                            <span className="text-slate-600 font-semibold ml-2">({client.nps} / 5.0)</span>
                         </div>
                         <div className="mt-4 flex flex-wrap gap-4 text-sm">
-                            <a href={`mailto:${client.email}`} className="flex items-center gap-2 text-slate-600 hover:text-purple-600"><Mail size={16}/>E-mail</a>
+                            <a href={`mailto:${client.email}`} className="flex items-center gap-2 text-slate-600 hover:text-purple-600"><Mail size={16}/>{client.email}</a>
                             <a href={`https://wa.me/${client.phone}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-600 hover:text-purple-600"><MessageSquare size={16}/>WhatsApp</a>
                         </div>
                     </div>
@@ -1249,27 +1167,20 @@ const AgencyClientProfile = ({ client, onBack }) => {
                         ))}
                     </div>
                 </div>
-                <div className="bg-white rounded-xl shadow-sm p-6 space-y-4">
-                    <div>
-                        <h3 className="font-bold text-lg mb-4">{t('agency_dashboard_send_content')}</h3>
-                        <form onSubmit={handleSendContent} className="space-y-3">
-                            <input name="title" type="text" placeholder={t('agency_dashboard_content_title')} className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200" required/>
-                            <input name="video" type="url" placeholder={t('agency_dashboard_video_link')} className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200"/>
-                            <textarea name="message" placeholder={t('agency_dashboard_message')} rows="3" className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200" required></textarea>
-                            <label className="flex items-center gap-2 text-sm text-slate-600">
-                                <input type="checkbox" name="whatsapp" className="rounded text-purple-600 focus:ring-purple-500" />
-                                {t('agency_dashboard_send_whatsapp')}
-                            </label>
-                            <button type="submit" className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 flex items-center justify-center gap-2">
-                                <Send size={16}/> {t('agency_dashboard_send_dashboard')}
-                            </button>
-                        </form>
-                    </div>
-                    <div className="border-t border-slate-200 pt-4">
-                         <button className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 flex items-center justify-center gap-2">
-                            <Bot size={16}/> {t('agency_dashboard_talk_to_jei')}
+                <div className="bg-white rounded-xl shadow-sm p-6">
+                    <h3 className="font-bold text-lg mb-4">{t('agency_dashboard_send_content')}</h3>
+                    <form onSubmit={handleSendContent} className="space-y-3">
+                        <input name="title" type="text" placeholder={t('agency_dashboard_content_title')} className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200" required/>
+                        <input name="video" type="url" placeholder={t('agency_dashboard_video_link')} className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200"/>
+                        <textarea name="message" placeholder={t('agency_dashboard_message')} rows="3" className="w-full py-2 px-3 bg-slate-100 rounded-lg border-slate-200" required></textarea>
+                        <label className="flex items-center gap-2 text-sm text-slate-600">
+                            <input type="checkbox" name="whatsapp" className="rounded text-purple-600 focus:ring-purple-500" />
+                            {t('agency_dashboard_send_whatsapp')}
+                        </label>
+                        <button type="submit" className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 flex items-center justify-center gap-2">
+                            <Send size={16}/> {t('agency_dashboard_send_dashboard')}
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -1590,8 +1501,6 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
             const height = width / ratio;
             pdf.addImage(imgData, 'PNG', 10, 10, width, height);
             pdf.save("onliprep_docs.pdf");
-            // Simula o envio do PDF para o aluno.
-            console.log("PDF generated. Simulating send to student via Email, WhatsApp, and Dashboard notification.");
         });
     };
     return (
@@ -1626,17 +1535,17 @@ const FolderModal = ({ t, savedItems, setSavedItems }) => {
                     </div>
                 ))}
             </div>
-            {/* Div oculta para geração de PDF com template personalizável. */}
+            {/* Hidden div for PDF generation */}
             <div className="absolute -left-[9999px] top-auto" style={{width: '210mm'}}>
                 <div ref={pdfRef} className="p-8 bg-white text-black">
-                    {/* O logo da agência seria inserido dinamicamente aqui. */}
+                    {/* Placeholder for agency logo */}
                     <img src="https://placehold.co/150x50/cccccc/000000?text=Sua+Logo+Aqui" alt="Agency Logo" className="mb-4" />
                     <h1 className="text-2xl font-bold text-[#192A56] mb-2">OnliPrep</h1>
                     <h2 className="text-xl font-semibold border-b pb-2 mb-4">Seus Itens Salvos</h2>
                     <ul className="list-disc pl-5 space-y-2">
                         {savedItems.map(item => <li key={`pdf-${item.id}`}>{item.content}</li>)}
                     </ul>
-                    {/* O rodapé da agência seria inserido dinamicamente aqui. */}
+                    {/* Placeholder for agency footer */}
                     <div className="border-t mt-8 pt-4 text-xs text-gray-500">
                         <p>Gerado por OnliPrep para [Nome da Agência]</p>
                         <p>[Endereço da Agência] | [Contato da Agência]</p>
