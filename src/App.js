@@ -1,8 +1,3 @@
-Segunda versao
-
-
-Agora eu preciso que você preste bastante atenção. Nós vamos fazer uma fusão, vou deixar um código agora que tem toda parte de agência, consultor, funil do sou intercambista, tela inicial, pra você trocar no app que temos aqui. Você deixará apenas o dashboars nosso intacto funcionando. Se atente a cada linha e veja pra nao ter algum conflito que faça algo que quebre alguma linha e ai algum item deixe de funcionar ou aparecer
-
 import React, { useState, useEffect, createContext, useContext, useCallback, useRef, useMemo } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
